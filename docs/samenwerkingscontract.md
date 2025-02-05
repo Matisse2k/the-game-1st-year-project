@@ -120,10 +120,35 @@ Dit contract is van toepassing op de samenwerking binnen het project voor het on
 
 - We proberen het samen eens te worden, maar lukt dat niet, dan beslissen we door te stemmen.
 
+
+### 11. Consequenties bij het Niet-Naleven van Afspraken
+Om een productieve samenwerking te waarborgen, gelden de volgende stappen bij het niet naleven van de gemaakte afspraken:
+
+
+1. **Eerste Overtreding:**  
+
+- Er vindt een persoonlijk gesprek plaats met het betreffende teamlid om het probleem te bespreken en duidelijke verwachtingen te herhalen.  
+
+ - Er wordt een oplossing gezocht om herhaling te voorkomen.
+
+  
+
+1. **Tweede Overtreding:**  
+
+- Het probleem wordt besproken in het team, zodat alle leden op de hoogte zijn en er transparantie is.  
+
+ - Er worden concrete afspraken gemaakt, bijvoorbeeld het herverdelen van taken of het stellen van specifieke deadlines.  
+
+  
+
+1. **Aanhoudende Problemen:**  
+
+- Als het probleem blijft bestaan, wordt de situatie besproken met een docent of projectbegeleider.  
+
+ - Dit kan leiden tot formele gevolgen, zoals lagere individuele beoordelingen voor samenwerking of projectbijdrage.
   
 
 ---
 
-  
 
 **Door dit contract te ondertekenen, gaat ieder teamlid akkoord met de bovengenoemde regels en afspraken.**
