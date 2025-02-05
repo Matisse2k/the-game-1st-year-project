@@ -2,4 +2,128 @@
 title: Samenwerkingscontract
 ---
 # Samenwerkingscontract
-**TODO:** Werk op deze pagina het samenwerkingscontract van het team uit.
+
+## Doel
+
+Dit contract beschrijft de regels en afspraken voor de samenwerking binnen ons team. Het doel is om een productieve en fijne werkomgeving te creëren waarin iedereen zich aan dezelfde regels houdt.
+
+  
+
+Dit contract is van toepassing op de samenwerking binnen het project voor het ontwikkelen van een **text-based adventure game met de LucaStars Game Engine™**.
+
+  
+
+## Regels en Afspraken
+
+  
+
+### 1. Communicatie
+
+- We bellen elkaar altijd op woensdag tijdens de online les om de voortgang te bespreken en eventuele vragen te beantwoorden.
+
+- We gebruiken **Microsoft Teams** of **Discord** voor communicatie. Hier geven we belangrijke updates door en bespreken we technische issues.
+
+- Bij het werken in aparte branches geven we in Teams of Discord aan wanneer een feature-branch klaar is voor review of gemerged kan worden.
+
+- We vermelden in de pull request beschrijving duidelijk welke wijzigingen zijn doorgevoerd om mergeconflicten te minimaliseren.
+
+- Als je niet aanwezig kunt zijn tijdens de les, geef je dit van tevoren aan via Teams.
+
+  
+
+### 2. Werkuren en Beschikbaarheid
+
+- We houden elkaar op de hoogte van onze beschikbaarheid en eventuele wijzigingen in onze werkuren.
+
+- Flexibele werkuren zijn toegestaan, zolang de communicatie en deadlines niet in gevaar komen.
+
+  
+
+### 3. Vergaderingen
+
+- We houden een wekelijkse teamvergadering op dinsdag om 09:00 uur om de planning voor de week te bespreken.
+
+- Iedereen komt voorbereid naar de vergaderingen.
+
+- Elke keer dat we op school zijn en les hebben, houden we eerst een **daily stand-up** om te bespreken hoe het gaat, wat er gedaan is, of je ergens tegenaan loopt, en hoe de voortgang is.
+
+  
+
+### 4. Taken en Verantwoordelijkheden
+
+- Taken worden eerlijk verdeeld en iedereen is verantwoordelijk voor het tijdig voltooien van zijn taken.
+
+- Teamleden zijn verantwoordelijk voor hun toegewezen onderdelen (zoals Rooms, Items, Characters, unieke Actions en Web Components) en zorgen voor tijdige integratie met de bijdragen van anderen. 
+
+- We gebruiken het **issue board** om de voortgang van taken tijdens een sprint bij te houden.
+
+- Iedereen zorgt ervoor dat zijn taken up-to-date zijn op het issue board.
+
+  
+
+### 5. Deadlines
+
+- Deadlines worden gerespecteerd en iedereen levert zijn werk op tijd in.
+
+- Als iemand een deadline niet kan halen, wordt dit zo snel mogelijk gecommuniceerd met elkaar.
+
+- We helpen elkaar om deadlines te halen en bieden ondersteuning waar nodig.
+
+- Tijdens elke sprintreview bespreken we de voortgang, en teamleden demonstreren hun bijdragen aan het project.
+
+  
+
+### 6. Codebeheer en Versiecontrole
+
+- Code moet voldoen aan de afgesproken codekwaliteit.
+
+- Voordat code wordt gepusht, moet deze lokaal getest zijn om bugs te minimaliseren.
+
+- Pull requests worden pas gemerged na een code review door minimaal één ander teamlid om de kwaliteit en consistentie te waarborgen.
+
+- Bij grote wijzigingen overleggen we vooraf om mergeconflicten te voorkomen.
+
+  
+### 7. Feedback en Evaluatie
+
+- Feedback wordt op een positieve en respectvolle manier gegeven.
+
+- We plannen regelmatig feedbacksessies om de samenwerking en het project te evalueren.
+
+- Iedereen staat open voor feedback en gebruikt deze om zichzelf en het project te verbeteren.
+
+
+### 8. Conflictoplossing
+
+- Conflicten worden direct en op een respectvolle manier besproken.
+
+- We zoeken naar oplossingen die voor iedereen acceptabel zijn.
+
+- Als we er samen niet uitkomen, schakelen we een neutrale derde partij in (bijvoorbeeld een docent) om te bemiddelen.
+
+
+### 9. Documentatie
+
+- Alle projectdocumentatie wordt centraal opgeslagen en is toegankelijk voor iedereen.
+
+- Documentatie wordt regelmatig bijgewerkt en gecontroleerd op nauwkeurigheid.
+
+- Iedereen is verantwoordelijk voor het bijhouden van documentatie voor zijn of haar taken.
+
+  
+
+### 10. Gezamenlijke Besluitvorming
+
+- Belangrijke beslissingen worden gezamenlijk genomen.
+
+- Iedereen heeft de mogelijkheid om zijn of haar mening te geven voordat een beslissing wordt genomen.
+
+- We proberen het samen eens te worden, maar lukt dat niet, dan beslissen we door te stemmen.
+
+  
+
+---
+
+  
+
+**Door dit contract te ondertekenen, gaat ieder teamlid akkoord met de bovengenoemde regels en afspraken.**
