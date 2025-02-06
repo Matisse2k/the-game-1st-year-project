@@ -2,6 +2,65 @@
 title: Game flow
 ---
 # Game flow
-**TODO:** Beschrijf hier hoe alle *game objects* uiteindelijk leiden tot het uitspelen van het spel, of naar meerdere eindes. Doe dit middels een of meerdere [*Puzzle Dependency Chart*](https://grumpygamer.com/puzzle_dependency_charts/). Hiervoor kan de tool [Puzzlon](https://adventuron.io/puzzlon/) gebruikt worden (aangeraden*), maar het kan ook met een [Mermaid flowchart diagram](https://mermaid.js.org/syntax/flowchart.html). Maak daarnaast middels een Mermaid flowchart diagram een duidelijke kaart van hoe de verschillende *rooms* met elkaar verbonden zijn.
+  
 
-\* Aangeraden omdat het goed overweg kan met (zeer) grote diagrammen. Plaats zowel de code als de geëxporteerde SVG's op deze pagina.
+## **Legenda**
+
+🔹 = Actie van de speler
+
+🔸 = Beslissing / Keuze
+
+🟢 = Voortgang
+
+🔴 = Einde
+
+```mermaid
+
+graph TD
+
+A1(🔹 Start in het Bos) -->|Vogel geeft hint| A2[🔹 Zoek de sleutel]
+
+A2 -->|Sleutel gevonden| A3[🔹 Ga naar het kasteel]
+
+A3 -->|Betreed het kasteel| B1[🔹 Ontmoet de butler]
+
+B1 -->|Krijgt eerste plattegrond| B2[🔹 Ga naar de keuken]
+
+B2 -->|Praat met chef| B3{🔸 Heb je het mes?}
+
+B3 -->|Nee| C1[🔹 Ga naar de kelder]
+
+B3 -->|Ja| B4[🔹 Geef mes aan chef]
+
+C1 -->|Praat met de geest| C2{🔸 Heb je speelgoed?}
+
+C2 -->|Nee| C3[🔹 Zoek het speelgoed]
+
+C2 -->|Ja| C4[🔹 Geef speelgoed aan geest]
+
+C4 -->|Toegang tot trap| D1[🔹 Ga naar eerste verdieping]
+
+D1 -->|Krijgt nieuwe plattegrond| D2[🔹 Ga naar werkkamer]
+
+D2 -->|Zoek de deurklink| D3{🔸 Welke kamer open je?}
+
+D3 -->|Gastenkamer zonder zolder| E1[🔹 Vogel geeft hints over de guard]
+
+D3 -->|Gastenkamer met zolder| E2[🔹 Vogel geeft hints en toegang tot de zolder]
+
+
+E2 -->|Ga naar zolder| F1{🔸 Blijf je te lang?}
+
+F1 -->|Ja| F2(🔴 Ghost Ending)
+
+F1 -->|Nee| F3[🔹 Zoek mysterie-items]
+
+E1 -->|Bereid je voor op ondervraging| G1[🔹 Ga naar de guard]
+
+F3 -->|Maak mysterie-item| G1
+
+G1 -->|Guard stelt vragen| G2{🔸 Correct antwoord?}
+
+G2 -->|Ja| G3(🟢 Escape Ending)
+
+G2 -->|Nee| G4(🔴 Voor altijd vast in het kasteel)
