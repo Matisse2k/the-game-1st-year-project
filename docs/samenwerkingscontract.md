@@ -133,7 +133,7 @@ Om een productieve samenwerking te waarborgen, gelden de volgende stappen bij he
 
   
 
-1. **Tweede Overtreding:**  
+2. **Tweede Overtreding:**  
 
 - Het probleem wordt besproken in het team, zodat alle leden op de hoogte zijn en er transparantie is.  
 
@@ -141,7 +141,7 @@ Om een productieve samenwerking te waarborgen, gelden de volgende stappen bij he
 
   
 
-1. **Aanhoudende Problemen:**  
+3. **Aanhoudende Problemen:**  
 
 - Als het probleem blijft bestaan, wordt de situatie besproken met een docent of projectbegeleider.  
 
@@ -152,3 +152,10 @@ Om een productieve samenwerking te waarborgen, gelden de volgende stappen bij he
 
 
 **Door dit contract te ondertekenen, gaat ieder teamlid akkoord met de bovengenoemde regels en afspraken.**
+| Naam          | Handtekening | Datum       |
+| ------------- | ------------- | ----------- |
+| Chiel Kramer  | CK            |06-02-2025 |
+| Dominik Krystul | DK          |06-02-2025 |
+| Matisse Ben Âddi | MBA        |06-02-2025 |
+| Samale Fahiyeh   | SF         |06-02-2025 |
+| Shivanio Cooman Cooman | SCC  |06-02-2025 |
