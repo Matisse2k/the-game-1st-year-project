@@ -154,7 +154,7 @@ Om een productieve samenwerking te waarborgen, gelden de volgende stappen bij he
 **Door dit contract te ondertekenen, gaat ieder teamlid akkoord met de bovengenoemde regels en afspraken.**
 | Naam          | Handtekening | Datum       |
 | ------------- | ------------- | ----------- |
-| Chiel Kramer  | CK            |06-02-2025 |
+| Chiel Kramer  | MB            |06-02-2025 |
 | Dominik Krystul | DK          |06-02-2025 |
 | Matisse Ben Âddi | MBA        |06-02-2025 |
 | Samale Fahiyeh   | SF         |06-02-2025 |
