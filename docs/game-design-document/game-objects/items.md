@@ -9,11 +9,11 @@ title: Items
 In het spel vindt de speler verschillende **items** die nodig zijn om puzzels op te lossen, nieuwe gebieden te openen en interacties met NPC’s mogelijk te maken. Sommige items kunnen direct worden opgepakt, terwijl andere verkregen worden na een **ruil** of een **puzzel**.
 
 ## **Overzicht van Items & Gebruik**
-
 | **Item**                    | **Locatie**                     | **Gebruik**                                          | **Gekoppelde NPC / Puzzel** |
 |-----------------------------|---------------------------------|------------------------------------------------------|-----------------------------|
 | **Plattegrond (2x)**        | Lobby (verandert per verdieping) | Geeft een overzicht van het kasteel per verdieping  | Butler                     |
 | **Sleutel**                 | Pad naar het kasteel            | Opent de kasteeldeur                                | Geen NPC, moet gevonden worden |
+| **Oud Stukje Papier**       | Keuken                          | Bevat een hint voor de **easter egg items**          | Chef                        |
 | **Deurklink**               | Werkkamer (eerste verdieping)   | Opent een van de gastenkamers                       | Geen NPC, moet gevonden worden |
 | **Speelgoed**               | Lobby                           | Nodig om toegang tot de eerste verdieping te krijgen | Geest (kelder)             |
 | **Mes**                     | Kelder                          | Moet aan de chef gegeven worden                     | Chef                        |
@@ -24,7 +24,6 @@ In het spel vindt de speler verschillende **items** die nodig zijn om puzzels op
 ---
 
 ## **Gedetailleerde Item Interacties & Puzzels**
-
 ### **1. Plattegrond (2x)**
 - **Locatie**: Butler in de lobby.  
 - **Gebruik**:
@@ -79,7 +78,15 @@ In het spel vindt de speler verschillende **items** die nodig zijn om puzzels op
   - Zodra de speler **alle drie de items** heeft verzameld, worden ze automatisch gecombineerd tot een mysterieus object die de zolder kan openen.  
 - **Puzzel**:
   - Alleen beschikbaar als de speler de **zolder** bereikt.  
-  - Op de zolder onthult de geest het **"One with the Ghost" Ending** als de speler te lang blijft.  
+  - Op de zolder onthult de geest het **"One with the Ghost" Ending** als de speler te lang blijft. 
+
+  ### **7. Oud Stukje Papier**
+- **Locatie**: Keuken.  
+- **Gebruik**:
+    - Bevat een hint voor de **easter egg items**.  
+- **Puzzel**:
+    - De speler moet het oude stukje papier vinden om de locatie van de **mysterieuze houten stok**, **metalen haak**, en **lijmpotje** te ontdekken.  
+    - Deze hint helpt de speler bij het verzamelen van de items voor het **"One with the Ghost" Ending**.   
 
 ---
 
@@ -92,6 +99,7 @@ In het spel vindt de speler verschillende **items** die nodig zijn om puzzels op
 | **Een gastenkamer openen** | Deurklink | Gevonden in de werkkamer | Opent een gastenkamer |
 | **Escape Ending mogelijk maken** | Kennis over het kasteel | Gesprek met NPC’s (vogel, butler, chef, geest) | Correct antwoorden bij de guard |
 | **Ghost Ending activeren** | Mysterieuze Houten Stok, Metalen Haak & Lijmpotje | Gevonden in verschillende kamers | Automatische combinatie leidt tot alternatieve uitkomst |
+|**Hint over easter egg items** | Oud Stukje Papier | Gevonden in de keuken | Bevat een hint voor de locaties van de mysterieuze houten stok, metalen haak, en lijmpotje |
 
 ---
 
