@@ -32,6 +32,8 @@ B3 -->|Nee| C1[🔹 Ga naar de kelder]
 
 B3 -->|Ja| B4[🔹 Geef mes aan chef]
 
+B4 -->|ontvangt briefje| B5[🔹 Staat info op over EasterEgg einde]
+
 C1 -->|Praat met de geest| C2{🔸 Heb je speelgoed?}
 
 C2 -->|Nee| C3[🔹 Zoek het speelgoed]
