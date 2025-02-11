@@ -153,6 +153,11 @@ Om een productieve samenwerking te waarborgen, gelden de volgende stappen bij he
 ---
 Chiel Kramer:
 
+In semester 2 test ik wekelijks mijn werk en vraag ik actief feedback aan mijn team. Hierdoor ontdek ik sneller fouten en verbeter ik mijn code. Ik zal elke week minimaal één keer mijn code testen en feedback vragen tijdens teammeetings of code reviews. Dit helpt me om mijn vaardigheden als ontwikkelaar te versterken en de kwaliteit van onze code te verbeteren. Aan het einde van Blok 3 evalueer ik mijn voortgang en kijk ik of ik deze gewoonte heb ontwikkeld.
+
+In semester 2 voeg ik direct duidelijke en informatieve code comments toe tijdens het schrijven van mijn code. Hierdoor kan ik mijn werk makkelijker terugvinden en begrijpt mijn team mijn functies beter. Ik zorg ervoor dat ik elke keer relevante comments toevoeg bij belangrijke secties en functies van mijn code. Dit verbetert zowel mijn eigen werkproces als de samenwerking binnen het team. Aan het einde van Blok 3 evalueer ik mijn voortgang om te zien of ik deze gewoonte consistent heb toegepast.
+
+
 ---
 
 Dominik Krystul:
@@ -160,12 +165,14 @@ Dominik Krystul:
 ---
 
 Matisse Ben Addi:
+
 SMART-doel: Actiever feedback vragen in Scorion
 Ik wil mijn leerproces verbeteren door actiever feedback te vragen via Scorion. Om dit te bereiken, zal ik na elke afgeronde opdracht of belangrijke mijlpaal minimaal één keer per twee weken feedbackverzoeken indienen bij mijn begeleider(s) of docenten. Ik houd bij hoeveel feedback ik heb ontvangen en gebruik deze inzichten om mijn werk te verbeteren. Mijn doel is om binnen acht weken een consistente gewoonte te ontwikkelen, waarbij ik structureel feedback gebruik om mijn groei en ontwikkeling te stimuleren. Dit helpt mij om gerichter te werken aan mijn verbeterpunten en mijn professionele vaardigheden verder te ontwikkelen.
 
 
 SMART-doel: Punctualiteit verbeteren
 Ik wil mijn punctualiteit verbeteren door bewuster om te gaan met mijn planning en op tijd te komen bij afspraken, colleges en werkgroepen. Om dit te bereiken, ga ik elke zaterdag terugblikken op de afgelopen week en bijhouden hoe vaak ik op tijd was. Mijn doel is om binnen vier weken minimaal 90% van de keren op tijd te zijn. Dit ga ik doen door mijn wekker 15 minuten eerder te zetten, reminders in te stellen voor belangrijke afspraken en mijn reistijd realistischer in te plannen. Op tijd komen helpt mij om stress te verminderen en mijn tijd efficiënter te benutten.
+
 ---
 
 Samale Fahiyeh:
