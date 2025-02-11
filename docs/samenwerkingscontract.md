@@ -153,6 +153,11 @@ Om een productieve samenwerking te waarborgen, gelden de volgende stappen bij he
 ---
 Chiel Kramer:
 
+In semester 2 test ik wekelijks mijn werk en vraag ik actief feedback aan mijn team. Hierdoor ontdek ik sneller fouten en verbeter ik mijn code. Ik zal elke week minimaal één keer mijn code testen en feedback vragen tijdens teammeetings of code reviews. Dit helpt me om mijn vaardigheden als ontwikkelaar te versterken en de kwaliteit van onze code te verbeteren. Aan het einde van Blok 3 evalueer ik mijn voortgang en kijk ik of ik deze gewoonte heb ontwikkeld.
+
+In semester 2 voeg ik direct duidelijke en informatieve code comments toe tijdens het schrijven van mijn code. Hierdoor kan ik mijn werk makkelijker terugvinden en begrijpt mijn team mijn functies beter. Ik zorg ervoor dat ik elke keer relevante comments toevoeg bij belangrijke secties en functies van mijn code. Dit verbetert zowel mijn eigen werkproces als de samenwerking binnen het team. Aan het einde van Blok 3 evalueer ik mijn voortgang om te zien of ik deze gewoonte consistent heb toegepast.
+
+
 ---
 
 Dominik Krystul:
