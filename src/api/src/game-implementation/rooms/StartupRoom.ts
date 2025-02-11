@@ -5,6 +5,7 @@ import { Simple, SimpleAction } from "../../game-base/actions/SimpleAction";
 import { Room } from "../../game-base/gameObjects/Room";
 import { gameService } from "../../global";
 
+
 /**
  * Implemention of the startup room
  *
@@ -25,14 +26,14 @@ export class StartupRoom extends Room implements Simple {
      * @inheritdoc
      */
     public name(): string {
-        return "Example Game";
+        return "The shadows of the forgotten Castle"; 
     }
 
     /**
      * @inheritdoc
      */
     public images(): string[] {
-        return ["startup"];
+        return ["logo"];
     }
 
     /**
@@ -45,15 +46,27 @@ export class StartupRoom extends Room implements Simple {
     /**
      * @inheritdoc
      */
+    
     public examine(): ActionResult | undefined {
-        return new TextActionResult(["This is an example."]);
+        return new TextActionResult([""]); // TODO: Ask if this is nessesary
     }
+
 
     /**
      * @inheritdoc
      */
     public simple(alias: string): ActionResult | undefined {
         if (alias === "start-game") {
+            // TODO: Change this to the actual first room of the game
+            const room: Room = new StartupRoom();
+
+            // Set the current room to the startup room
+            gameService.getPlayerSession().currentRoom = room.alias;
+
+            return room.examine();
+        }
+
+        if (alias === "start-game-from-image") {
             // TODO: Change this to the actual first room of the game
             const room: Room = new StartupRoom();
 

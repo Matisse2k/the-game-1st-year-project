@@ -30,16 +30,57 @@ const styles: string = css`
         align-items: center;
         position: relative;
         margin-top: 10px;
+        width: 100%;
+        height: 100%;
     }
 
     .header img {
-        width: auto;
-        height: 100%;
+        width: 100%;
+        height: auto;
+        max-height: 100%;
+        object-fit: contain;
         image-rendering: pixelated;
     }
 
-    .header img:nth-child(n + 2) {
+    .header img.startup {
+        min-height: 90vh;
+    }
+
+    .start-game-button {
         position: absolute;
+        bottom: -110%;
+        left: 49%;
+        transform: translateX(-50%);
+        background-color: rgb(0, 0, 0);
+        opacity: 0.78;
+        border-radius: 8px;
+        padding: 10px 15px;
+        cursor: pointer;
+        display: inline-block;
+        user-select: none;
+        color: white;
+        font-family: "Onesize";
+        font-size: 1.2em;
+        border: 1px solid black;
+    }
+
+    .start-game-button:hover {
+        background-color: #444;
+    }
+
+    .start-game-text {
+        position: absolute;
+        bottom: -74%;
+        left: 50%;
+        transform: translateX(-50%);
+        color: white;
+        font-size: 1.1em;
+        text-align: center;
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 10px;
+        border-radius: 5px;
+        width: 70%;
+        max-width: 100%;
     }
 
     .content {
@@ -87,6 +128,44 @@ const styles: string = css`
     .footer .button.active,
     .footer .button:hover {
         background-color: #332c57;
+    }
+
+    @media (max-width: 768px) {
+        .start-game-button {
+            font-size: 1em;
+            padding: 8px 16px;
+            bottom: -68%;
+        }
+
+        .start-game-text {
+            font-size: 1em;
+            padding: 8px;
+            bottom: -48%;
+        }
+
+        .header img.startup {
+            min-height: 75vh;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .start-game-button {
+            font-size: 0.9em;
+            padding: 10px 10px;
+            bottom: -50%;
+            left: 49%;
+        }
+
+        .start-game-text {
+            font-size: 0.9em;
+            padding: 6px;
+            bottom: -25%;
+        }
+        
+        .header img.startup {
+            min-height: 65vh;
+        }
+
     }
 `;
 
@@ -171,6 +250,12 @@ export class CanvasComponent extends HTMLElement {
         }
 
         this.shadowRoot.append(...elements);
+
+        // Add event listener for the start game button in the startup room
+        const startGameButton = this.shadowRoot.querySelector(".start-game-button");
+        if (startGameButton) {
+            startGameButton.addEventListener("click", () => this.handleClickAction({ alias: "start-game-from-image", name: "Start Game", needsObject: false }));
+        }
     }
 
     /**
@@ -197,9 +282,16 @@ export class CanvasComponent extends HTMLElement {
         const roomImages: string[] | undefined = this._currentGameState?.roomImages;
 
         if (roomImages && roomImages.length > 0) {
+            const isStartupRoom = this._currentGameState?.roomName === "The shadows of the forgotten Castle";
             return `
                 <div class="header">
-                    ${roomImages.map(url => `<img src="/assets/img/rooms/${url}.png" />`).join("")}
+                    ${roomImages.map(url => `<img class="${isStartupRoom ? 'startup' : ''}" src="/assets/img/rooms/${url}.png"
+                         onerror="this.onerror=null;this.src='/assets/img/rooms/${url}.gif';" />
+                        ${isStartupRoom ? `
+                            <div class="start-game-text">Press the button below to start your journey.</div>
+                            <button class="start-game-button">Start Game</button>
+                        ` : ''}
+                    `).join("")}
                 </div>
             `;
         }
@@ -226,6 +318,12 @@ export class CanvasComponent extends HTMLElement {
      * @returns HTML element of the footer
      */
     private renderFooter(): HTMLElement {
+        if (this._currentGameState?.roomName === "The shadows of the forgotten Castle") {
+            return html`<div>`; // Do not render footer for startup room
+            // if you place something in between `` then undefined will be gone.
+            // TODO: ask teacher about this (engine related)
+        }
+
         return html`
             <div class="footer">
                 <div class="buttons">
