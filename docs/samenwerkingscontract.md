@@ -172,6 +172,7 @@ Samale Fahiyeh:
 
 ---
 Shivanio Cooman:
+Ik wil binnen de komende sprint elke week minstens 2 keer feedback vragen van docenten en klasgenoten en daar een formulier bij maken om mijn prestaties te verbeteren.  ik wil in deze semester elke dag in mijn logboek documenteren zodat ik voor elke voortgangsevaluatie genoeg heb te bewijzen aan mijn docenten.
 
 ---
 
