@@ -162,6 +162,13 @@ In semester 2 voeg ik direct duidelijke en informatieve code comments toe tijden
 
 Dominik Krystul:
 
+Binnen de komende twee maanden wil ik mijn vaardigheden in het samenwerken met GIT verbeteren door pull requests efficiënter te beheren en conflicten zelfstandig op te lossen. Dit doe ik door actief deel te nemen aan code reviews, duidelijke commit messages te schrijven en minimaal één keer per week een team genoot te helpen met een GIT-gerelateerd probleem. Daarnaast zal ik een keer per twee weken een korte evaluatie houden met mijn team om de samenwerking binnen GIT te verbeteren. Ik meet mijn voortgang door bij te houden hoeveel conflicten ik zelfstandig oplos en hoe vaak ik feedback geef op pull requests.
+
+<br>
+
+Aan het eind van sprint 1 ga ik actiever feedback vragen over mijn eigen SMART-doelen en mijn prestaties binnen het team. Dit doe ik door minimaal één keer per sprint gericht feedback te vragen aan mijn docent of een teamgenoot over mijn voortgang. Daarnaast vraag ik bij elk teamoverleg een teamlid om feedback over een specifiek aspect van mijn werk, zoals codekwaliteit of samenwerking. Mijn doel is om elke sprint minstens twee bruikbare verbeterpunten te verzamelen en daar actief mee aan de slag te gaan. Ik houd mijn voortgang bij door deze feedback te documenteren en mijn verbeteringen in de daaropvolgende weken te implementeren.
+
+
 ---
 
 Matisse Ben Addi:
