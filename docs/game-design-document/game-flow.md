@@ -48,20 +48,22 @@ D2 -->|Zoek de deurklink| D3{🔸 Welke kamer open je?}
 
 D3 -->|Gastenkamer zonder zolder| E1[🔹 Vogel geeft hints over de guard]
 
-D3 -->|Gastenkamer met zolder| E2[🔹 Vogel geeft hints over de guard en verteld dat er gekke geluiden ben te horen zijn]
+D3 -->|Gastenkamer met zolder| E2[🔹 Vogel geeft hints over de guard en verteld dat er gekke geluiden zijn te horen.]
 
 
 E2 -->|Kijk naar het luik| F1{🔸 Heb je de 3 mysterie-items verzamelt?}
 
 F1 -->|Ja| F2(🔹 Betreed de zolder)
 
-F2 -->|Praat met de geest| F3[🔴 Activeerd geest einde]
+F1 -->|Nee| F3{🔸 Zoek mysterie-items}
 
-F1 -->|Nee| F3[🔹 Zoek mysterie-items]
+F2 -->|Praat met de geest| F4[🔴 Activeerd geest einde]
 
 E1 -->|Bereid je voor op ondervraging| G1[🔹 Ga naar de guard]
 
-F3 -->|Maak mysterie-item| G1
+F3 -->|Negeer het luik | G1
+
+F3 -->|Maak mysterie-item| E2
 
 G1 -->|Guard stelt vragen| G2{🔸 Correct antwoord?}
 
