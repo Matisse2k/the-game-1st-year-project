@@ -63,7 +63,7 @@ E1 -->|Bereid je voor op ondervraging| G1[🔹 Ga naar de guard]
 
 F3 -->|Negeer het luik | G1
 
-F3 -->|Maak mysterie-item| E2
+F3 -->|Maak mysterie-item| F1
 
 G1 -->|Guard stelt vragen| G2{🔸 Correct antwoord?}
 
