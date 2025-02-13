@@ -12,8 +12,7 @@ De game bevat **10 verschillende ruimtes**, verdeeld over **buiten het kasteel, 
 | **Room**                  | **Locatie**                     | **Toegankelijkheid**                                  | **Verbindingen**                |
 |---------------------------|--------------------------------|------------------------------------------------------|---------------------------------|
 | **Bos (Spawn Point)**      | Buiten                        | Startpunt van de game                                | Verbindt met het pad naar het kasteel |
-| **Pad naar het kasteel**   | Buiten                        | Vrij toegankelijk, bevat de **kasteelsleutel**      | Verbindt met de kasteelingang |
-| **Kasteelingang**          | Buiten                        | Vereist **sleutel** van het pad                     | Verbindt met de lobby |
+| **Pad naar het kasteel/kasteelingang**   | Buiten          | Vrij toegankelijk, bevat de **kasteelsleutel** om kasteel deur te openen      | Verbindt met de lobby|
 | **Lobby**                  | Begane Grond                  | Direct toegankelijk                                  | Verbindt met de keuken en kelder |
 | **Keuken**                 | Begane Grond                  | Direct toegankelijk                                  | Verbindt met de lobby |
 | **Kelder**                 | Begane Grond                  | Direct toegankelijk, maar trap naar verdieping 1 vereist **speelgoed**  | Verbindt met de lobby |
