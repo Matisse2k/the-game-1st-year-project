@@ -5,7 +5,6 @@ import { Simple, SimpleAction } from "../../game-base/actions/SimpleAction";
 import { Room } from "../../game-base/gameObjects/Room";
 import { gameService } from "../../global";
 
-
 /**
  * Implemention of the startup room
  *
@@ -26,7 +25,7 @@ export class StartupRoom extends Room implements Simple {
      * @inheritdoc
      */
     public name(): string {
-        return "The shadows of the forgotten Castle"; 
+        return "The shadows of the forgotten Castle";
     }
 
     /**
@@ -46,11 +45,9 @@ export class StartupRoom extends Room implements Simple {
     /**
      * @inheritdoc
      */
-    
     public examine(): ActionResult | undefined {
         return new TextActionResult([""]); // TODO: Ask if this is nessesary
     }
-
 
     /**
      * @inheritdoc
