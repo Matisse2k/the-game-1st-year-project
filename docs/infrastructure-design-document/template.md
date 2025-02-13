@@ -3,53 +3,62 @@ title: Template
 ---
 # Inleiding
 
-De inleiding geeft een beknopt overzicht van de aanleiding, centrale vraag, en opzet van het document. Beantwoordt de volgende vragen in ca. 1 alinea per vraag:
 
--   Je schrijft het verslag voor Lucastars. Geeft kort uitleg over de organisatie en de betrokken stakeholders. Gebruik hiervoor de HBO-ICT Knowledgebase.
+Lucastars is een game-ontwikkelstudio die zich richt op innovatieve en interactieve game-ervaringen. De organisatie bestaat uit verschillende stakeholders, waaronder de Product Owner (P.O.), de Chief Technology Officer (CTO), en het ontwikkelteam. Deze stakeholders spelen een cruciale rol bij het definiëren van de functionele en technische vereisten van de game. Daarnaast zijn docenten en begeleiders betrokken bij het proces om de kwaliteit van het eindproduct te bewaken en studenten te ondersteunen in hun ontwikkeling.
 
--   De aanleiding en doel van het verslag is duidelijk krijgen wat de technische netwerkeisen zijn voor de game. Ligt kort toe hoe je deze onderzocht hebt, noem hierbij ook je de hoofdvraag. **Tip:** Je kunt het onderzoeken met behulp van de bestaande (technische) product documentatie, documentatie van Express.js en gesprekken met de product owner.
+Het doel van dit verslag is om de technische netwerkeisen voor de game te bepalen. Dit is onderzocht door bestaande technische productdocumentatie, documentatie van Express.js en gesprekken met de Product Owner te analyseren. De hoofdvraag die hierbij centraal staat, luidt: "Wat zijn de technische netwerkeisen die nodig zijn om de game optimaal te laten functioneren?"
 
--   Leg kort uit aan de hand van welke onderwerpen je de bovenstaande hoofdvraag beantwoord.
+Om deze hoofdvraag te beantwoorden, worden verschillende onderwerpen behandeld, zoals de benodigde serverarchitectuur, netwerkbeveiliging, dataverwerking en opslag, en interacties tussen gebruikers en de infrastructuur. Hierdoor ontstaat een helder beeld van de vereisten voor de IT-infrastructuur van de game.
 
 # Context en Vereisten
 
-Om een IT-infrastructuur te ontwerpen, moet je twee belangrijke onderdelen beschrijven: de organisatorische context en de vereisten. Volg onderstaande stappen om dit helder en bondig op te stellen:
-
 ## Organisatorische Context
 
-**Stap 1: Beschrijf de organisatorische context**
+**Opdracht en Opdrachtgever**
 
-Voorbeelden van processen in een text-based adventure game:
+De game wordt ontwikkeld als een Proof of Concept voor Game Studio Lucastars. Het project wordt begeleid door de Product Owner en de CTO, die gezamenlijk de technische en inhoudelijke eisen formuleren. Het ontwikkelteam is verantwoordelijk voor de implementatie en het onderhoud van de game.
 
-**Voorbeelden van contextonderdelen in dit project:**
+**Gebruikers en hun Rollen**
 
-1.  Opdracht en opdrachtgever
+**Spelers:** Interacteren met de game, slaan voortgang op en hervatten het spel.
 
-    -   De game wordt ontwikkeld als Proof of Concept voor Game Studio Luca Stars.
+**Ontwikkelteam:** Werkt aan de ontwikkeling van de gamefunctionaliteit, de backend en de database.
 
-    -   Stakeholders zoals de Product Owner (P.O.) en CTO bepalen de inhoudelijke en technische eisen.
+**Docenten & Begeleiders:** Begeleiden het ontwikkelproces en beoordelen de kwaliteit van het eindproduct.
 
-2.  Gebruikers en hun rollen
+# Contextbeschrijving
 
-    -   Spelers: Gebruiken de game, slaan voortgang op en hervatten het spel.
+**Wie zijn de gebruikers van de infrastructuur? :**
 
-    -   Ontwikkelteam: Werkt aan gamefunctionaliteit, backend en database.
+Spelers, ontwikkelaars, en docenten.
 
-    -   Docenten & begeleiders: Begeleiden het ontwikkelproces en beoordelen het eindproduct.
+**Welke acties voeren zij uit? Hoe vaak? :**
 
-Vragen om de context te beschrijven:
+Spelers spelen de game dagelijks en slaan voortgang op.
 
--   Wie zijn de gebruikers van de infrastructuur?
+Ontwikkelaars updaten en onderhouden de infrastructuur wekelijks.
 
--   Welke acties voeren zij uit? Hoe vaak?
+Docenten beoordelen de game per iteratie.
 
--   Welke bedrijfsdoelen ondersteunt de infrastructuur?
+**Welke bedrijfsdoelen ondersteunt de infrastructuur? :**
 
--   Welke interacties vinden plaats tussen gebruikers en de infrastructuur?
+Het leveren van een stabiele en veilige spelervaring.
 
--   Hoe worden gegevens verwerkt, opgeslagen en beveiligd binnen de infrastructuur?
+Het faciliteren van efficiënte ontwikkeling en onderhoud.
 
--   Welke eisen of verwachtingen stellen stakeholders aan de infrastructuur?
+**Welke interacties vinden plaats tussen gebruikers en de infrastructuur? :**
+
+Spelers communiceren met de backend voor data-opslag en game-logica.
+
+Ontwikkelaars werken aan en testen de infrastructuur.
+
+**Hoe worden gegevens verwerkt, opgeslagen en beveiligd binnen de infrastructuur? :**
+
+Data wordt opgeslagen in een centrale database en beveiligd via encryptie en toegangsbeheer.
+
+**Welke eisen of verwachtingen stellen stakeholders aan de infrastructuur? :**
+
+Hoge beschikbaarheid, lage latentie, en sterke beveiligingsmaatregelen.
 
 ## Technische Context
 
