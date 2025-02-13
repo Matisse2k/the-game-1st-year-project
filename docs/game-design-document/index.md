@@ -1,6 +1,7 @@
 ---
 title: Game Design Document
 children:
+    - game-objects/index.md
     - elevator-pitch.md
     - storyline.md
     - gameplay.md

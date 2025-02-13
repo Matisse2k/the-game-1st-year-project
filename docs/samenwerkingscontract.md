@@ -149,7 +149,28 @@ Om een productieve samenwerking te waarborgen, gelden de volgende stappen bij he
 
 ---
 
-### 12. SMART doelen
+### 12. Scrum Master Rol
+
+Om de voortgang en efficiëntie van ons team te waarborgen, wordt voor elke sprint een Scrum Master aangewezen. De Scrum Master is verantwoordelijk voor het faciliteren van de Scrum-processen en het ondersteunen van het team. De taken van de Scrum Master zijn onder andere:
+
+- Het organiseren en leiden van de dagelijkse stand-up meetings.
+- Het faciliteren van sprint planning, sprint review en sprint retrospective meetings.
+- Het verwijderen van obstakels die de voortgang van het team belemmeren.
+- Het bewaken van de voortgang van de sprint en het bijhouden van de burndown chart.
+- Het ondersteunen van het team bij het naleven van de Scrum-principes en -praktijken.
+
+De Scrum Master wordt aan het begin van elke sprint gekozen door het team. De Scrum Master voor de huidige sprint is:
+
+**Scrum Master voor Sprint 1: Dominik Krystul**
+
+We moeten nog teamleden aanwijzen voor de rollen van Scrum Master voor sprint 2 en sprint 3. Dit zal tijdens de volgende teamvergadering besproken en besloten worden.
+
+**Scrum Master voor Sprint 2: [naam student]**
+
+**Scrum Master voor Sprint 3: [naam student]**
+
+
+### 13. SMART doelen
 ---
 Chiel Kramer:
 
