@@ -1,7 +1,10 @@
 ---
 title: Template
 ---
-# Inleiding
+
+# Infrastructure design document
+
+## Inleiding
 
 
 Lucastars is een game-ontwikkelstudio die zich richt op innovatieve en interactieve game-ervaringen. De organisatie bestaat uit verschillende stakeholders, waaronder de Product Owner (P.O.), de Chief Technology Officer (CTO), en het ontwikkelteam. Deze stakeholders spelen een cruciale rol bij het definiëren van de functionele en technische vereisten van de game. Daarnaast zijn docenten en begeleiders betrokken bij het proces om de kwaliteit van het eindproduct te bewaken en studenten te ondersteunen in hun ontwikkeling.
