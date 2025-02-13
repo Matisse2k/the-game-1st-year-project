@@ -4,7 +4,7 @@ import { Action } from "../../game-base/actions/Action";
 import { Simple, SimpleAction } from "../../game-base/actions/SimpleAction";
 import { Room } from "../../game-base/gameObjects/Room";
 import { gameService } from "../../global";
-
+import { LobbyRoom } from "./LobbyRoom";
 
 /**
  * Implemention of the startup room
@@ -26,7 +26,7 @@ export class StartupRoom extends Room implements Simple {
      * @inheritdoc
      */
     public name(): string {
-        return "The shadows of the forgotten Castle"; 
+        return "The shadows of the forgotten Castle";
     }
 
     /**
@@ -46,29 +46,17 @@ export class StartupRoom extends Room implements Simple {
     /**
      * @inheritdoc
      */
-    
     public examine(): ActionResult | undefined {
         return new TextActionResult([""]); // TODO: Ask if this is nessesary
     }
-
 
     /**
      * @inheritdoc
      */
     public simple(alias: string): ActionResult | undefined {
-        if (alias === "start-game") {
-            // TODO: Change this to the actual first room of the game
-            const room: Room = new StartupRoom();
-
-            // Set the current room to the startup room
-            gameService.getPlayerSession().currentRoom = room.alias;
-
-            return room.examine();
-        }
-
         if (alias === "start-game-from-image") {
-            // TODO: Change this to the actual first room of the game
-            const room: Room = new StartupRoom();
+            // TODO: plaats hier de class naam van de kamer waar je heen wilt gaan nadat je op start hebt gedrukt.
+            const room: Room = new LobbyRoom();
 
             // Set the current room to the startup room
             gameService.getPlayerSession().currentRoom = room.alias;

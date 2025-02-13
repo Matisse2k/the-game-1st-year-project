@@ -252,7 +252,7 @@ export class CanvasComponent extends HTMLElement {
         this.shadowRoot.append(...elements);
 
         // Add event listener for the start game button in the startup room
-        const startGameButton = this.shadowRoot.querySelector(".start-game-button");
+        const startGameButton: Element | null = this.shadowRoot.querySelector(".start-game-button");
         if (startGameButton) {
             startGameButton.addEventListener("click", () => this.handleClickAction({ alias: "start-game-from-image", name: "Start Game", needsObject: false }));
         }
@@ -282,15 +282,17 @@ export class CanvasComponent extends HTMLElement {
         const roomImages: string[] | undefined = this._currentGameState?.roomImages;
 
         if (roomImages && roomImages.length > 0) {
-            const isStartupRoom = this._currentGameState?.roomName === "The shadows of the forgotten Castle";
+            const isStartupRoom: boolean = this._currentGameState?.roomName === "The shadows of the forgotten Castle";
             return `
                 <div class="header">
-                    ${roomImages.map(url => `<img class="${isStartupRoom ? 'startup' : ''}" src="/assets/img/rooms/${url}.png"
+                    ${roomImages.map(url => `<img class="${isStartupRoom ? "startup" : ""}" src="/assets/img/rooms/${url}.png"
                          onerror="this.onerror=null;this.src='/assets/img/rooms/${url}.gif';" />
-                        ${isStartupRoom ? `
+                        ${isStartupRoom
+? `
                             <div class="start-game-text">Press the button below to start your journey.</div>
                             <button class="start-game-button">Start Game</button>
-                        ` : ''}
+                        `
+: ""}
                     `).join("")}
                 </div>
             `;
