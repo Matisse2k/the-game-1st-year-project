@@ -2,11 +2,12 @@ import { ActionResult } from "../../game-base/actionResults/ActionResult";
 import { TextActionResult } from "../../game-base/actionResults/TextActionResult";
 import { Action } from "../../game-base/actions/Action";
 import { ExamineAction } from "../../game-base/actions/ExamineAction";
+import { TalkAction } from "../../game-base/actions/TalkAction";
 import { GameObject } from "../../game-base/gameObjects/GameObject";
 import { Room } from "../../game-base/gameObjects/Room";
 import { WalkAction } from "../actions/WalkAction";
+import { ButlerCharacter } from "../characters/ButlerCharacter";
 import { KnuffelbeerItem } from "../items/KnuffelbeerItem";
-import { Openkamer } from "./OpenRoom";
 
 export class LobbyRoom extends Room {
     public static readonly Alias: string = "lobby";
@@ -26,7 +27,7 @@ export class LobbyRoom extends Room {
     public objects(): GameObject[] {
         return [
             new KnuffelbeerItem(),
-            new Openkamer(),
+            new ButlerCharacter(),
         ];
     }
 
@@ -34,6 +35,7 @@ export class LobbyRoom extends Room {
         return [
             new ExamineAction(),
             new WalkAction(),
+            new TalkAction(),
         ];
     }
 
