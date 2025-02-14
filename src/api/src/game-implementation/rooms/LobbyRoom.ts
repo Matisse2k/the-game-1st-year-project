@@ -14,7 +14,7 @@ export class LobbyRoom extends Room {
     }
 
     public images(): string[] {
-        return ["lobby"];
+        return ["donkereLobby", "layers/Butler"];
     }
 
     public examine(): ActionResult | undefined {

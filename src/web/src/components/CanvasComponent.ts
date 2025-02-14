@@ -40,6 +40,7 @@ const styles: string = css`
         max-height: 100%;
         object-fit: contain;
         image-rendering: pixelated;
+        position: absolute;
     }
 
     .header img.startup {
