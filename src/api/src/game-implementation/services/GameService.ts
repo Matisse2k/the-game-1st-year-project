@@ -3,6 +3,9 @@ import { GameObject } from "../../game-base/gameObjects/GameObject";
 import { StartupRoom } from "../rooms/StartupRoom";
 import { PlayerSession } from "../types";
 import { LobbyRoom } from "../rooms/LobbyRoom";
+import { KnuffelbeerItem } from "../items/KnuffelbeerItem";
+import { WalkAction } from "../actions/WalkAction";
+import { Openkamer } from "../rooms/OpenRoom";
 
 /**
  * Implementation of the game service used to operate the game engine
@@ -17,6 +20,13 @@ export class GameService extends BaseGameService<PlayerSession> {
         // Rooms
         this.registerGameObject(StartupRoom);
         this.registerGameObject(LobbyRoom);
+        this.registerGameObject(Openkamer);
+
+        // Items
+        this.registerGameObject(KnuffelbeerItem);
+
+        // Actions
+        this.registerAction(WalkAction);
     }
 
     /**
