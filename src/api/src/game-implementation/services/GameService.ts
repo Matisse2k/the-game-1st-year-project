@@ -5,7 +5,7 @@ import { PlayerSession } from "../types";
 import { LobbyRoom } from "../rooms/LobbyRoom";
 import { KnuffelbeerItem } from "../items/KnuffelbeerItem";
 import { WalkAction } from "../actions/WalkAction";
-import { Openkamer } from "../rooms/OpenRoom";
+import { OpenkamerRoom } from "../rooms/OpenRoom";
 import { ButlerCharacter } from "../characters/ButlerCharacter";
 
 /**
@@ -21,7 +21,7 @@ export class GameService extends BaseGameService<PlayerSession> {
         // Rooms
         this.registerGameObject(StartupRoom);
         this.registerGameObject(LobbyRoom);
-        this.registerGameObject(Openkamer);
+        this.registerGameObject(OpenkamerRoom);
 
         // Items
         this.registerGameObject(KnuffelbeerItem);

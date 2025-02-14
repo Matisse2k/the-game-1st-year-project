@@ -2,11 +2,11 @@ import { ActionResult } from "../../game-base/actionResults/ActionResult";
 import { TextActionResult } from "../../game-base/actionResults/TextActionResult";
 import { Room } from "../../game-base/gameObjects/Room";
 
-export class Openkamer extends Room {
+export class OpenkamerRoom extends Room {
     public static readonly Alias: string = "openkamer";
 
     public constructor() {
-        super(Openkamer.Alias);
+        super(OpenkamerRoom.Alias);
     }
 
     public name(): string {
