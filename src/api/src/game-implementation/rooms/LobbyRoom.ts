@@ -10,7 +10,7 @@ import { gameService } from "../../global";
 import { WalkAction } from "../actions/WalkAction";
 import { ButlerCharacter } from "../characters/ButlerCharacter";
 import { KnuffelbeerItem } from "../items/KnuffelbeerItem";
-import { OpenkamerRoom } from "./OpenRoom";
+import { BovenHalRoom } from "./BovenHalRoom";
 import { StartupRoom } from "./StartupRoom";
 
 export class LobbyRoom extends Room implements Simple {
@@ -30,8 +30,7 @@ export class LobbyRoom extends Room implements Simple {
 
     public objects(): GameObject[] {
         return [
-            this,
-            new OpenkamerRoom(),
+            new BovenHalRoom(),
             new KnuffelbeerItem(),
             new ButlerCharacter(),
         ];
@@ -45,7 +44,8 @@ export class LobbyRoom extends Room implements Simple {
             new ExamineAction(),
             new WalkAction(),
             new TalkAction(),
-            new SimpleAction("openHal", "Openkamer"),
+            new SimpleAction("start", "Startscherm"),
+            new SimpleAction("Hal", "Boven verdieping"),
         ];
     }
 
@@ -56,9 +56,18 @@ export class LobbyRoom extends Room implements Simple {
     }
 
     public simple(alias: string): ActionResult | undefined {
-        if (alias === "openHal") {
+        if (alias === "start") {
             // TODO: plaats hier de class naam van de kamer waar je heen wilt gaan nadat je op start hebt gedrukt.
             const room: Room = new StartupRoom();
+
+            // Set the current room to the startup room
+            gameService.getPlayerSession().currentRoom = room.alias;
+
+            return room.examine();
+        }
+        if (alias === "Hal") {
+            // TODO: plaats hier de class naam van de kamer waar je heen wilt gaan nadat je op start hebt gedrukt.
+            const room: Room = new BovenHalRoom();
 
             // Set the current room to the startup room
             gameService.getPlayerSession().currentRoom = room.alias;
