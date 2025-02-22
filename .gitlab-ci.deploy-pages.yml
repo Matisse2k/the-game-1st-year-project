@@ -12,6 +12,9 @@ pages:
         paths:
             - public
     rules:
+        # Disable deployment for merge requests
+        - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+          when: never
         # Auto-deploy GitLab Pages if the default branch is used
         - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $DEPLOY_PAGES == "true"
         # Otherwise allow manual deployment
