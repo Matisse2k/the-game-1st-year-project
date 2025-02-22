@@ -23,6 +23,9 @@ deploy-hic:
         # Restart the environment
         - 'wget --header="Authorization: $HIC_API_KEY" $HIC_API_URL/$HIC_ENVIRONMENT/Restart'
     rules:
+        # Disable deployment for merge requests
+        - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+          when: never
         # Auto-deploy HBO-ICT.Cloud if the the default branch is used
         - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $DEPLOY_HIC == "true"
           variables:

@@ -7,6 +7,14 @@ import { KnuffelbeerItem } from "../items/KnuffelbeerItem";
 import { WalkAction } from "../actions/WalkAction";
 import { BovenHalRoom } from "../rooms/BovenHalRoom";
 import { ButlerCharacter } from "../characters/ButlerCharacter";
+import { PathToTheCastleRoom } from "../rooms/PathToTheCastleRoom";
+import { StonesItem } from "../items/StonesItem";
+import { KeyItem } from "../items/KeyItem";
+import { SearchAction } from "../actions/SearchAction";
+import { Stone1Item } from "../items/Stone1Item";
+import { Stone2Item } from "../items/Stone2Item";
+import { Stone3Item } from "../items/Stone3Item";
+import { Stone4Item } from "../items/Stone4Item";
 
 /**
  * Implementation of the game service used to operate the game engine
@@ -22,15 +30,23 @@ export class GameService extends BaseGameService<PlayerSession> {
         this.registerGameObject(StartupRoom);
         this.registerGameObject(LobbyRoom);
         this.registerGameObject(BovenHalRoom);
+        this.registerGameObject(PathToTheCastleRoom);
 
         // Items
         this.registerGameObject(KnuffelbeerItem);
+        this.registerGameObject(StonesItem);
+        this.registerGameObject(Stone1Item);
+        this.registerGameObject(Stone2Item);
+        this.registerGameObject(Stone3Item);
+        this.registerGameObject(Stone4Item);
+        this.registerGameObject(KeyItem);
 
         // Characters
         this.registerGameObject(ButlerCharacter);
 
         // Actions
         this.registerAction(WalkAction);
+        this.registerAction(SearchAction);
     }
 
     /**
@@ -40,6 +56,11 @@ export class GameService extends BaseGameService<PlayerSession> {
         return {
             currentRoom: StartupRoom.Alias,
             inventory: [],
+            lookedUnderStone1: false,
+            lookedUnderStone2: false,
+            lookedUnderStone3: false,
+            lookedUnderStone4: false,
+            keyFound: false,
         };
     }
 
