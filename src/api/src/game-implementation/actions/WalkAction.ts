@@ -4,6 +4,7 @@ import { Action } from "../../game-base/actions/Action";
 import { GameObject } from "../../game-base/gameObjects/GameObject";
 import { Room } from "../../game-base/gameObjects/Room";
 
+@Interface
 export abstract class Walk {
     /**
      * Execute the Walk action
