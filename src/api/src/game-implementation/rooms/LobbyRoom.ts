@@ -2,18 +2,18 @@ import { ActionResult } from "../../game-base/actionResults/ActionResult";
 import { TextActionResult } from "../../game-base/actionResults/TextActionResult";
 import { Action } from "../../game-base/actions/Action";
 import { ExamineAction } from "../../game-base/actions/ExamineAction";
-import { Simple, SimpleAction } from "../../game-base/actions/SimpleAction";
+import { Simple } from "../../game-base/actions/SimpleAction";
 import { TalkAction } from "../../game-base/actions/TalkAction";
 import { GameObject } from "../../game-base/gameObjects/GameObject";
 import { Room } from "../../game-base/gameObjects/Room";
 import { gameService } from "../../global";
-import { WalkAction } from "../actions/WalkAction";
+import { Walk, WalkAction } from "../actions/WalkAction";
 import { ButlerCharacter } from "../characters/ButlerCharacter";
 import { KnuffelbeerItem } from "../items/KnuffelbeerItem";
 import { BovenHalRoom } from "./BovenHalRoom";
-import { StartupRoom } from "./StartupRoom";
+import { PlayerSession } from "../types";
 
-export class LobbyRoom extends Room implements Simple {
+export class LobbyRoom extends Room implements Simple, Walk {
     public static readonly Alias: string = "lobby";
 
     public constructor() {
@@ -42,10 +42,9 @@ export class LobbyRoom extends Room implements Simple {
     public actions(): Action[] {
         return [
             new ExamineAction(),
-            new WalkAction(),
             new TalkAction(),
-            new SimpleAction("start", "Startscherm"),
-            new SimpleAction("Hal", "Boven verdieping"),
+            new WalkAction(),
+            // new SimpleAction("start", "Startscherm"),
         ];
     }
 
@@ -55,26 +54,38 @@ export class LobbyRoom extends Room implements Simple {
         ]);
     }
 
-    public simple(alias: string): ActionResult | undefined {
-        if (alias === "start") {
-            // TODO: plaats hier de class naam van de kamer waar je heen wilt gaan nadat je op start hebt gedrukt.
-            const room: Room = new StartupRoom();
-
-            // Set the current room to the startup room
-            gameService.getPlayerSession().currentRoom = room.alias;
-
-            return room.examine();
-        }
-        if (alias === "Hal") {
-            // TODO: plaats hier de class naam van de kamer waar je heen wilt gaan nadat je op start hebt gedrukt.
-            const room: Room = new BovenHalRoom();
-
-            // Set the current room to the startup room
-            gameService.getPlayerSession().currentRoom = room.alias;
-
-            return room.examine();
-        }
-
+    public simple(_alias: string): ActionResult | undefined {
         return undefined;
+    }
+
+    public walk(alias: string, gameObjects: GameObject[]): ActionResult {
+        const getPlayerSession: PlayerSession = gameService.getPlayerSession();
+
+        console.log("🚀 WalkAction executed!");
+        console.log("👉 Alias ontvangen:", alias);
+        console.log("🎭 GameObjects ontvangen:", gameObjects.map(obj => obj.name()));
+
+        if (gameObjects.length === 0) {
+            return new TextActionResult(["❌ No objects selected to walk to!"]);
+        }
+
+        // hier kijkt hij wat de gameobject is van de kamer.
+        const targetRoom: Room | undefined = gameObjects.find(obj => obj instanceof Room);
+
+        // Als er geen kamer kan worden gevonden om naar toe te lopen is dit het resultaat
+        if (!targetRoom) {
+            console.error("❌ Geen geldige kamer gevonden!");
+            return new TextActionResult(["❌ You can't walk to that!"]);
+        }
+
+        try {
+            gameService.getPlayerSession().currentRoom = targetRoom.alias;
+            console.log(`✅ Huidige kamer is nu: ${getPlayerSession.currentRoom}`);
+            return new TextActionResult([`✅ You walked to ${targetRoom.alias}!`]);
+        }
+        catch (error) {
+            console.error("🔥 Fout bij het wisselen van kamer:", error);
+            return new TextActionResult(["❌ Er ging iets mis bij het lopen!"]);
+        }
     }
 }
