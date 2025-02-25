@@ -6,6 +6,7 @@ import { GameObject } from "../../game-base/gameObjects/GameObject";
 import { Room } from "../../game-base/gameObjects/Room";
 import { gameService } from "../../global";
 import { SearchAction } from "../actions/SearchAction";
+import { WalkAction } from "../actions/WalkAction";
 import { KeyItem } from "../items/KeyItem";
 import { Stone1Item } from "../items/Stone1Item";
 import { Stone2Item } from "../items/Stone2Item";
@@ -13,6 +14,7 @@ import { Stone3Item } from "../items/Stone3Item";
 import { Stone4Item } from "../items/Stone4Item";
 import { StonesItem } from "../items/StonesItem";
 import { PlayerSession } from "../types";
+import { CastleDoorEnteranceRoom } from "./CastleDoorEnteranceRoom";
 
 /**
  * Represents the Path to the Castle room in the game.
@@ -56,9 +58,10 @@ export class PathToTheCastleRoom extends Room {
         if (playerSession.lookedUnderStone4) {
             result.delete("layers/steen4");
         }
-        if (playerSession.keyFound) {
+        // TODO: change with the pick ip action
+        /* if (playerSession.keyFound) {
             result.delete("layers/sleutel");
-        }
+        } */
 
         return Array.from(result);
     }
@@ -75,6 +78,7 @@ export class PathToTheCastleRoom extends Room {
             new Stone3Item(),
             new Stone4Item(),
             new KeyItem(),
+            new CastleDoorEnteranceRoom(),
         ];
     }
 
@@ -86,6 +90,7 @@ export class PathToTheCastleRoom extends Room {
         return [
             new ExamineAction(),
             new SearchAction(),
+            new WalkAction(),
         ];
     }
 
