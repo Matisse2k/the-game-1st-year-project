@@ -4,6 +4,8 @@ import { Examine } from "../../game-base/actions/ExamineAction";
 import { Item } from "../../game-base/gameObjects/Item";
 import { gameService } from "../../global";
 import { Search } from "../actions/SearchAction";
+import { PlayerSession } from "../types";
+import { KeyItem } from "./KeyItem";
 
 /**
  * Represents the Stone 3 item in the game.
@@ -36,11 +38,14 @@ export class Stone3Item extends Item implements Examine, Search {
      * @returns {ActionResult | undefined} The result of the search.
      */
     public search(): ActionResult | undefined {
-        if (gameService.getPlayerSession().lookedUnderStone3) {
+        const playerSession: PlayerSession = gameService.getPlayerSession();
+        if (playerSession.lookedUnderStone3) {
             return new TextActionResult(["You already looked under this stone and found a rusty key."]);
         }
         else {
-            gameService.getPlayerSession().lookedUnderStone3 = true;
+            playerSession.lookedUnderStone3 = true;
+            playerSession.keyFound = true; // Set the keyFound flag to true
+            playerSession.inventory.push(KeyItem.Alias); // Add the key to the player's inventory
             return new TextActionResult(["You look under stone 3 and find a rusty key."]);
         }
     }

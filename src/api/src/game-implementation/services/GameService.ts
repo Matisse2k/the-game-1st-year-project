@@ -15,6 +15,10 @@ import { Stone1Item } from "../items/Stone1Item";
 import { Stone2Item } from "../items/Stone2Item";
 import { Stone3Item } from "../items/Stone3Item";
 import { Stone4Item } from "../items/Stone4Item";
+import { CastleDoorEnteranceRoom } from "../rooms/CastleDoorEnteranceRoom";
+import { CastleEnteranceDoorItem } from "../items/CastleEnteranceDoorItem";
+import { UseItemAction } from "../actions/UseItemAction";
+import { EnterCastleAction } from "../actions/EnterCastleAction";
 
 /**
  * Implementation of the game service used to operate the game engine
@@ -31,6 +35,7 @@ export class GameService extends BaseGameService<PlayerSession> {
         this.registerGameObject(LobbyRoom);
         this.registerGameObject(BovenHalRoom);
         this.registerGameObject(PathToTheCastleRoom);
+        this.registerGameObject(CastleDoorEnteranceRoom);
 
         // Items
         this.registerGameObject(KnuffelbeerItem);
@@ -40,6 +45,7 @@ export class GameService extends BaseGameService<PlayerSession> {
         this.registerGameObject(Stone3Item);
         this.registerGameObject(Stone4Item);
         this.registerGameObject(KeyItem);
+        this.registerGameObject(CastleEnteranceDoorItem);
 
         // Characters
         this.registerGameObject(ButlerCharacter);
@@ -47,6 +53,8 @@ export class GameService extends BaseGameService<PlayerSession> {
         // Actions
         this.registerAction(WalkAction);
         this.registerAction(SearchAction);
+        this.registerAction(UseItemAction);
+        this.registerAction(EnterCastleAction);
     }
 
     /**
@@ -55,12 +63,13 @@ export class GameService extends BaseGameService<PlayerSession> {
     public createNewPlayerSession(): PlayerSession {
         return {
             currentRoom: StartupRoom.Alias,
-            inventory: [],
+            inventory: [], // Ensure KeyItem is in the inventory
             lookedUnderStone1: false,
             lookedUnderStone2: false,
             lookedUnderStone3: false,
             lookedUnderStone4: false,
             keyFound: false,
+            CastleEnteranceDoorOpened: false,
         };
     }
 
