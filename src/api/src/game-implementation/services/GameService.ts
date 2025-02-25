@@ -5,7 +5,6 @@ import { PlayerSession } from "../types";
 import { LobbyRoom } from "../rooms/LobbyRoom";
 import { KnuffelbeerItem } from "../items/KnuffelbeerItem";
 import { WalkAction } from "../actions/WalkAction";
-import { BovenHalRoom } from "../rooms/BovenHalRoom";
 import { ButlerCharacter } from "../characters/ButlerCharacter";
 import { PathToTheCastleRoom } from "../rooms/PathToTheCastleRoom";
 import { StonesItem } from "../items/StonesItem";
@@ -19,6 +18,7 @@ import { CastleDoorEnteranceRoom } from "../rooms/CastleDoorEnteranceRoom";
 import { CastleEnteranceDoorItem } from "../items/CastleEnteranceDoorItem";
 import { UseItemAction } from "../actions/UseItemAction";
 import { EnterCastleAction } from "../actions/EnterCastleAction";
+import { BovenHalRoom } from "../rooms/BovenHalRoom";
 
 /**
  * Implementation of the game service used to operate the game engine

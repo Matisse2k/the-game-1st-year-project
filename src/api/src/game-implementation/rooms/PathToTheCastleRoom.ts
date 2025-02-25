@@ -8,17 +8,10 @@ import { gameService } from "../../global";
 import { SearchAction } from "../actions/SearchAction";
 import { WalkAction } from "../actions/WalkAction";
 import { KeyItem } from "../items/KeyItem";
-import { Stone1Item } from "../items/Stone1Item";
-import { Stone2Item } from "../items/Stone2Item";
-import { Stone3Item } from "../items/Stone3Item";
-import { Stone4Item } from "../items/Stone4Item";
 import { StonesItem } from "../items/StonesItem";
 import { PlayerSession } from "../types";
 import { CastleDoorEnteranceRoom } from "./CastleDoorEnteranceRoom";
 
-/**
- * Represents the Path to the Castle room in the game.
- */
 export class PathToTheCastleRoom extends Room {
     public static readonly Alias: string = "PathToTheCastle";
 
@@ -73,10 +66,6 @@ export class PathToTheCastleRoom extends Room {
     public objects(): GameObject[] {
         return [
             new StonesItem(),
-            new Stone1Item(),
-            new Stone2Item(),
-            new Stone3Item(),
-            new Stone4Item(),
             new KeyItem(),
             new CastleDoorEnteranceRoom(),
         ];
