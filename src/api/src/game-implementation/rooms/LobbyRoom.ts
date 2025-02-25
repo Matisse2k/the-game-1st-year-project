@@ -30,7 +30,6 @@ export class LobbyRoom extends Room implements Simple, Walk {
 
     public objects(): GameObject[] {
         return [
-            this,
             new BovenHalRoom(),
             new KnuffelbeerItem(),
             new ButlerCharacter(),

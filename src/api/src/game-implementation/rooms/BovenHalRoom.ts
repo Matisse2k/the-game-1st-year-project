@@ -10,6 +10,7 @@ import { Walk, WalkAction } from "../actions/WalkAction";
 import { LobbyRoom } from "./LobbyRoom";
 import { PlayerSession } from "../types";
 import { gameService } from "../../global";
+import { GuestRoomAttic } from "./GuestRoomAttic";
 
 export class BovenHalRoom extends Room implements Simple, Walk {
     public static readonly Alias: string = "Bovenverdieping";
@@ -33,7 +34,7 @@ export class BovenHalRoom extends Room implements Simple, Walk {
     public objects(): GameObject[] {
         return [
             new LobbyRoom(),
-
+            new GuestRoomAttic(),
         ];
     }
 
