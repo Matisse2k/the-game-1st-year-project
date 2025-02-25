@@ -42,6 +42,7 @@ export class Stone4Item extends Item implements Examine, Search {
         else {
             gameService.getPlayerSession().lookedUnderStone4 = true;
             return new TextActionResult(["You look under stone 4 and find nothing."]);
+            // test
         }
     }
 }

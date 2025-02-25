@@ -82,6 +82,7 @@ export class BovenHalRoom extends Room implements Simple, Walk {
         catch (error) {
             console.error("🔥 Fout bij het wisselen van kamer:", error);
             return new TextActionResult(["❌ Er ging iets mis bij het lopen!"]);
+            // test
         }
     }
 }
