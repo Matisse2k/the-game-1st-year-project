@@ -8,4 +8,10 @@ export type PlayerSession = {
     currentRoom: string;
     /** List of game object aliases the player owns */
     inventory: string[];
+    lookedUnderStone1: boolean;
+    lookedUnderStone2: boolean;
+    lookedUnderStone3: boolean;
+    lookedUnderStone4: boolean;
+    keyFound: boolean;
+    CastleEnteranceDoorOpened: boolean;
 };

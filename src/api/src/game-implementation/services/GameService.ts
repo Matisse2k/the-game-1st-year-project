@@ -5,8 +5,20 @@ import { PlayerSession } from "../types";
 import { LobbyRoom } from "../rooms/LobbyRoom";
 import { KnuffelbeerItem } from "../items/KnuffelbeerItem";
 import { WalkAction } from "../actions/WalkAction";
-import { OpenkamerRoom } from "../rooms/OpenRoom";
+import { BovenHalRoom } from "../rooms/BovenHalRoom";
 import { ButlerCharacter } from "../characters/ButlerCharacter";
+import { PathToTheCastleRoom } from "../rooms/PathToTheCastleRoom";
+import { StonesItem } from "../items/StonesItem";
+import { KeyItem } from "../items/KeyItem";
+import { SearchAction } from "../actions/SearchAction";
+import { Stone1Item } from "../items/Stone1Item";
+import { Stone2Item } from "../items/Stone2Item";
+import { Stone3Item } from "../items/Stone3Item";
+import { Stone4Item } from "../items/Stone4Item";
+import { CastleDoorEnteranceRoom } from "../rooms/CastleDoorEnteranceRoom";
+import { CastleEnteranceDoorItem } from "../items/CastleEnteranceDoorItem";
+import { UseItemAction } from "../actions/UseItemAction";
+import { EnterCastleAction } from "../actions/EnterCastleAction";
 
 /**
  * Implementation of the game service used to operate the game engine
@@ -21,16 +33,28 @@ export class GameService extends BaseGameService<PlayerSession> {
         // Rooms
         this.registerGameObject(StartupRoom);
         this.registerGameObject(LobbyRoom);
-        this.registerGameObject(OpenkamerRoom);
+        this.registerGameObject(BovenHalRoom);
+        this.registerGameObject(PathToTheCastleRoom);
+        this.registerGameObject(CastleDoorEnteranceRoom);
 
         // Items
         this.registerGameObject(KnuffelbeerItem);
+        this.registerGameObject(StonesItem);
+        this.registerGameObject(Stone1Item);
+        this.registerGameObject(Stone2Item);
+        this.registerGameObject(Stone3Item);
+        this.registerGameObject(Stone4Item);
+        this.registerGameObject(KeyItem);
+        this.registerGameObject(CastleEnteranceDoorItem);
 
         // Characters
         this.registerGameObject(ButlerCharacter);
 
         // Actions
         this.registerAction(WalkAction);
+        this.registerAction(SearchAction);
+        this.registerAction(UseItemAction);
+        this.registerAction(EnterCastleAction);
     }
 
     /**
@@ -39,7 +63,13 @@ export class GameService extends BaseGameService<PlayerSession> {
     public createNewPlayerSession(): PlayerSession {
         return {
             currentRoom: StartupRoom.Alias,
-            inventory: [],
+            inventory: [], // Ensure KeyItem is in the inventory
+            lookedUnderStone1: false,
+            lookedUnderStone2: false,
+            lookedUnderStone3: false,
+            lookedUnderStone4: false,
+            keyFound: false,
+            CastleEnteranceDoorOpened: false,
         };
     }
 

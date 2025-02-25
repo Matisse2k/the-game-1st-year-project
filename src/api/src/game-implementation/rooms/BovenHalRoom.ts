@@ -6,33 +6,33 @@ import { Simple } from "../../game-base/actions/SimpleAction";
 import { TalkAction } from "../../game-base/actions/TalkAction";
 import { GameObject } from "../../game-base/gameObjects/GameObject";
 import { Room } from "../../game-base/gameObjects/Room";
-import { gameService } from "../../global";
 import { Walk, WalkAction } from "../actions/WalkAction";
-import { ButlerCharacter } from "../characters/ButlerCharacter";
-import { KnuffelbeerItem } from "../items/KnuffelbeerItem";
-import { BovenHalRoom } from "./BovenHalRoom";
+import { LobbyRoom } from "./LobbyRoom";
 import { PlayerSession } from "../types";
+import { gameService } from "../../global";
 
-export class LobbyRoom extends Room implements Simple, Walk {
-    public static readonly Alias: string = "lobby";
+export class BovenHalRoom extends Room implements Simple, Walk {
+    public static readonly Alias: string = "Bovenverdieping";
 
     public constructor() {
-        super(LobbyRoom.Alias);
+        super(BovenHalRoom.Alias);
+    }
+
+    public simple(_alias: string): ActionResult | undefined {
+        return undefined;
     }
 
     public name(): string {
-        return "Lobby";
+        return "Bovenhal";
     }
 
     public images(): string[] {
-        return ["donkereLobby", "layers/Butler", "layers/Knuffelbeer"];
+        return ["lobby"];
     }
 
     public objects(): GameObject[] {
         return [
-            new BovenHalRoom(),
-            new KnuffelbeerItem(),
-            new ButlerCharacter(),
+            new LobbyRoom(),
         ];
     }
 
@@ -44,18 +44,13 @@ export class LobbyRoom extends Room implements Simple, Walk {
             new ExamineAction(),
             new TalkAction(),
             new WalkAction(),
-            // new SimpleAction("start", "Startscherm"),
         ];
     }
 
     public examine(): ActionResult | undefined {
         return new TextActionResult([
-            "It looks like a lobby!",
+            "What a big open room!",
         ]);
-    }
-
-    public simple(_alias: string): ActionResult | undefined {
-        return undefined;
     }
 
     public walk(alias: string, gameObjects: GameObject[]): ActionResult {
