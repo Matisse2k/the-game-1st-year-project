@@ -27,12 +27,13 @@ export class BovenHalRoom extends Room implements Simple, Walk {
     }
 
     public images(): string[] {
-        return ["lobby"];
+        return ["Halway"];
     }
 
     public objects(): GameObject[] {
         return [
             new LobbyRoom(),
+
         ];
     }
 
@@ -49,7 +50,7 @@ export class BovenHalRoom extends Room implements Simple, Walk {
 
     public examine(): ActionResult | undefined {
         return new TextActionResult([
-            "What a big open room!",
+            "3 doors but witch one do i need",
         ]);
     }
 
