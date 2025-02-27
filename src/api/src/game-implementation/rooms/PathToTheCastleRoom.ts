@@ -5,6 +5,7 @@ import { ExamineAction } from "../../game-base/actions/ExamineAction";
 import { GameObject } from "../../game-base/gameObjects/GameObject";
 import { Room } from "../../game-base/gameObjects/Room";
 import { gameService } from "../../global";
+import { PickUpAction } from "../actions/PickUpActions";
 import { SearchAction } from "../actions/SearchAction";
 import { WalkAction } from "../actions/WalkAction";
 import { KeyItem } from "../items/KeyItem";
@@ -55,10 +56,10 @@ export class PathToTheCastleRoom extends Room {
         if (playerSession.lookedUnderStone4) {
             result.delete("layers/steen4");
         }
-        // TODO: change with the pick ip action
-        /* if (playerSession.keyFound) {
+
+        if (playerSession.keyFound) {
             result.delete("layers/sleutel");
-        } */
+        }
 
         return Array.from(result);
     }
@@ -88,6 +89,7 @@ export class PathToTheCastleRoom extends Room {
             new ExamineAction(),
             new SearchAction(),
             new WalkAction(),
+            new PickUpAction(),
         ];
     }
 

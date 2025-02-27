@@ -17,7 +17,6 @@ import { Stone4Item } from "../items/Stone4Item";
 import { CastleDoorEnteranceRoom } from "../rooms/CastleDoorEnteranceRoom";
 import { CastleEnteranceDoorItem } from "../items/CastleEnteranceDoorItem";
 import { UseItemAction } from "../actions/UseItemAction";
-import { EnterCastleAction } from "../actions/EnterCastleAction";
 import { BovenHalRoom } from "../rooms/BovenHalRoom";
 import { PickUpAction } from "../actions/PickUpActions";
 import { GuestRoomAttic } from "../rooms/GuestRoomAttic";
@@ -61,7 +60,6 @@ export class GameService extends BaseGameService<PlayerSession> {
         this.registerAction(WalkAction);
         this.registerAction(SearchAction);
         this.registerAction(UseItemAction);
-        this.registerAction(EnterCastleAction);
         this.registerAction(PickUpAction);
     }
 

@@ -2,20 +2,21 @@ import { ActionResult } from "../../game-base/actionResults/ActionResult";
 import { TextActionResult } from "../../game-base/actionResults/TextActionResult";
 import { Action } from "../../game-base/actions/Action";
 import { ExamineAction } from "../../game-base/actions/ExamineAction";
+import { Simple, SimpleAction } from "../../game-base/actions/SimpleAction";
 import { GameObject } from "../../game-base/gameObjects/GameObject";
 import { Room } from "../../game-base/gameObjects/Room";
 import { gameService } from "../../global";
-import { EnterCastleAction } from "../actions/EnterCastleAction";
 import { UseItemAction } from "../actions/UseItemAction";
 import { Walk } from "../actions/WalkAction";
 import { CastleEnteranceDoorItem } from "../items/CastleEnteranceDoorItem";
 import { KeyItem } from "../items/KeyItem";
 import { PlayerSession } from "../types";
+import { LobbyRoom } from "./LobbyRoom";
 
 /**
  * Represents the Castle Door Entrance room in the game.
  */
-export class CastleDoorEnteranceRoom extends Room implements Walk {
+export class CastleDoorEnteranceRoom extends Room implements Walk, Simple {
     public static readonly Alias: string = "castle-door-enterance";
 
     /**
@@ -65,8 +66,7 @@ export class CastleDoorEnteranceRoom extends Room implements Walk {
         return [
             new ExamineAction(),
             new UseItemAction(),
-            new EnterCastleAction(),
-        ];
+            new SimpleAction("Enter the castle", "enter castle")];
     }
 
     public walk(_alias: string, gameObjects: GameObject[]): ActionResult {
@@ -85,9 +85,24 @@ export class CastleDoorEnteranceRoom extends Room implements Walk {
             PlayerSession.currentRoom = room.alias;
             return new TextActionResult(["You walked to the Castle Door Entrance.", "You stand before the grand entrance of the castle. The massive wooden doors are adorned with intricate carvings and iron reinforcements. The air is filled with a sense of history and mystery."]);
         }
-        else {
-            return new TextActionResult(["You first need to find the key to go further."]);
+        if (PlayerSession.lookedUnderStone3) {
+            return new TextActionResult(["You first need to pick up the key before going further."]);
         }
+        return new TextActionResult(["You first need to find the key to go further."]);
+    }
+
+    public simple(alias: string): ActionResult | undefined {
+        const playerSession: PlayerSession = gameService.getPlayerSession();
+        if (alias === "Enter the castle" && playerSession.CastleEnteranceDoorOpened) {
+            const room: Room = new LobbyRoom();
+
+            // Set the current room to the startup room
+            gameService.getPlayerSession().currentRoom = room.alias;
+
+            return room.examine();
+        }
+
+        return new TextActionResult(["The castle door is closed."]);
     }
 
     /**
