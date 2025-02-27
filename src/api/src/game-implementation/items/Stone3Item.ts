@@ -5,7 +5,6 @@ import { Item } from "../../game-base/gameObjects/Item";
 import { gameService } from "../../global";
 import { Search } from "../actions/SearchAction";
 import { PlayerSession } from "../types";
-import { KeyItem } from "./KeyItem";
 
 /**
  * Represents the Stone 3 item in the game.
@@ -44,8 +43,6 @@ export class Stone3Item extends Item implements Examine, Search {
         }
         else {
             playerSession.lookedUnderStone3 = true;
-            playerSession.keyFound = true; // Set the keyFound flag to true
-            playerSession.inventory.push(KeyItem.Alias); // Add the key to the player's inventory
             return new TextActionResult(["You look under stone 3 and find a rusty key."]);
         }
     }
