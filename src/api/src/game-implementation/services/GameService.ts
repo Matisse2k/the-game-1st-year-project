@@ -22,6 +22,11 @@ import { PickUpAction } from "../actions/PickUpActions";
 import { GuestRoomAttic } from "../rooms/GuestRoomAttic";
 import { ServeerplaatItem } from "../items/ServeerplaatItem";
 import { AtticAccessItem } from "../items/AtticAccessItem";
+import { WerkkamerRoom } from "../rooms/WerkkamerRoom";
+import { GuestRoom } from "../rooms/GuestRoom";
+import { GlueItem } from "../items/GlueItem";
+import { DoorHandleItem } from "../items/DoorhandleItem";
+
 /**
  * Implementation of the game service used to operate the game engine
  */
@@ -40,6 +45,8 @@ export class GameService extends BaseGameService<PlayerSession> {
         this.registerGameObject(CastleDoorEnteranceRoom);
         this.registerGameObject(GuestRoomAttic);
         this.registerGameObject(GuestRoomAttic);
+        this.registerGameObject(WerkkamerRoom);
+        this.registerGameObject(GuestRoom);
 
         // Items
         this.registerGameObject(KnuffelbeerItem);
@@ -52,6 +59,8 @@ export class GameService extends BaseGameService<PlayerSession> {
         this.registerGameObject(CastleEnteranceDoorItem);
         this.registerGameObject(ServeerplaatItem);
         this.registerGameObject(AtticAccessItem);
+        this.registerGameObject(GlueItem);
+        this.registerGameObject(DoorHandleItem);
 
         // Characters
         this.registerGameObject(ButlerCharacter);
