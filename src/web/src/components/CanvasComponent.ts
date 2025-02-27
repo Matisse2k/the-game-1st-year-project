@@ -37,7 +37,7 @@ const styles: string = css`
     .header img {
         width: 100%;
         height: auto;
-        max-height: 100%;
+        max-height: 110%;
         object-fit: contain;
         image-rendering: pixelated;
         position: absolute;
@@ -87,7 +87,7 @@ const styles: string = css`
     .content {
         flex-grow: 1;
         overflow: auto;
-        margin-top: 10px;
+        margin-top: 40px;
         padding: 0 10px;
     }
 
@@ -100,12 +100,12 @@ const styles: string = css`
     }
 
     .footer {
-        border-radius: 10px 10px 0 0;
-        background-color: #52478b;
-        border: 1px solid #332c57;
-        margin-top: 10px;
+        border-radius: 10px;
+        background-color: #828282;
+        border: 1px solid black;
+        margin-bottom: 20px;
         display: flex;
-        height: 105px;
+        height: 120px;
     }
 
     .footer .buttons {
@@ -116,8 +116,7 @@ const styles: string = css`
     }
 
     .footer .button {
-        background-color: #7f6ed7;
-        border: 1px solid #332c57;
+        background-color: black;
         padding: 5px 10px;
         margin: 0 0 10px 10px;
         text-transform: uppercase;
