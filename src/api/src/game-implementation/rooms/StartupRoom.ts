@@ -4,8 +4,6 @@ import { Action } from "../../game-base/actions/Action";
 import { Simple, SimpleAction } from "../../game-base/actions/SimpleAction";
 import { Room } from "../../game-base/gameObjects/Room";
 import { gameService } from "../../global";
-// import { LobbyRoom } from "./LobbyRoom";
-// import { GuestRoomAttic } from "./GuestRoomAttic";
 import { PathToTheCastleRoom } from "./PathToTheCastleRoom";
 
 /**
