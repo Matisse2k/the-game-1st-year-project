@@ -2,12 +2,22 @@ import { ActionResult } from "../../game-base/actionResults/ActionResult";
 import { TextActionResult } from "../../game-base/actionResults/TextActionResult";
 import { Examine } from "../../game-base/actions/ExamineAction";
 import { Item } from "../../game-base/gameObjects/Item";
+import { gameService } from "../../global";
+import { PickUp } from "../actions/PickUpActions";
+import { PlayerSession } from "../types";
 
-export class GlueItem extends Item implements Examine {
+export class GlueItem extends Item implements Examine, PickUp {
     public static readonly Alias: string = " glue";
 
     public constructor() {
         super(GlueItem.Alias);
+    }
+
+    public pickUp(): string | undefined {
+        const playerSession: PlayerSession = gameService.getPlayerSession();
+        playerSession.pickedupGlue = true;
+
+        return GlueItem.Alias;
     }
 
     public name(): string {

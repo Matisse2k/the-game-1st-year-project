@@ -87,6 +87,8 @@ export class GameService extends BaseGameService<PlayerSession> {
             lookedUnderStone4: false,
             keyFound: false,
             CastleEnteranceDoorOpened: false,
+            pickedupDoorhandle: false,
+            pickedupGlue: false,
         };
     }
 

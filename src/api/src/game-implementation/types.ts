@@ -14,4 +14,6 @@ export type PlayerSession = {
     lookedUnderStone4: boolean;
     keyFound: boolean;
     CastleEnteranceDoorOpened: boolean;
+    pickedupDoorhandle: boolean;
+    pickedupGlue: boolean;
 };
