@@ -27,6 +27,7 @@ import { GuestRoom } from "../rooms/GuestRoom";
 import { GlueItem } from "../items/GlueItem";
 import { DoorHandleItem } from "../items/DoorhandleItem";
 
+import { BasementRoom } from "../rooms/BasementRoom";
 /**
  * Implementation of the game service used to operate the game engine
  */
@@ -47,6 +48,7 @@ export class GameService extends BaseGameService<PlayerSession> {
         this.registerGameObject(GuestRoomAttic);
         this.registerGameObject(WerkkamerRoom);
         this.registerGameObject(GuestRoom);
+        this.registerGameObject(BasementRoom);
 
         // Items
         this.registerGameObject(KnuffelbeerItem);
