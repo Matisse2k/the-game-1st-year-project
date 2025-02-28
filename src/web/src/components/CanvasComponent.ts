@@ -166,6 +166,19 @@ const styles: string = css`
             min-height: 65vh;
         }
 
+        .typewriter {
+    display: inline-block;
+    white-space: pre-wrap;
+    overflow: hidden;
+    border-right: 0.15em solid orange; /* Cursor effect */
+    animation: blink-caret 0.75s step-end infinite;
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: orange; }
+}
+
     }
 `;
 
@@ -184,6 +197,8 @@ export class CanvasComponent extends HTMLElement {
     private _selectedActionButton?: ActionReference;
     /** Current active game object buttons */
     private _selectedGameObjectButtons: Set<GameObjectReference> = new Set<GameObjectReference>();
+
+    private _previousText: string = ""; // Stores the previous text to detect changes
 
     /**
      * The "constructor" of a Web Component
@@ -256,6 +271,19 @@ export class CanvasComponent extends HTMLElement {
         if (startGameButton) {
             startGameButton.addEventListener("click", () => this.handleClickAction({ alias: "start-game-from-image", name: "Start Game", needsObject: false }));
         }
+
+        // Apply typewriter effect to the content only if the text has changed
+        const newText: string = this._currentGameState?.text.join(" ") || "";
+        if (newText !== this._previousText) {
+            this.typeWriterEffect(newText, "typewriter");
+            this._previousText = newText;
+        }
+        else {
+            const typewriterElement: HTMLElement | null = this.shadowRoot.querySelector("#typewriter");
+            if (typewriterElement) {
+                typewriterElement.innerHTML = newText;
+            }
+        }
     }
 
     /**
@@ -309,9 +337,35 @@ export class CanvasComponent extends HTMLElement {
     private renderContent(): string {
         return `
             <div class="content">
-                ${this._currentGameState?.text.map(text => `<p>${text}</p>`).join("") || ""}
+            <span id="typewriter" class="typewriter"></span>
+                
             </div>
         `;
+    } // ${this._currentGameState?.text.map(text => `<p>${text}</p>`).join("") || ""}
+
+    /**
+     * Apply a typewriter effect to the specified element
+     *
+     * @param text The text to display with the typewriter effect
+     * @param elementId The ID of the element to apply the effect to
+     * @param speed The speed of the typewriter effect in milliseconds per character
+     */
+    private typeWriterEffect(text: string, elementId: string, speed: number = 27): void { // adjust speed per ms
+        const element: HTMLElement | null | undefined = this.shadowRoot?.getElementById(elementId);
+        if (!element) return;
+
+        element.innerHTML = ""; // Clear the element before starting the animation
+
+        let i: number = 0;
+        const interval: NodeJS.Timeout = setInterval(() => {
+            if (i < text.length) {
+                element.innerHTML += text.charAt(i);
+                i++;
+            }
+            else {
+                clearInterval(interval);
+            }
+        }, speed);
     }
 
     /**

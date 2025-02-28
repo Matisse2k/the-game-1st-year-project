@@ -12,6 +12,7 @@ import { ButlerCharacter } from "../characters/ButlerCharacter";
 import { KnuffelbeerItem } from "../items/KnuffelbeerItem";
 import { BovenHalRoom } from "./BovenHalRoom";
 import { PlayerSession } from "../types";
+import { BasementRoom } from "./BasementRoom";
 
 export class LobbyRoom extends Room implements Simple, Walk {
     public static readonly Alias: string = "lobby";
@@ -33,6 +34,7 @@ export class LobbyRoom extends Room implements Simple, Walk {
             new BovenHalRoom(),
             new KnuffelbeerItem(),
             new ButlerCharacter(),
+            new BasementRoom(),
         ];
     }
 
@@ -81,7 +83,7 @@ export class LobbyRoom extends Room implements Simple, Walk {
         try {
             gameService.getPlayerSession().currentRoom = targetRoom.alias;
             console.log(`✅ Huidige kamer is nu: ${getPlayerSession.currentRoom}`);
-            return new TextActionResult([`✅ You walked to ${targetRoom.alias}!`]);
+            return new TextActionResult([`✅ You walked to the ${targetRoom.alias}!`]);
         }
         catch (error) {
             console.error("🔥 Fout bij het wisselen van kamer:", error);
