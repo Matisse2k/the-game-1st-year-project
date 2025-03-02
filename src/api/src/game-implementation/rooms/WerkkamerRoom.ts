@@ -20,19 +20,36 @@ export class WerkkamerRoom extends Room {
     }
 
     public name(): string {
-        return "Werkkamer";
+        return "Office";
     }
 
     public images(): string[] {
-        return ["office", "layers/lijmpot", "layers/doorhandle"];
+        const playerSession: PlayerSession = gameService.getPlayerSession();
+        const result: string[] = ["office"];
+
+        if (!playerSession.pickedupDoorhandle) {
+            result.push("layers/doorhandle");
+        }
+        if (!playerSession.pickedupGlue) {
+            result.push("layers/lijmpot");
+        }
+
+        return result;
     }
 
     public objects(): GameObject[] {
-        return [
-            new BovenHalRoom(),
-            new GlueItem(),
-            new DoorHandleItem(),
-        ];
+        const playerSession: PlayerSession = gameService.getPlayerSession();
+        const result: GameObject[] = [new BovenHalRoom()];
+
+        if (!playerSession.pickedupDoorhandle) {
+            result.push(new DoorHandleItem());
+        }
+
+        if (!playerSession.pickedupGlue) {
+            result.push(new GlueItem());
+        }
+
+        return result;
     }
 
     public actions(): Action[] {
