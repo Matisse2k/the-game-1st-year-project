@@ -9,10 +9,14 @@ import { Room } from "../../game-base/gameObjects/Room";
 import { gameService } from "../../global";
 import { Walk, WalkAction } from "../actions/WalkAction";
 import { ButlerCharacter } from "../characters/ButlerCharacter";
-import { KnuffelbeerItem } from "../items/KnuffelbeerItem";
+import { TeddyBearItem } from "../items/TeddyBearItem";
 import { BovenHalRoom } from "./BovenHalRoom";
 import { PlayerSession } from "../types";
 import { BasementRoom } from "./BasementRoom";
+import { CouchItem } from "../items/CouchItem";
+import { CabinetItem } from "../items/CabinetItem";
+import { TableItem } from "../items/TableItem";
+import { SearchAction } from "../actions/SearchAction";
 
 export class LobbyRoom extends Room implements Simple, Walk {
     public static readonly Alias: string = "lobby";
@@ -30,12 +34,22 @@ export class LobbyRoom extends Room implements Simple, Walk {
     }
 
     public objects(): GameObject[] {
-        return [
+        const playerSession: PlayerSession = gameService.getPlayerSession();
+        const objects: GameObject[] = [
             new BovenHalRoom(),
-            new KnuffelbeerItem(),
             new ButlerCharacter(),
             new BasementRoom(),
+            new CouchItem(),
+            new CabinetItem(),
+            new TableItem(),
         ];
+
+        // Voeg de teddybeer alleen toe als deze nog niet is opgepakt
+        if (!playerSession.TeddyBearFound) {
+            objects.push(new TeddyBearItem());
+        }
+
+        return objects;
     }
 
     /**
@@ -46,6 +60,7 @@ export class LobbyRoom extends Room implements Simple, Walk {
             new ExamineAction(),
             new TalkAction(),
             new WalkAction(),
+            new SearchAction(),
             // new SimpleAction("start", "Startscherm"),
         ];
     }
