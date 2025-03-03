@@ -49,10 +49,7 @@ export class KeyItem extends Item implements PickUp, Use {
         }
 
         // Remove the key from the inventory
-        const index: number = playerSession.inventory.indexOf(KeyItem.Alias);
-        if (index > -1) {
-            playerSession.inventory.splice(index, 1);
-        }
+        playerSession.inventory = playerSession.inventory.filter((item: string) => item !== "Key");
 
         // Set CastleEnteranceDoorOpened to true
         playerSession.CastleEnteranceDoorOpened = true;

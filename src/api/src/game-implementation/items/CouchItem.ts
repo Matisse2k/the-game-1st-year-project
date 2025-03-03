@@ -6,21 +6,39 @@ import { gameService } from "../../global";
 import { Search } from "../actions/SearchAction";
 import { PlayerSession } from "../types";
 
+/**
+ * Represents the Couch item in the game.
+ */
 export class CouchItem extends Item implements Examine, Search {
     public static readonly Alias: string = "couch";
 
+    /**
+     * Constructs a new CouchItem instance.
+     */
     public constructor() {
         super(CouchItem.Alias);
     }
 
+    /**
+     * Returns the name of the item.
+     * @returns {string} The name of the item.
+     */
     public name(): string {
         return "Couch";
     }
 
+    /**
+     * Returns the result of examining the item.
+     * @returns {ActionResult | undefined} The result of the examination.
+     */
     public examine(): ActionResult | undefined {
         return new TextActionResult(["It's a comfy couch."]);
     }
 
+    /**
+     * Returns the result of searching the item.
+     * @returns {ActionResult | undefined} The result of the search.
+     */
     public search(): ActionResult | undefined {
         const playerSession: PlayerSession = gameService.getPlayerSession();
         if (playerSession.TeddyBearFound) {

@@ -6,17 +6,32 @@ import { Character } from "../../game-base/gameObjects/Character";
 import { gameService } from "../../global";
 import { PlayerSession } from "../types";
 
+/**
+ * Represents the GhostCharacter in the game.
+ */
 export class GhostCharacter extends Character {
     public static readonly Alias: string = "ghost";
 
+    /**
+     * Constructs a new GhostCharacter instance.
+     */
     public constructor() {
         super(GhostCharacter.Alias);
     }
 
+    /**
+     * Returns the name of the character.
+     * @returns {string} The name of the character.
+     */
     public name(): string {
         return "Ghost";
     }
 
+    /**
+     * Handles the talk action for the GhostCharacter.
+     * @param {number} [choiceId] - The ID of the chosen dialogue option.
+     * @returns {ActionResult | undefined} The result of the talk action.
+     */
     public talk(choiceId?: number): ActionResult | undefined {
         const PlayerSession: PlayerSession = gameService.getPlayerSession();
         if (choiceId === 1) {
@@ -32,7 +47,7 @@ export class GhostCharacter extends Character {
             );
         }
         else if (choiceId === 2) {
-            return new TextActionResult(["you step away"]);
+            return new TextActionResult(["You step away."]);
         }
         else if (choiceId === 3) {
             return new TalkActionResult(
@@ -42,7 +57,7 @@ export class GhostCharacter extends Character {
                 ],
                 [
                     new TalkChoice(4, "Can I help you?"),
-                    new TalkChoice(2, "step away"),
+                    new TalkChoice(2, "Step away"),
                 ]
             );
         }
@@ -71,8 +86,8 @@ export class GhostCharacter extends Character {
                 "Boo!",
             ],
             [
-                new TalkChoice(1, "who are you?"),
-                new TalkChoice(2, "step away"),
+                new TalkChoice(1, "Who are you?"),
+                new TalkChoice(2, "Step away"),
                 ...(PlayerSession.GhostQuestStarted && !PlayerSession.GhostQuestCompleted ? [new TalkChoice(5, "Give teddy bear")] : []),
             ]
         );

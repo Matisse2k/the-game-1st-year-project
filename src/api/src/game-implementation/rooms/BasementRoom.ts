@@ -10,12 +10,18 @@ import { Walk, WalkAction } from "../actions/WalkAction";
 import { GhostCharacter } from "../characters/GhostCharacter";
 import { PlayerSession } from "../types";
 import { LobbyRoom } from "./LobbyRoom";
+import { MysteriousStickItem } from "../items/MysteriousStickItem";
+import { BookshelfItem } from "../items/BookshelfItem";
+import { PickUpAction } from "../actions/PickUpActions";
 
+/**
+ * Represents the BasementRoom in the game.
+ */
 export class BasementRoom extends Room implements Walk {
     public static readonly Alias: string = "Basement";
 
     /**
-     * Constructs a new PathToTheCastleRoom instance.
+     * Constructs a new BasementRoom instance.
      */
     public constructor() {
         super(BasementRoom.Alias);
@@ -29,32 +35,65 @@ export class BasementRoom extends Room implements Walk {
         return "Basement";
     }
 
+    /**
+     * Returns the images to be displayed in the room.
+     * @returns {string[]} An array of image layer names.
+     */
     public images(): string[] {
         return ["BasementRoom"];
     }
 
+    /**
+     * Returns the result of examining the room.
+     * @returns {ActionResult | undefined} The result of the examination.
+     */
     public examine(): ActionResult | undefined {
         return new TextActionResult([
             "You descend the creaky stairs into the damp, musty basement.",
             "Dim light from a flickering bulb casts eerie shadows.",
-            "In the middle of the room, you see a ghostly figure hovering silently. Cobwebs hang from the ceiling."]);
+            "In the middle of the room, you see a ghostly figure hovering silently. Cobwebs hang from the ceiling.",
+        ]);
     }
 
+    /**
+     * Returns the game objects present in the room.
+     * @returns {GameObject[]} An array of game objects.
+     */
     public objects(): GameObject[] {
-        return [
+        const playerSession: PlayerSession = gameService.getPlayerSession();
+        const objects: GameObject[] = [
             new LobbyRoom(),
             new GhostCharacter(),
+            new BookshelfItem(),
         ];
+
+        // Voeg de mysterieuze stok alleen toe als deze is onthuld
+        if (playerSession.MysteriousStickRevealed && !playerSession.inventory.includes("MysteriousStick")) {
+            objects.push(new MysteriousStickItem());
+        }
+
+        return objects;
     }
 
+    /**
+     * Returns the actions available in the room.
+     * @returns {Action[]} An array of actions.
+     */
     public actions(): Action[] {
         return [
             new ExamineAction(),
             new WalkAction(),
             new TalkAction(),
+            new PickUpAction(),
         ];
     }
 
+    /**
+     * Handles the walk action in the room.
+     * @param {string} _alias - The alias of the target object.
+     * @param {GameObject[]} gameObjects - The game objects to walk to.
+     * @returns {ActionResult} The result of the walk action.
+     */
     public walk(_alias: string, gameObjects: GameObject[]): ActionResult {
         const PlayerSession: PlayerSession = gameService.getPlayerSession();
 
