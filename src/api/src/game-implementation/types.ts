@@ -16,4 +16,7 @@ export type PlayerSession = {
     CastleEnteranceDoorOpened: boolean;
     pickedupDoorhandle: boolean;
     pickedupGlue: boolean;
+    GhostQuestStarted: boolean;
+    TeddyBearFound: boolean;
+    GhostQuestCompleted: boolean;
 };

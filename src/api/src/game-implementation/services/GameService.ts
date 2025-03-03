@@ -3,7 +3,7 @@ import { GameObject } from "../../game-base/gameObjects/GameObject";
 import { StartupRoom } from "../rooms/StartupRoom";
 import { PlayerSession } from "../types";
 import { LobbyRoom } from "../rooms/LobbyRoom";
-import { KnuffelbeerItem } from "../items/KnuffelbeerItem";
+import { TeddyBearItem } from "../items/TeddyBearItem";
 import { WalkAction } from "../actions/WalkAction";
 import { ButlerCharacter } from "../characters/ButlerCharacter";
 import { PathToTheCastleRoom } from "../rooms/PathToTheCastleRoom";
@@ -26,8 +26,11 @@ import { WerkkamerRoom } from "../rooms/WerkkamerRoom";
 import { GuestRoom } from "../rooms/GuestRoom";
 import { GlueItem } from "../items/GlueItem";
 import { DoorHandleItem } from "../items/DoorhandleItem";
-
 import { BasementRoom } from "../rooms/BasementRoom";
+import { GhostCharacter } from "../characters/GhostCharacter";
+import { CabinetItem } from "../items/CabinetItem";
+import { CouchItem } from "../items/CouchItem";
+import { TableItem } from "../items/TableItem";
 /**
  * Implementation of the game service used to operate the game engine
  */
@@ -49,9 +52,10 @@ export class GameService extends BaseGameService<PlayerSession> {
         this.registerGameObject(WerkkamerRoom);
         this.registerGameObject(GuestRoom);
         this.registerGameObject(BasementRoom);
+        this.registerGameObject(BasementRoom);
 
         // Items
-        this.registerGameObject(KnuffelbeerItem);
+        this.registerGameObject(TeddyBearItem);
         this.registerGameObject(StonesItem);
         this.registerGameObject(Stone1Item);
         this.registerGameObject(Stone2Item);
@@ -63,9 +67,13 @@ export class GameService extends BaseGameService<PlayerSession> {
         this.registerGameObject(AtticAccessItem);
         this.registerGameObject(GlueItem);
         this.registerGameObject(DoorHandleItem);
+        this.registerGameObject(CabinetItem);
+        this.registerGameObject(CouchItem);
+        this.registerGameObject(TableItem);
 
         // Characters
         this.registerGameObject(ButlerCharacter);
+        this.registerGameObject(GhostCharacter);
 
         // Actions
         this.registerAction(WalkAction);
@@ -87,6 +95,9 @@ export class GameService extends BaseGameService<PlayerSession> {
             lookedUnderStone4: false,
             keyFound: false,
             CastleEnteranceDoorOpened: false,
+            GhostQuestStarted: false,
+            TeddyBearFound: false,
+            GhostQuestCompleted: false,
             pickedupDoorhandle: false,
             pickedupGlue: false,
         };
