@@ -31,6 +31,8 @@ import { GhostCharacter } from "../characters/GhostCharacter";
 import { CabinetItem } from "../items/CabinetItem";
 import { CouchItem } from "../items/CouchItem";
 import { TableItem } from "../items/TableItem";
+import { MysteriousStickItem } from "../items/MysteriousStickItem";
+import { BookshelfItem } from "../items/BookshelfItem";
 /**
  * Implementation of the game service used to operate the game engine
  */
@@ -70,6 +72,8 @@ export class GameService extends BaseGameService<PlayerSession> {
         this.registerGameObject(CabinetItem);
         this.registerGameObject(CouchItem);
         this.registerGameObject(TableItem);
+        this.registerGameObject(MysteriousStickItem);
+        this.registerGameObject(BookshelfItem);
 
         // Characters
         this.registerGameObject(ButlerCharacter);

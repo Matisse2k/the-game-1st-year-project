@@ -69,15 +69,22 @@ export class PathToTheCastleRoom extends Room {
      * @returns {GameObject[]} An array of game objects.
      */
     public objects(): GameObject[] {
-        return [
+        const playerSession: PlayerSession = gameService.getPlayerSession();
+        const objects: GameObject[] = [
             new StonesItem(),
             new Stone1Item(),
             new Stone2Item(),
             new Stone3Item(),
             new Stone4Item(),
-            new KeyItem(),
             new CastleDoorEnteranceRoom(),
         ];
+
+        // Voeg de sleutel alleen toe als deze is gevonden en niet in de inventaris zit
+        if (playerSession.lookedUnderStone3 && !playerSession.inventory.includes(KeyItem.Alias)) {
+            objects.push(new KeyItem());
+        }
+
+        return objects;
     }
 
     /**
