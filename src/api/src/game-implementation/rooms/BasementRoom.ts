@@ -2,10 +2,12 @@ import { ActionResult } from "../../game-base/actionResults/ActionResult";
 import { TextActionResult } from "../../game-base/actionResults/TextActionResult";
 import { Action } from "../../game-base/actions/Action";
 import { ExamineAction } from "../../game-base/actions/ExamineAction";
+import { TalkAction } from "../../game-base/actions/TalkAction";
 import { GameObject } from "../../game-base/gameObjects/GameObject";
 import { Room } from "../../game-base/gameObjects/Room";
 import { gameService } from "../../global";
 import { Walk, WalkAction } from "../actions/WalkAction";
+import { GhostCharacter } from "../characters/GhostCharacter";
 import { PlayerSession } from "../types";
 import { LobbyRoom } from "./LobbyRoom";
 
@@ -41,6 +43,7 @@ export class BasementRoom extends Room implements Walk {
     public objects(): GameObject[] {
         return [
             new LobbyRoom(),
+            new GhostCharacter(),
         ];
     }
 
@@ -48,6 +51,7 @@ export class BasementRoom extends Room implements Walk {
         return [
             new ExamineAction(),
             new WalkAction(),
+            new TalkAction(),
         ];
     }
 
