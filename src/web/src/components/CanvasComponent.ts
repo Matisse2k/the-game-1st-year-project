@@ -21,7 +21,6 @@ const styles: string = css`
     .title {
         text-align: center;
         margin-top: 10px;
-        overflow: auto;
     }
 
     .header {
@@ -257,6 +256,7 @@ export class CanvasComponent extends HTMLElement {
             ${this.renderTitle()}
             ${this.renderHeader()}
             ${this.renderContent()}
+            ${this.renderInventory()} <!-- Voeg de InventoryComponent toe -->
             ${this.renderFooter()}
         `;
 
@@ -342,6 +342,15 @@ export class CanvasComponent extends HTMLElement {
             </div>
         `;
     } // ${this._currentGameState?.text.map(text => `<p>${text}</p>`).join("") || ""}
+
+    /**
+     * Render the inventory element
+     *
+     * @returns String with raw HTML for the inventory element
+     */
+    private renderInventory(): string {
+        return "<game-inventory></game-inventory>";
+    }
 
     /**
      * Apply a typewriter effect to the specified element

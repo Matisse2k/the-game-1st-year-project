@@ -10,6 +10,12 @@ import { gameService } from "../../global";
 import { SwitchPageActionResult } from "../actionResults/SwitchPageActionResult";
 import { Action } from "../../game-base/actions/Action";
 import { TalkChoice } from "../../game-base/actions/TalkAction";
+import { PlayerSession } from "../types";
+import { GlueItem } from "../items/GlueItem";
+import { DoorHandleItem } from "../items/DoorhandleItem";
+import { KeyItem } from "../items/KeyItem";
+import { MysteriousStickItem } from "../items/MysteriousStickItem";
+import { TeddyBearItem } from "../items/TeddyBearItem";
 
 /**
  * Controller to handle all game related requests
@@ -203,5 +209,52 @@ export class GameController {
             alias: gameObject.alias,
             name: await gameObject.name(),
         };
+    }
+
+    public handleInventoryRequest(_req: Request, res: Response): void {
+        try {
+            const playerSession: PlayerSession = gameService.getPlayerSession();
+            res.json(playerSession.inventory);
+        }
+        catch (error) {
+            console.error("[error][GameController::handleInventoryRequest]", error);
+            res.status(500).end();
+        }
+    }
+
+    /**
+ * Handle the request to retrieve the description of an item
+ *
+ * @param req Request object containing the item alias
+ * @param res Response object to send the item description
+ */
+    public handleItemDescriptionRequest(req: Request, res: Response): void {
+        try {
+            const itemAlias: string = req.params.alias;
+
+            // Mapping of item aliases to their respective classes
+            const itemClasses: { [key: string]: unknown } = {
+                [GlueItem.Alias]: GlueItem,
+                [DoorHandleItem.Alias]: DoorHandleItem,
+                [KeyItem.Alias]: KeyItem,
+                [MysteriousStickItem.Alias]: MysteriousStickItem,
+                [TeddyBearItem.Alias]: TeddyBearItem,
+            // Add other items here as needed
+            };
+
+            const ItemClass: unknown = itemClasses[itemAlias];
+
+            if (ItemClass) {
+                const item: { getDescription(): string } = new (ItemClass as { new (): { getDescription(): string } })();
+                res.json({ description: item.getDescription() });
+            }
+            else {
+                res.status(404).json({ error: "Item not found" });
+            }
+        }
+        catch (error) {
+            console.error("[error][GameController::handleItemDescriptionRequest]", error);
+            res.status(500).end();
+        }
     }
 };

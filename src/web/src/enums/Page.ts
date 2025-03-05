@@ -4,4 +4,5 @@
 export enum Page {
     /** Represents the CanvasComponent */
     Canvas = "canvas",
+    Inventory = "inventory",
 };

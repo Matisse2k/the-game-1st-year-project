@@ -49,7 +49,7 @@ export class KeyItem extends Item implements PickUp, Use {
         }
 
         // Remove the key from the inventory
-        playerSession.inventory = playerSession.inventory.filter((item: string) => item !== "Key");
+        playerSession.inventory = playerSession.inventory.filter((item: string) => item !== "key");
 
         // Set CastleEnteranceDoorOpened to true
         playerSession.CastleEnteranceDoorOpened = true;
@@ -81,5 +81,13 @@ export class KeyItem extends Item implements PickUp, Use {
         return new TextActionResult([
             "This is an old rusty key. It might be useful later.",
         ]);
+    }
+
+    /**
+     * Returns the description of the key.
+     * @returns {string} The description of the key.
+     */
+    public getDescription(): string {
+        return "A small, rusty key.";
     }
 }

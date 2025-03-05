@@ -52,10 +52,15 @@ export class CastleDoorEnteranceRoom extends Room implements Walk, Simple {
      * @returns {GameObject[]} The objects present in the room.
      */
     public objects(): GameObject[] {
-        return [
+        const objects: GameObject[] = [
             new CastleEnteranceDoorItem(),
-            new KeyItem(),
         ];
+
+        if (!gameService.getPlayerSession().CastleEnteranceDoorOpened) {
+            objects.push(new KeyItem());
+        }
+
+        return objects;
     }
 
     /**

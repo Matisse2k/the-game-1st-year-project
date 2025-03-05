@@ -53,9 +53,10 @@ export class RootComponent extends HTMLElement {
      */
     private renderCurrentPage(): HTMLElement {
         switch (this._currentPage) {
-            // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
             case Page.Canvas:
                 return html`<game-canvas></game-canvas>`;
+            case Page.Inventory:
+                return html`<game-inventory></game-inventory>`;
 
             default:
                 return html`<game-notfound page="${this._currentPage}"></game-notfound>`;

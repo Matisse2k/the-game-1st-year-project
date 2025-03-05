@@ -20,4 +20,5 @@ export type PlayerSession = {
     TeddyBearFound: boolean;
     GhostQuestCompleted: boolean;
     MysteriousStickRevealed?: boolean;
+    pickedupTeddyBear: boolean;
 };

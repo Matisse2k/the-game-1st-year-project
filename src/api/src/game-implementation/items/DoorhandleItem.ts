@@ -7,7 +7,7 @@ import { PickUp } from "../actions/PickUpActions";
 import { PlayerSession } from "../types";
 
 export class DoorHandleItem extends Item implements Examine, PickUp {
-    public static readonly Alias: string = " doorhandle";
+    public static readonly Alias: string = "doorhandle";
 
     public constructor() {
         super(DoorHandleItem.Alias);
@@ -26,5 +26,9 @@ export class DoorHandleItem extends Item implements Examine, PickUp {
 
     public examine(): ActionResult | undefined {
         return new TextActionResult(["Ah, an doorhandle... This might come in handy later. Better take it with me."]);
+    }
+
+    public getDescription(): string {
+        return "A sturdy door handle, useful for opening a single door.";
     }
 }

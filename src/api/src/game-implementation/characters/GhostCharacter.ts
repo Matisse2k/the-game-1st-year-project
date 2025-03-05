@@ -73,7 +73,7 @@ export class GhostCharacter extends Character {
         else if (choiceId === 5) {
             if (PlayerSession.TeddyBearFound) {
                 PlayerSession.GhostQuestCompleted = true;
-                PlayerSession.inventory = PlayerSession.inventory.filter(item => item !== "teddy bear");
+                PlayerSession.inventory = PlayerSession.inventory.filter(item => item !== "teddybear");
                 return new TextActionResult(["Thank you for finding my teddy bear. As promised, you now have access to the first floor."]);
             }
             else {
