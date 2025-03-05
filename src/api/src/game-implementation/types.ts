@@ -19,6 +19,8 @@ export type PlayerSession = {
     GhostQuestStarted: boolean;
     TeddyBearFound: boolean;
     GhostQuestCompleted: boolean;
+    guestdooropen: boolean;
+    guestaticdooropen: boolean;
     MysteriousStickRevealed?: boolean;
     pickedupTeddyBear: boolean;
     ChefQuestStarted: boolean;

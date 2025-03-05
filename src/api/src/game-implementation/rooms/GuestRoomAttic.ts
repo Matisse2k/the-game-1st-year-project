@@ -10,7 +10,7 @@ import { AtticAccessItem } from "../items/AtticAccessItem";
 import { PlayerSession } from "../types";
 import { Walk, WalkAction } from "../actions/WalkAction";
 import { Simple } from "../../game-base/actions/SimpleAction";
-import { BovenHalRoom } from "./BovenHalRoom";
+import { UpperFloorRoom } from "./UpperFloor";
 
 export class GuestRoomAttic extends Room implements Simple, Walk {
     public static readonly Alias: string = "GuestRoomAttic";
@@ -40,7 +40,7 @@ export class GuestRoomAttic extends Room implements Simple, Walk {
         return [
             new ServeerplaatItem(),
             new AtticAccessItem(),
-            new BovenHalRoom(),
+            new UpperFloorRoom(),
         ];
     }
 
@@ -53,7 +53,7 @@ export class GuestRoomAttic extends Room implements Simple, Walk {
     }
 
     public walk(alias: string, gameObjects: GameObject[]): ActionResult {
-        const getPlayerSession: PlayerSession = gameService.getPlayerSession();
+        const PlayerSession: PlayerSession = gameService.getPlayerSession();
 
         console.log("🚀 WalkAction executed!");
         console.log("👉 Alias ontvangen:", alias);
@@ -72,15 +72,11 @@ export class GuestRoomAttic extends Room implements Simple, Walk {
             return new TextActionResult(["❌ You can't walk to that!"]);
         }
 
-        try {
-            gameService.getPlayerSession().currentRoom = targetRoom.alias;
-            console.log(`✅ Huidige kamer is nu: ${getPlayerSession.currentRoom}`);
-            return new TextActionResult([`✅ You walked to ${targetRoom.alias}!`]);
+        if (PlayerSession.guestaticdooropen) {
+            const room: Room = new GuestRoomAttic();
+            PlayerSession.currentRoom = room.alias;
+            return new TextActionResult(["You walked to the Guest room"]);
         }
-        catch (error) {
-            console.error("🔥 Fout bij het wisselen van kamer:", error);
-            return new TextActionResult(["❌ Er ging iets mis bij het lopen!"]);
-            // test
-        }
+        return new TextActionResult(["This door is locked, it looks like a door handle is missing."]);
     }
 }
