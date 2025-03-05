@@ -17,6 +17,7 @@ import { CouchItem } from "../items/CouchItem";
 import { CabinetItem } from "../items/CabinetItem";
 import { TableItem } from "../items/TableItem";
 import { SearchAction } from "../actions/SearchAction";
+import { PickUpAction } from "../actions/PickUpActions";
 
 export class LobbyRoom extends Room implements Simple, Walk {
     public static readonly Alias: string = "lobby";
@@ -44,8 +45,8 @@ export class LobbyRoom extends Room implements Simple, Walk {
             new TableItem(),
         ];
 
-        // Voeg de teddybeer alleen toe als deze nog niet is opgepakt
-        if (!playerSession.TeddyBearFound) {
+        // Voeg de teddybeer alleen toe als deze is gevonden
+        if (playerSession.TeddyBearFound && !playerSession.pickedupTeddyBear) {
             objects.push(new TeddyBearItem());
         }
 
@@ -61,6 +62,7 @@ export class LobbyRoom extends Room implements Simple, Walk {
             new TalkAction(),
             new WalkAction(),
             new SearchAction(),
+            new PickUpAction(),
             // new SimpleAction("start", "Startscherm"),
         ];
     }

@@ -18,3 +18,8 @@ router.use(gameService.createPlayerSessionMiddleware());
 
 router.get("/state", (req, res) => gameController.handleStateRequest(req, res));
 router.post("/action", (req, res) => gameController.handleActionRequest(req, res));
+
+// Voeg een nieuw eindpunt toe om de inventory op te halen
+router.get("/inventory", (req, res) => gameController.handleInventoryRequest(req, res));
+
+router.get("/item/:alias/description", (req, res) => gameController.handleItemDescriptionRequest(req, res));

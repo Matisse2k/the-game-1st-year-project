@@ -34,4 +34,8 @@ export class MysteriousStickItem extends Item implements Examine, PickUp {
             return undefined;
         }
     }
+
+    public getDescription(): string {
+        return "A mysterious stick that seems ordinary, but there's something oddly intriguing about it.";
+    }
 }

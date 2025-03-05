@@ -41,7 +41,7 @@ export class CouchItem extends Item implements Examine, Search {
      */
     public search(): ActionResult | undefined {
         const playerSession: PlayerSession = gameService.getPlayerSession();
-        if (playerSession.TeddyBearFound) {
+        if (playerSession.pickedupTeddyBear) {
             return new TextActionResult([
                 "You look under the couch again, but there's nothing there except some dust and cobwebs.",
                 "It seems like you've already found everything of interest here.",
@@ -49,12 +49,10 @@ export class CouchItem extends Item implements Examine, Search {
         }
         else {
             playerSession.TeddyBearFound = true;
-            playerSession.inventory.push("teddy bear");
-
             return new TextActionResult([
                 "You look under the couch and see some spiders scurrying away.",
                 "Amidst the dust and cobwebs, you find a teddy bear!",
-                "You pick up the teddy bear and add it to your inventory.",
+                "You have to pick the teddy up to take it with you.",
             ]);
         }
     }

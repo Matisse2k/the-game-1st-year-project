@@ -104,6 +104,7 @@ export class GameService extends BaseGameService<PlayerSession> {
             GhostQuestCompleted: false,
             pickedupDoorhandle: false,
             pickedupGlue: false,
+            pickedupTeddyBear: false,
         };
     }
 
