@@ -13,6 +13,7 @@ import { LobbyRoom } from "./LobbyRoom";
 import { MysteriousStickItem } from "../items/MysteriousStickItem";
 import { BookshelfItem } from "../items/BookshelfItem";
 import { PickUpAction } from "../actions/PickUpActions";
+import { KnifeItem } from "../items/KnifeItem";
 
 /**
  * Represents the BasementRoom in the game.
@@ -70,6 +71,11 @@ export class BasementRoom extends Room implements Walk {
         // Voeg de mysterieuze stok alleen toe als deze is onthuld
         if (playerSession.MysteriousStickRevealed && !playerSession.inventory.includes("MysteriousStick")) {
             objects.push(new MysteriousStickItem());
+        }
+
+        // Voeg het mes toe als het door de geest is gegeven
+        if (playerSession.knifeGiven && !playerSession.inventory.includes("knife")) {
+            objects.push(new KnifeItem());
         }
 
         return objects;

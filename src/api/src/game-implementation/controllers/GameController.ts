@@ -16,6 +16,7 @@ import { DoorHandleItem } from "../items/DoorhandleItem";
 import { KeyItem } from "../items/KeyItem";
 import { MysteriousStickItem } from "../items/MysteriousStickItem";
 import { TeddyBearItem } from "../items/TeddyBearItem";
+import { KnifeItem } from "../items/KnifeItem";
 
 /**
  * Controller to handle all game related requests
@@ -239,6 +240,7 @@ export class GameController {
                 [KeyItem.Alias]: KeyItem,
                 [MysteriousStickItem.Alias]: MysteriousStickItem,
                 [TeddyBearItem.Alias]: TeddyBearItem,
+                [KnifeItem.Alias]: KnifeItem,
             // Add other items here as needed
             };
 
