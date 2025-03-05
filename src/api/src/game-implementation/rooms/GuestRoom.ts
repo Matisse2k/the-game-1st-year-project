@@ -7,7 +7,7 @@ import { Room } from "../../game-base/gameObjects/Room";
 import { gameService } from "../../global";
 import { Walk, WalkAction } from "../actions/WalkAction";
 import { PlayerSession } from "../types";
-import { BovenHalRoom } from "./BovenHalRoom";
+import { UpperFloorRoom } from "./UpperFloor";
 
 export class GuestRoom extends Room implements Walk {
     public static readonly Alias: string = "GuestRoom";
@@ -26,7 +26,7 @@ export class GuestRoom extends Room implements Walk {
 
     public objects(): GameObject[] {
         return [
-            new BovenHalRoom(),
+            new UpperFloorRoom(),
         ];
     }
 
@@ -44,7 +44,7 @@ export class GuestRoom extends Room implements Walk {
     }
 
     public walk(alias: string, gameObjects: GameObject[]): ActionResult {
-        const getPlayerSession: PlayerSession = gameService.getPlayerSession();
+        const PlayerSession: PlayerSession = gameService.getPlayerSession();
 
         console.log("🚀 WalkAction executed!");
         console.log("👉 Alias ontvangen:", alias);
@@ -63,15 +63,11 @@ export class GuestRoom extends Room implements Walk {
             return new TextActionResult(["❌ You can't walk to that!"]);
         }
 
-        try {
-            gameService.getPlayerSession().currentRoom = targetRoom.alias;
-            console.log(`✅ Huidige kamer is nu: ${getPlayerSession.currentRoom}`);
-            return new TextActionResult([`✅ You walked to ${targetRoom.alias}!`]);
+        if (PlayerSession.guestdooropen) {
+            const room: Room = new GuestRoom();
+            PlayerSession.currentRoom = room.alias;
+            return new TextActionResult(["You walked to the Guest room"]);
         }
-        catch (error) {
-            console.error("🔥 Fout bij het wisselen van kamer:", error);
-            return new TextActionResult(["❌ Er ging iets mis bij het lopen!"]);
-            // test
-        }
+        return new TextActionResult(["This door is locked, it looks like a door handle is missing."]);
     }
 }

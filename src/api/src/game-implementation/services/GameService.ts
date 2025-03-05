@@ -17,7 +17,7 @@ import { Stone4Item } from "../items/Stone4Item";
 import { CastleDoorEnteranceRoom } from "../rooms/CastleDoorEnteranceRoom";
 import { CastleEnteranceDoorItem } from "../items/CastleEnteranceDoorItem";
 import { UseItemAction } from "../actions/UseItemAction";
-import { BovenHalRoom } from "../rooms/BovenHalRoom";
+import { UpperFloorRoom } from "../rooms/UpperFloor";
 import { PickUpAction } from "../actions/PickUpActions";
 import { GuestRoomAttic } from "../rooms/GuestRoomAttic";
 import { ServeerplaatItem } from "../items/ServeerplaatItem";
@@ -47,7 +47,7 @@ export class GameService extends BaseGameService<PlayerSession> {
         // Rooms
         this.registerGameObject(StartupRoom);
         this.registerGameObject(LobbyRoom);
-        this.registerGameObject(BovenHalRoom);
+        this.registerGameObject(UpperFloorRoom);
         this.registerGameObject(PathToTheCastleRoom);
         this.registerGameObject(CastleDoorEnteranceRoom);
         this.registerGameObject(GuestRoomAttic);
@@ -109,6 +109,8 @@ export class GameService extends BaseGameService<PlayerSession> {
             pickedupTeddyBear: false,
             ChefQuestStarted: true,
             knifeGiven: false,
+            guestdooropen: false,
+            guestaticdooropen: false,
         };
     }
 

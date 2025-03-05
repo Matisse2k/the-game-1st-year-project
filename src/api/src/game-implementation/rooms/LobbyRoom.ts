@@ -10,7 +10,7 @@ import { gameService } from "../../global";
 import { Walk, WalkAction } from "../actions/WalkAction";
 import { ButlerCharacter } from "../characters/ButlerCharacter";
 import { TeddyBearItem } from "../items/TeddyBearItem";
-import { BovenHalRoom } from "./BovenHalRoom";
+import { UpperFloorRoom } from "./UpperFloor";
 import { PlayerSession } from "../types";
 import { BasementRoom } from "./BasementRoom";
 import { CouchItem } from "../items/CouchItem";
@@ -31,13 +31,13 @@ export class LobbyRoom extends Room implements Simple, Walk {
     }
 
     public images(): string[] {
-        return ["donkereLobby", "layers/Butler", "layers/Knuffelbeer"];
+        return ["donkereLobby", "layers/Butler"];
     }
 
     public objects(): GameObject[] {
         const playerSession: PlayerSession = gameService.getPlayerSession();
         const objects: GameObject[] = [
-            new BovenHalRoom(),
+            new UpperFloorRoom(),
             new ButlerCharacter(),
             new BasementRoom(),
             new CouchItem(),

@@ -10,7 +10,7 @@ import { WalkAction } from "../actions/WalkAction";
 import { DoorHandleItem } from "../items/DoorhandleItem";
 import { GlueItem } from "../items/GlueItem";
 import { PlayerSession } from "../types";
-import { BovenHalRoom } from "./BovenHalRoom";
+import { UpperFloorRoom } from "./UpperFloor";
 
 export class WerkkamerRoom extends Room {
     public static readonly Alias: string = "Werkkamer";
@@ -39,7 +39,7 @@ export class WerkkamerRoom extends Room {
 
     public objects(): GameObject[] {
         const playerSession: PlayerSession = gameService.getPlayerSession();
-        const result: GameObject[] = [new BovenHalRoom()];
+        const result: GameObject[] = [new UpperFloorRoom()];
 
         if (!playerSession.pickedupDoorhandle) {
             result.push(new DoorHandleItem());
