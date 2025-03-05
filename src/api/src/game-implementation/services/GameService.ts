@@ -33,6 +33,7 @@ import { CouchItem } from "../items/CouchItem";
 import { TableItem } from "../items/TableItem";
 import { MysteriousStickItem } from "../items/MysteriousStickItem";
 import { BookshelfItem } from "../items/BookshelfItem";
+import { KnifeItem } from "../items/KnifeItem";
 /**
  * Implementation of the game service used to operate the game engine
  */
@@ -74,6 +75,7 @@ export class GameService extends BaseGameService<PlayerSession> {
         this.registerGameObject(TableItem);
         this.registerGameObject(MysteriousStickItem);
         this.registerGameObject(BookshelfItem);
+        this.registerGameObject(KnifeItem);
 
         // Characters
         this.registerGameObject(ButlerCharacter);
@@ -105,6 +107,8 @@ export class GameService extends BaseGameService<PlayerSession> {
             pickedupDoorhandle: false,
             pickedupGlue: false,
             pickedupTeddyBear: false,
+            ChefQuestStarted: true,
+            knifeGiven: false,
         };
     }
 
