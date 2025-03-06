@@ -45,19 +45,11 @@ export class WalkAction extends Action {
             return new TextActionResult(["❌ You can't walk to that!"]);
         }
 
-        // oude code en die werkte niet.
-        // if (targetRoom instanceof Walk) {
-        //     return targetRoom.walk(alias, gameObjects);
-        // }
-
-        // Waarom werkt dit nu? De combinatie van instanceof Room en "walk" in targetRoom
-        // zorgt ervoor dat targetRoom zowel een Room-object is als de walk-methode implementeert.
-        // Dit voorkomt fouten waarbij targetRoom niet de juiste methode heeft.
-
         // Roep de walk-methode aan van de targetRoom
-        if (targetRoom instanceof Room && "walk" in targetRoom) {
-            return (targetRoom as Walk).walk(alias, gameObjects);
+        if (targetRoom.instanceOf (Walk)) {
+            return targetRoom.walk(alias, gameObjects);
         }
+
         else {
             return new TextActionResult(["❌ The target room does not support walking!"]);
         }
