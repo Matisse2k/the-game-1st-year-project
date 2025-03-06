@@ -6,13 +6,13 @@ import { GameObject } from "../../game-base/gameObjects/GameObject";
 import { Room } from "../../game-base/gameObjects/Room";
 import { gameService } from "../../global";
 import { PickUpAction } from "../actions/PickUpActions";
-import { WalkAction } from "../actions/WalkAction";
+import { Walk, WalkAction } from "../actions/WalkAction";
 import { DoorHandleItem } from "../items/DoorhandleItem";
 import { GlueItem } from "../items/GlueItem";
 import { PlayerSession } from "../types";
 import { UpperFloorRoom } from "./UpperFloor";
 
-export class WerkkamerRoom extends Room {
+export class WerkkamerRoom extends Room implements Walk {
     public static readonly Alias: string = "Werkkamer";
 
     public constructor() {
