@@ -187,16 +187,29 @@ In dit hoofdstuk beschrijf je hoe het project live wordt gezet op de HBO-ICT.Clo
 
 **Stap 7: Omschrijf hoe je het project uitrolt op de HBO-ICT.Cloud en welke methode je gebruikt:**
 
+In het begin hebben wij het eerst met de hand gedaan via Filezilla. Na een paar weken waren we over gegaan op het automatisch uitrollen. hieronder laten wij zien hoe wij het op de bijde manieren hebben gedaan.
+
 1.  CI/CD-pipeline\
-    Als je een CI/CD-pipeline gebruikt:
+    Als je een CI/CD-pipeline gebruikt (automatisch).:
 
-    -   Beschrijf hoe de pipeline is opgezet:
+    -   Hieronder zie je de stappen die waren:
 
-        -   Automatisch bouwen van frontend en backend.
+        - Op de [Knowledgebase](https://knowledgebase.hbo-ict-hva.nl/3_onderwijs/se/opdracht3/2_project/hboictcloud/#automatisch-uitrollen-naar-de-hbo-ictcloud) staat er een heel mooi document dat aan geeft hoe het werkt dus heb het stap voor stap gevolgt.
 
-        -   Deployen naar de HBO-ICT.Cloud.
+        - Je moet 1 variable aanmaken met als naam: DEPLOY_HIC met daarin de value "true" zodat je het procces aan zet voor het uitrollen naar de HIC.
 
-    -   Vermeld configuraties, zoals een .gitlab-ci.yml-bestand of andere pipelines.
+        ![HICVariable](./assets/Hboictcloudvariable.png)
+
+        - 5 variable aanmaken met daarin gegevens van de HBO ICT CLOUD. Door die values toe te voegen geef je toegang tot je deploy plek (HBO ICT CLOUD).
+
+        ![HICVariable](./assets/Variable.png)
+
+        - Deployen naar de HBO-ICT.Cloud:
+        - Nadat je alles erin hebt gezet van de data dan is er nog 1 stap die je moet doen. In het bestand .gitlab-ci.yml moet je boven in de DEPLOY-HIC op true zetten. 
+
+        ![HICVariable](./assets/Gitlabfile.png)
+
+        - Alles wat je dan op de Main zet word automatisch vanaf dat punt uitgerolt naar de cloud.
 
 2.  Handmatige deployment (FTP)\
     Als je handmatig deployt:
