@@ -11,20 +11,18 @@ const styles: string = css`
         margin: 0 auto;
         color: #fff;
         font-family: 'Press Start 2P', cursive; /* Retro pixel font */
-        margin-top: -100px;
-        padding-bottom: 10px; /* Adjust the top padding to make it smaller */
+        margin-top: -15vh;
     }
 
-    h2 {
+    h3 {
         text-align: center;
-        font-size: 1.2em;
-        margin-bottom: 10px;
+        font-size: 0.8em;
+        margin-bottom: 5px;
         color: #ffcc00;
     }
 
     ul {
-        display: flex; /* Zorg ervoor dat de items horizontaal worden weergegeven */
-        flex-wrap: wrap; /* Zorg ervoor dat de items naar de volgende regel gaan als er geen ruimte meer is */
+        display: flex; /* Ensure items are displayed horizontally */
         list-style-type: none;
         padding: 0;
         margin: 0;
@@ -36,7 +34,7 @@ const styles: string = css`
         align-items: center;
         padding: 5px;
         border: 1px solid #444;
-        margin: 5px; /* Gebruik een kleinere marge om ruimte te besparen */
+        margin: 5px; /* Use smaller margin to save space */
         border-radius: 5px;
         background-color: #2a2a2a;
         cursor: pointer;
@@ -105,8 +103,9 @@ const styles: string = css`
 
     /* Media queries for responsive design */
     @media (max-width: 600px) {
-        h2 {
-            font-size: 1em;
+        :host {
+            max-width: 100%; /* Adjust the width for smaller screens */
+            margin-top: 0; /* Reset margin-top to avoid overlap */
         }
 
         .modal-content {
@@ -124,8 +123,9 @@ const styles: string = css`
     }
 
     @media (max-width: 400px) {
-        h2 {
-            font-size: 0.8em;
+        :host {
+            max-width: 100%; /* Adjust the width for smaller screens */
+            margin-top: 0; /* Reset margin-top to avoid overlap */
         }
 
         .modal-content {
@@ -211,7 +211,7 @@ export class InventoryComponent extends HTMLElement {
                 ${styles}
             </style>
             <div>
-                <h2>Inventory</h2> <!-- Voeg een titel toe -->
+                <h3>Inventory</h3> <!-- Voeg een titel toe -->
                 <ul>
                     ${this._items.length > 0
                         ? this._items.map(item => html`
