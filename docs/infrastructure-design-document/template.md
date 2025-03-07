@@ -335,23 +335,13 @@ Hoewel HTTPS standaard is geactiveerd op de HBO-ICT.Cloud, zijn aanvullende beve
 
 2. **Frontend uploaden**
     - Bouw de frontend met `npm run build`.
-    - Upload de gebuildde bestanden naar de cloud via FileZilla of een andere FTP-client.
+    - Upload de gebuildde bestanden naar de cloud via FileZilla of gitlab configuratie.
     - Controleer of de frontend correct communiceert met de backend.
 
-3. **Database-inrichting**
-    - Maak de benodigde databases en tabellen aan.
-    - Configureer de databaseverbindingen in de backend.
-    - Zorg ervoor dat de database beveiligd is met de juiste toegangsrechten en encryptie.
+3. **Beveiliging implementeren**
+    - Zorg ervoor dat alle gevoelige gegevens worden beheerd met environment variables binnen in de gitlab.
 
-4. **Beveiliging implementeren**
-    - Implementeer CORS-regels om toegang tot de API te beperken tot specifieke domeinen.
-    - Voeg rate limiting toe om het aantal verzoeken per gebruiker te beperken.
-    - Zorg ervoor dat alle gevoelige gegevens worden beheerd met environment variables.
-
-5. **Controle en afronding**
+4. **Controle en afronding**
     - Voer een volledige end-to-end test uit om te controleren of alle onderdelen correct samenwerken.
     - Controleer de beveiligingsmaatregelen om ervoor te zorgen dat de applicatie veilig is.
-    - Documenteer het implementatieproces en eventuele problemen die zijn opgetreden.
     - Zet de applicatie live en monitor de prestaties en beveiliging.
-
-Dit hoofdstuk richt zich op een efficiënte en veilige uitrol van de applicatie. Door de stappen systematisch te volgen, zorg je voor een goed functionerende infrastructuur. **Tip:** Raadpleeg de HBO-ICT Knowledgebase voor voorbeelden van configuratie en deployment-methoden.
