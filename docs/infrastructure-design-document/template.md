@@ -329,14 +329,30 @@ Hoewel HTTPS standaard is geactiveerd op de HBO-ICT.Cloud, zijn aanvullende beve
 
 **Stap 10: Stel een implementatieplan op met duidelijke stappen**
 
-1.  Backend configureren
+1. **Backend configureren**
+    - Zorg ervoor dat alle benodigde dependencies zijn geïnstalleerd.
+    - Configureer de .env-bestanden met de juiste environment variables.
+    - Test de backend lokaal om te controleren of alles correct werkt.
 
-2.  Frontend uploaden
+2. **Frontend uploaden**
+    - Bouw de frontend met `npm run build`.
+    - Upload de gebuildde bestanden naar de cloud via FileZilla of een andere FTP-client.
+    - Controleer of de frontend correct communiceert met de backend.
 
-3.  Database-inrichting
+3. **Database-inrichting**
+    - Maak de benodigde databases en tabellen aan.
+    - Configureer de databaseverbindingen in de backend.
+    - Zorg ervoor dat de database beveiligd is met de juiste toegangsrechten en encryptie.
 
-4.  Beveiliging implementeren
+4. **Beveiliging implementeren**
+    - Implementeer CORS-regels om toegang tot de API te beperken tot specifieke domeinen.
+    - Voeg rate limiting toe om het aantal verzoeken per gebruiker te beperken.
+    - Zorg ervoor dat alle gevoelige gegevens worden beheerd met environment variables.
 
-5.  Controle en afronding
+5. **Controle en afronding**
+    - Voer een volledige end-to-end test uit om te controleren of alle onderdelen correct samenwerken.
+    - Controleer de beveiligingsmaatregelen om ervoor te zorgen dat de applicatie veilig is.
+    - Documenteer het implementatieproces en eventuele problemen die zijn opgetreden.
+    - Zet de applicatie live en monitor de prestaties en beveiliging.
 
 Dit hoofdstuk richt zich op een efficiënte en veilige uitrol van de applicatie. Door de stappen systematisch te volgen, zorg je voor een goed functionerende infrastructuur. **Tip:** Raadpleeg de HBO-ICT Knowledgebase voor voorbeelden van configuratie en deployment-methoden.
