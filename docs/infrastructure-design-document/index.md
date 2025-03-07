@@ -9,14 +9,16 @@ children:
 **Blok:** 3
 **Opdracht:** The Game
 
-**Klas:** ... 
-**Teamnummer**: ...
+**Klas:** D103
+**Teamnummer**: 5
 
 **Teamleden:**
-- Student 1
-- Student 2
-- ...
+- Chiel Kramer
+- Dominik Krystul
+- Matisse Ben Âddi
+- Samale Fahiyeh
+- Shivanio Cooman
 
 |Versie|Datum|Wijzigingen|
 |-|-|-|
-|v0.0|03-02-2024|Aangeleverde template|
+|v1.0|03-02-2024|Aangeleverde template|

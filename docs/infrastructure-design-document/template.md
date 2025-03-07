@@ -187,38 +187,57 @@ In dit hoofdstuk beschrijf je hoe het project live wordt gezet op de HBO-ICT.Clo
 
 **Stap 7: Omschrijf hoe je het project uitrolt op de HBO-ICT.Cloud en welke methode je gebruikt:**
 
-In het begin hebben wij het eerst met de hand gedaan via Filezilla. Na een paar weken waren we over gegaan op het automatisch uitrollen. hieronder laten wij zien hoe wij het op de bijde manieren hebben gedaan.
+In het begin hebben wij het eerst handmatig uitgerold naar de cloud via Filezilla. Na een paar weken zijn we overgegaan op het automatisch uitrollen. Hieronder laten wij zien hoe wij dit op beide manieren hebben gedaan.
 
 1.  CI/CD-pipeline\
-    Als je een CI/CD-pipeline gebruikt (automatisch).:
+    Als je een CI/CD-pipeline gebruikt (automatisch):
 
-    -   Hieronder zie je de stappen die waren:
+    -   Hieronder zie je de stappen die we hebben gevolgd:
 
-        - Op de [Knowledgebase](https://knowledgebase.hbo-ict-hva.nl/3_onderwijs/se/opdracht3/2_project/hboictcloud/#automatisch-uitrollen-naar-de-hbo-ictcloud) staat er een heel mooi document dat aan geeft hoe het werkt dus heb het stap voor stap gevolgt.
+        - Op de [Knowledgebase](https://knowledgebase.hbo-ict-hva.nl/3_onderwijs/se/opdracht3/2_project/hboictcloud/#automatisch-uitrollen-naar-de-hbo-ictcloud) staat een gedetailleerd document dat uitlegt hoe het werkt. Volg dit document stap voor stap.
 
-        - Je moet 1 variable aanmaken met als naam: DEPLOY_HIC met daarin de value "true" zodat je het procces aan zet voor het uitrollen naar de HIC.
+        - Je moet één variabele aanmaken met de naam: DEPLOY_HIC met de waarde "true" om het proces voor het uitrollen naar de HIC in te schakelen.
 
         ![HICVariable](./assets/Hboictcloudvariable.png)
 
-        - 5 variable aanmaken met daarin gegevens van de HBO ICT CLOUD. Door die values toe te voegen geef je toegang tot je deploy plek (HBO ICT CLOUD).
+        - Maak vijf variabelen aan met gegevens van de HBO ICT CLOUD. Door deze waarden toe te voegen, geef je toegang tot je deploy locatie (HBO ICT CLOUD).
 
         ![HICVariable](./assets/Variable.png)
 
         - Deployen naar de HBO-ICT.Cloud:
-        - Nadat je alles erin hebt gezet van de data dan is er nog 1 stap die je moet doen. In het bestand .gitlab-ci.yml moet je boven in de DEPLOY-HIC op true zetten. 
+        - Nadat je alle gegevens hebt toegevoegd, moet je in het bestand .gitlab-ci.yml bovenaan de DEPLOY_HIC op true zetten.
 
         ![HICVariable](./assets/Gitlabfile.png)
 
-        - Alles wat je dan op de Main zet word automatisch vanaf dat punt uitgerolt naar de cloud.
+        - Alles wat je dan op de Main zet, wordt vanaf dat punt automatisch uitgerold naar de cloud.
 
 2.  Handmatige deployment (FTP)\
     Als je handmatig deployt:
 
-    -   Frontend: Bouw de frontend (bijvoorbeeld met npm run build) en upload de bestanden naar de cloud.
+    -   Frontend: Bouw de frontend (met npm run build) en upload de bestanden naar de cloud. Dat deden wij via het programma FileZilla.
 
-    -   Backend: Upload de backend-code naar de HBO-ICT.Cloud en configureer deze met de benodigde .env-variabelen.
+        Eerst bouwde wij de game met de NPM run build en dat moetst dan met de API en de WEB.
 
-    -   Controleer de verbindingen: Zorg ervoor dat de frontend, backend, en database correct samenwerken.
+        ![HICVariable](./assets/Buildstart.png)
+
+        ![HICVariable](./assets/Builddone.png)
+
+    -   Nadat de build klaar was hebben we FileZilla geopent en eerst conectie met de cloud gelegt. Dat moest met je SFTP host en daaronder je gebruikers naam met het wachtwoord
+
+        ![HICVariable](./assets/FileZillaConnect.png)
+
+    - Toen we er in kwamen zagen we 2 files app en wwwroot. in de app moet alles van de api en in wwwroot moest alles wat van de web kwam.
+
+        ![HICVariable](./assets/FileZillaAPP.png)
+        ![HICVariable](./assets/FileZillaWEB.png)
+
+    -   Wij gebruiken dit project geen Database dus de connectie hoefte niet.
+    -   Nadat alle files goed waren over gezet ging ik naar de HIC toe om te testen op de live of het werkte
+        
+        ![HICVariable](./assets/HboIctCloud.png)
+
+    -   Als je deze link klikt kom je bij het project op de live server: [Live server](https://qaaquubaavii72-pb3sed2425.hbo-ict.cloud)
+
 
 ## Beveiligingsmaatregelen
 
