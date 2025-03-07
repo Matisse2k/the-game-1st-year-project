@@ -159,7 +159,7 @@ Hier onder ziet u de links van de front en de backend van onze game.
 Hieronder staat ons sequence diagram. Dit diagram illustreert een fetch-verzoek van de frontend naar de backend en terug.
 
 
-```sequence
+```mermaid
 sequenceDiagram
     participant Gebruiker
     participant Frontend
@@ -219,6 +219,7 @@ sequenceDiagram
             - Content-Type: application/json
         Body: {description}
     Frontend-->>Gebruiker: Toon item beschrijving {description}
+```
 
 ## Beveiliging van de infrastructuur
 
