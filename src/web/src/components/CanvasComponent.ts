@@ -85,9 +85,10 @@ const styles: string = css`
 
     .content {
         flex-grow: 1;
-        overflow: auto;
         margin-top: 40px;
         padding: 0 10px;
+        overflow: auto; /* Ensure content is scrollable if it overflows */
+        margin-bottom: 20px; /* Add margin to ensure space between content and inventory */
     }
 
     .content p {
@@ -145,6 +146,10 @@ const styles: string = css`
         .header img.startup {
             min-height: 75vh;
         }
+
+        .content {
+            margin-bottom: 50px; /* Increase margin to ensure space between content and inventory */
+        }
     }
 
     @media (max-width: 480px) {
@@ -178,6 +183,9 @@ const styles: string = css`
     50% { border-color: orange; }
 }
 
+        .content {
+            margin-bottom: 20px; /* Further increase margin to ensure space between content and inventory */
+        }
     }
 `;
 
@@ -256,9 +264,10 @@ export class CanvasComponent extends HTMLElement {
             ${this.renderTitle()}
             ${this.renderHeader()}
             ${this.renderContent()}
-            ${this.renderInventory()} <!-- Voeg de InventoryComponent toe -->
+            <div style="margin-bottom: 25px;"></div> <!-- Add a spacer div to ensure space between content and inventory -->
+            ${this.renderInventory()}
             ${this.renderFooter()}
-        `;
+    `;
 
         while (this.shadowRoot.firstChild) {
             this.shadowRoot.firstChild.remove();
@@ -341,7 +350,7 @@ export class CanvasComponent extends HTMLElement {
                 
             </div>
         `;
-    } // ${this._currentGameState?.text.map(text => `<p>${text}</p>`).join("") || ""}
+    }
 
     /**
      * Render the inventory element
@@ -349,6 +358,10 @@ export class CanvasComponent extends HTMLElement {
      * @returns String with raw HTML for the inventory element
      */
     private renderInventory(): string {
+        if (this._currentGameState?.roomName === "The shadows of the forgotten Castle") {
+            return "";
+        }
+
         return "<game-inventory></game-inventory>";
     }
 

@@ -129,41 +129,97 @@ Dit hoofdstuk richt zich op het beschrijven van de infrastructuur zoals deze dra
 
 De infrastructuur voor dit project wordt volledig gehost op de HBO-ICT.Cloud, bestaande uit:
 
-1.  Frontend: Een statisch gehoste webapplicatie.
+1. **Frontend:**
+   - Een statisch gehoste webapplicatie.
+   - Gebouwd met moderne webtechnologieën zoals HTML, CSS, en TypeScript.
+   - De frontend communiceert met de backend via API-aanroepen.
 
-2.  Backend: Een API-server, draaiend op Express.js.
+2. **Backend:**
+   - Een API-server, draaiend op Express.js.
+   - Verantwoordelijk voor het verwerken van verzoeken van de frontend.
 
-3.  Database: Een MySQL-server, die door het team wordt ingericht.
+3. **CI/CD-pipeline:**
+   - Geautomatiseerde processen voor het bouwen, testen en deployen van de applicatie.
+   - Zorgt voor een consistente en betrouwbare uitrol van nieuwe versies naar de HBO-ICT.Cloud.
+   - Maakt gebruik van tools zoals GitLab CI/CD.
 
-Teamgegevens
 
-Vul hieronder de specifieke gegevens in die voor jouw team van toepassing zijn:
+Hier onder ziet u de links van de front en de backend van onze game.
 
--   Frontend URL: \<URL van team\>
+- Frontend URL: [https://qaaquubaavii72-pb3sed2425.hbo-ict.cloud](https://qaaquubaavii72-pb3sed2425.hbo-ict.cloud)
+- Backend URL: [https://qaaquubaavii72-pb3sed2425.hbo-ict.cloud/api/](https://qaaquubaavii72-pb3sed2425.hbo-ict.cloud/api/)
 
--   Backend URL: \<URL van API-server\>
-
--   MySQL-server: \<Serveradres\>
-
--   Poorten: Controleer en documenteer welke poorten door je team worden gebruikt voor database- en API-communicatie.
+<!-- TODO: ask Lennard about the ports. Do they mean port 3001 for the api? -->
+-   Poorten: De frontend gebruikt poort 3000 en de backend API gebruikt poort 3001 voor communicatie.
 
 ## Communicatie en sequence diagram
 
 **Stap 5: Beschrijf de communicatie tussen de systemen**
 
-Maak een sequence diagram voor een van fetch verzoeken van frontend naar backend en terug, waarin de communicatie tussen frontend, backend, en database wordt uitgelegd. Zorg ervoor dat je per communicatielijn duidelijk beschrijft:
+Hieronder staat ons sequence diagram. Dit diagram illustreert een fetch-verzoek van de frontend naar de backend en terug.
 
--   De agents: gebruiker, frontend, backend en database.
 
--   Welke protocollen worden gebruikt (bijv. HTTP, SQL).
+```mermaid
+sequenceDiagram
+    participant Gebruiker
+    participant Frontend
+    participant Backend
 
--   Wat de inhoud van de berichten is:
+    Gebruiker->>Frontend: Voer "Pick Up" actie uit
+    Frontend->>Backend: HTTP POST /game/action
+        Methode: POST
+        Headers: 
+            - Content-Type: application/json
+            - X-PlayerSessionId: {sessionId}
+        Adres: /game/action
+        Body: { action: "pick up", objects: [{itemAlias}] }
+note right of Frontend:
+    Backend->>GameController: handleActionRequest(req, res)
+    GameController->>GameController: executeAction(actionAlias, gameObjectAliases)
+    GameController->>GameService: executeAction(actionAlias, gameObjects)
+    GameService-->>GameController: ActionResult
+    GameController->>GameController: convertActionResultToGameState(actionResult)
+    GameController-->>Backend: GameState
+    Backend-->>Frontend: HTTP Response 200 OK
+    note right of Backend: 
+        Headers: 
+            - Content-Type: application/json
+        Body: { gameState }
+    Frontend->>Backend: HTTP GET /game/inventory
+    note right of Frontend: 
+        Methode: GET
+        Headers: 
+            - Content-Type: application/json
+            - X-PlayerSessionId: {sessionId}
+        Adres: /game/inventory
+    Backend->>GameController: handleInventoryRequest(req, res)
+    GameController->>GameService: getPlayerSession()
+    GameService-->>GameController: PlayerSession
+    GameController-->>Backend: Inventory
+    Backend-->>Frontend: HTTP Response 200 OK
+    note right of Backend: 
+        Headers: 
+            - Content-Type: application/json
+        Body: [{item1}, {item2}, ...]
+    Frontend-->>Gebruiker: Toon inventaris [{item1}, {item2}, ...]
 
-    -   HTTP-requests: Methode, headers, adres, eventuele body-inhoud.
-
-    -   SQL-queries: Globaal beschrijven welke data wordt opgevraagd of opgeslagen.
-
-Opdracht: Onderzoek de datastroom in jouw applicatie en gebruik deze inzichten om het diagram aan te vullen met gedetailleerde informatie.
+    Gebruiker->>Frontend: Klik op een item
+    Frontend->>Backend: HTTP GET /game/item/{alias}/description
+    note right of Frontend: 
+        Methode: GET
+        Headers: 
+            - Content-Type: application/json
+            - X-PlayerSessionId: {sessionId}
+        Adres: /game/item/{alias}/description
+    Backend->>GameController: handleItemDescriptionRequest(req, res)
+    GameController-->>Backend: Item Description
+    Backend-->>Frontend: HTTP Response 200 OK
+    note right of Backend: 
+        Headers: 
+            - Content-Type: application/json
+        Body: {description}
+    Frontend-->>Gebruiker: Toon item beschrijving {description}
+```
 
 ## Beveiliging van de infrastructuur
 
