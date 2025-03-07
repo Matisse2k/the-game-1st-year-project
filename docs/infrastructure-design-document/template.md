@@ -159,7 +159,7 @@ Hier onder ziet u de links van de front en de backend van onze game.
 Hieronder staat ons sequence diagram. Dit diagram illustreert een fetch-verzoek van de frontend naar de backend en terug.
 
 
-```mermaid
+```sequence
 sequenceDiagram
     participant Gebruiker
     participant Frontend
@@ -167,13 +167,19 @@ sequenceDiagram
 
     Gebruiker->>Frontend: Voer "Pick Up" actie uit
     Frontend->>Backend: HTTP POST /game/action
-    note right of Frontend: 
         Methode: POST
         Headers: 
             - Content-Type: application/json
             - X-PlayerSessionId: {sessionId}
         Adres: /game/action
         Body: { action: "pick up", objects: [{itemAlias}] }
+note right of Frontend:
+    Backend->>GameController: handleActionRequest(req, res)
+    GameController->>GameController: executeAction(actionAlias, gameObjectAliases)
+    GameController->>GameService: executeAction(actionAlias, gameObjects)
+    GameService-->>GameController: ActionResult
+    GameController->>GameController: convertActionResultToGameState(actionResult)
+    GameController-->>Backend: GameState
     Backend-->>Frontend: HTTP Response 200 OK
     note right of Backend: 
         Headers: 
@@ -186,6 +192,10 @@ sequenceDiagram
             - Content-Type: application/json
             - X-PlayerSessionId: {sessionId}
         Adres: /game/inventory
+    Backend->>GameController: handleInventoryRequest(req, res)
+    GameController->>GameService: getPlayerSession()
+    GameService-->>GameController: PlayerSession
+    GameController-->>Backend: Inventory
     Backend-->>Frontend: HTTP Response 200 OK
     note right of Backend: 
         Headers: 
@@ -201,6 +211,8 @@ sequenceDiagram
             - Content-Type: application/json
             - X-PlayerSessionId: {sessionId}
         Adres: /game/item/{alias}/description
+    Backend->>GameController: handleItemDescriptionRequest(req, res)
+    GameController-->>Backend: Item Description
     Backend-->>Frontend: HTTP Response 200 OK
     note right of Backend: 
         Headers: 
