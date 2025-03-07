@@ -164,16 +164,11 @@ sequenceDiagram
     participant Gebruiker
     participant Frontend
     participant Backend
+    participant GameController
+    participant GameService
 
     Gebruiker->>Frontend: Voer "Pick Up" actie uit
     Frontend->>Backend: HTTP POST /game/action
-    note right of Frontend: 
-        Methode: POST
-        Headers: 
-            - Content-Type: application/json
-            - X-PlayerSessionId: {sessionId}
-        Adres: /game/action
-        Body: { action: "pick up", objects: [{itemAlias}] }
     Backend->>GameController: handleActionRequest(req, res)
     GameController->>GameController: executeAction(actionAlias, gameObjectAliases)
     GameController->>GameService: executeAction(actionAlias, gameObjects)
@@ -181,43 +176,19 @@ sequenceDiagram
     GameController->>GameController: convertActionResultToGameState(actionResult)
     GameController-->>Backend: GameState
     Backend-->>Frontend: HTTP Response 200 OK
-    note right of Backend: 
-        Headers: 
-            - Content-Type: application/json
-        Body: { gameState }
     Frontend->>Backend: HTTP GET /game/inventory
-    note right of Frontend: 
-        Methode: GET
-        Headers: 
-            - Content-Type: application/json
-            - X-PlayerSessionId: {sessionId}
-        Adres: /game/inventory
     Backend->>GameController: handleInventoryRequest(req, res)
     GameController->>GameService: getPlayerSession()
     GameService-->>GameController: PlayerSession
     GameController-->>Backend: Inventory
     Backend-->>Frontend: HTTP Response 200 OK
-    note right of Backend: 
-        Headers: 
-            - Content-Type: application/json
-        Body: [{item1}, {item2}, ...]
     Frontend-->>Gebruiker: Toon inventaris [{item1}, {item2}, ...]
 
     Gebruiker->>Frontend: Klik op een item
     Frontend->>Backend: HTTP GET /game/item/{alias}/description
-    note right of Frontend: 
-        Methode: GET
-        Headers: 
-            - Content-Type: application/json
-            - X-PlayerSessionId: {sessionId}
-        Adres: /game/item/{alias}/description
     Backend->>GameController: handleItemDescriptionRequest(req, res)
     GameController-->>Backend: Item Description
     Backend-->>Frontend: HTTP Response 200 OK
-    note right of Backend: 
-        Headers: 
-            - Content-Type: application/json
-        Body: {description}
     Frontend-->>Gebruiker: Toon item beschrijving {description}
 ```
 
