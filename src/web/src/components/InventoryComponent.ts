@@ -216,7 +216,7 @@ export class InventoryComponent extends HTMLElement {
                     ${this._items.length > 0
                         ? this._items.map(item => html`
                             <li class="inventory-item" @click="${() => this.showItemDetails(item)}">
-                                <img src="${item.imageUrl}" alt="${item.name}" />
+                                <img src="${item.imageUrl}" />
                                 <span>${item.name}</span>
                             </li>
                         `)
