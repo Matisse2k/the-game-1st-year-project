@@ -167,13 +167,13 @@ sequenceDiagram
 
     Gebruiker->>Frontend: Voer "Pick Up" actie uit
     Frontend->>Backend: HTTP POST /game/action
+    note right of Frontend: 
         Methode: POST
         Headers: 
             - Content-Type: application/json
             - X-PlayerSessionId: {sessionId}
         Adres: /game/action
         Body: { action: "pick up", objects: [{itemAlias}] }
-note right of Frontend:
     Backend->>GameController: handleActionRequest(req, res)
     GameController->>GameController: executeAction(actionAlias, gameObjectAliases)
     GameController->>GameService: executeAction(actionAlias, gameObjects)
@@ -219,7 +219,6 @@ note right of Frontend:
             - Content-Type: application/json
         Body: {description}
     Frontend-->>Gebruiker: Toon item beschrijving {description}
-```
 
 ## Beveiliging van de infrastructuur
 
