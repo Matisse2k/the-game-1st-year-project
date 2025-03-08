@@ -1,6 +1,7 @@
 import { ActionResult } from "../../game-base/actionResults/ActionResult";
 import { TalkActionResult } from "../../game-base/actionResults/TalkActionResult";
 import { TextActionResult } from "../../game-base/actionResults/TextActionResult";
+import { Examine } from "../../game-base/actions/ExamineAction";
 import { TalkChoice } from "../../game-base/actions/TalkAction";
 import { Character } from "../../game-base/gameObjects/Character";
 import { gameService } from "../../global";
@@ -9,7 +10,7 @@ import { PlayerSession } from "../types";
 /**
  * Represents the GhostCharacter in the game.
  */
-export class GhostCharacter extends Character {
+export class GhostCharacter extends Character implements Examine {
     public static readonly Alias: string = "ghost";
 
     /**
@@ -17,6 +18,10 @@ export class GhostCharacter extends Character {
      */
     public constructor() {
         super(GhostCharacter.Alias);
+    }
+
+    public examine(): ActionResult | undefined {
+        return new TextActionResult(["A ghostly figure hovers silently in the middle of the room."]);
     }
 
     /**

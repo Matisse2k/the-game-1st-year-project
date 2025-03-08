@@ -24,6 +24,10 @@ export class GuestRoomAttic extends Room implements Simple, Walk {
     }
 
     public examine(): ActionResult | undefined {
+        const playerSession: PlayerSession = gameService.getPlayerSession();
+        if (playerSession.currentRoom !== GuestRoomAttic.Alias) {
+            return undefined;
+        }
         return new TextActionResult([
             "This is a Guestroom, but what's that on the celling?",
         ]);

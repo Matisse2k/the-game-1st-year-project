@@ -38,6 +38,10 @@ export class GuestRoom extends Room implements Walk {
     }
 
     public examine(): ActionResult | undefined {
+        const playerSession: PlayerSession = gameService.getPlayerSession();
+        if (playerSession.currentRoom !== GuestRoom.Alias) {
+            return undefined;
+        }
         return new TextActionResult([
             "“An eerie silence fills the room, as if time has stood still.”",
         ]);

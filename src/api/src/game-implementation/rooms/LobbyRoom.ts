@@ -68,6 +68,11 @@ export class LobbyRoom extends Room implements Simple, Walk {
     }
 
     public examine(): ActionResult | undefined {
+        const playerSession: PlayerSession = gameService.getPlayerSession();
+        if (playerSession.currentRoom !== LobbyRoom.Alias) {
+            return undefined;
+        }
+
         return new TextActionResult([
             "It looks like a lobby!",
         ]);

@@ -49,6 +49,10 @@ export class BasementRoom extends Room implements Walk {
      * @returns {ActionResult | undefined} The result of the examination.
      */
     public examine(): ActionResult | undefined {
+        const playerSession: PlayerSession = gameService.getPlayerSession();
+        if (playerSession.currentRoom !== BasementRoom.Alias) {
+            return undefined;
+        }
         return new TextActionResult([
             "You descend the creaky stairs into the damp, musty basement.",
             "Dim light from a flickering bulb casts eerie shadows.",

@@ -116,6 +116,9 @@ export class CastleDoorEnteranceRoom extends Room implements Walk, Simple {
      */
     public examine(): ActionResult | undefined {
         const playerSession: PlayerSession = gameService.getPlayerSession();
+        if (playerSession.currentRoom !== CastleDoorEnteranceRoom.Alias) {
+            return undefined;
+        }
         if (playerSession.CastleEnteranceDoorOpened) {
             return new TextActionResult([
                 "The castle door is open.",

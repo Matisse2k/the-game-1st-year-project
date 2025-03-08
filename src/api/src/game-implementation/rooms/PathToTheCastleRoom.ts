@@ -105,6 +105,10 @@ export class PathToTheCastleRoom extends Room {
      * @returns {ActionResult | undefined} The result of the examination.
      */
     public examine(): ActionResult | undefined {
+        const playerSession: PlayerSession = gameService.getPlayerSession();
+        if (playerSession.currentRoom !== PathToTheCastleRoom.Alias) {
+            return undefined;
+        }
         return new TextActionResult([
             "You notice a narrow path winding between the ancient trees of the forest. The trees are old and gnarled, their twisted branches creating eerie shadows on the ground. In the distance, you can see the silhouette of the castle.",
         ]);

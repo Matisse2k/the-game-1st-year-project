@@ -13,6 +13,7 @@ import { GuestRoomAttic } from "./GuestRoomAttic";
 import { WerkkamerRoom } from "./WerkkamerRoom";
 import { GuestRoom } from "./GuestRoom";
 import { Simple, SimpleAction } from "../../game-base/actions/SimpleAction";
+import { BasementRoom } from "./BasementRoom";
 
 export class UpperFloorRoom extends Room implements Simple, Walk {
     public static readonly Alias: string = "Upper Floor";
@@ -72,6 +73,10 @@ export class UpperFloorRoom extends Room implements Simple, Walk {
     }
 
     public examine(): ActionResult | undefined {
+        const playerSession: PlayerSession = gameService.getPlayerSession();
+        if (playerSession.currentRoom !== BasementRoom.Alias) {
+            return undefined;
+        }
         return new TextActionResult([
             "3 doors but witch one do i need",
         ]);

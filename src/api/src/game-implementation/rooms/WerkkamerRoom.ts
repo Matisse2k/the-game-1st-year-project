@@ -61,6 +61,10 @@ export class WerkkamerRoom extends Room implements Walk {
     }
 
     public examine(): ActionResult | undefined {
+        const playerSession: PlayerSession = gameService.getPlayerSession();
+        if (playerSession.currentRoom !== WerkkamerRoom.Alias) {
+            return undefined;
+        }
         return new TextActionResult([
             "What a nice office!",
         ]);
