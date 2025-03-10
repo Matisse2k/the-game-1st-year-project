@@ -127,30 +127,63 @@ Dit hoofdstuk richt zich op het beschrijven van de infrastructuur zoals deze dra
 
 **Stap 4: Beschrijf de inrichting van de infrastructuur**
 
-De infrastructuur voor dit project wordt volledig gehost op de HBO-ICT.Cloud, bestaande uit:
+De infrastructuur voor dit project wordt volledig gehost op de HBO-ICT.Cloud, bestaande uit meerdere componenten die naadloos samenwerken om een complete game-ervaring te leveren.
 
-1. **Frontend:**
-   - Een statisch gehoste webapplicatie.
-   - Gebouwd met moderne webtechnologieën zoals HTML, CSS, en TypeScript.
-   - De frontend communiceert met de backend via API-aanroepen.
+### Infrastructuur componenten
 
-2. **Backend:**
-   - Een API-server, draaiend op Express.js.
-   - Verantwoordelijk voor het verwerken van verzoeken van de frontend.
+#### 1. Frontend
+- **Technologie**: Een statisch gehoste webapplicatie gebouwd met HTML, CSS en TypeScript.
+- **Implementatie**: Maakt gebruik van Web Components voor een onderhoudbare codebase.
+- **Gebruikersinteractie**: Biedt een intuïtieve spelinterface die spelers in staat stelt om met de gamewereld te interageren.
+- **Rendering**: Verwerkt visuele elementen en animaties voor een meeslepende spelervaring.
+- **State Management**: Houdt de huidige spelstatus bij en synchroniseert deze met de backend.
 
-3. **CI/CD-pipeline:**
-   - Geautomatiseerde processen voor het bouwen, testen en deployen van de applicatie.
-   - Zorgt voor een consistente en betrouwbare uitrol van nieuwe versies naar de HBO-ICT.Cloud.
-   - Maakt gebruik van tools zoals GitLab CI/CD.
+#### 2. Backend
+- **Framework**: Een API-server gebouwd met Express.js, draaiend in een Node.js omgeving.
+- **Architectuur**: RESTful API met duidelijk gedefinieerde endpoints voor verschillende spelacties.
+- **Verantwoordelijkheden**:
+  - Verwerken van spelacties
+  - Bijhouden van spelerssessies en -voortgang
+  - Uitvoeren van game-logica en regels
+  - Beheren van de inventaris van de speler
 
+#### 3. CI/CD-pipeline
+- **Automatisering**: Geautomatiseerde processen voor het bouwen, testen en deployen van de applicatie.
+- **Tooling**: Maakt gebruik van GitLab CI/CD voor continue integratie en implementatie.
+- **Workflow**:
+  - Code wordt gecommit naar de repository
+  - Automatische tests worden uitgevoerd
+  - Bij succesvolle tests wordt de applicatie automatisch gedeployed naar de HBO-ICT.Cloud
 
-Hier onder ziet u de links van de front en de backend van onze game.
+### Netwerkarchitectuur
 
-- Frontend URL: [https://qaaquubaavii72-pb3sed2425.hbo-ict.cloud](https://qaaquubaavii72-pb3sed2425.hbo-ict.cloud)
-- Backend URL: [https://qaaquubaavii72-pb3sed2425.hbo-ict.cloud/api/](https://qaaquubaavii72-pb3sed2425.hbo-ict.cloud/api/)
+De communicatie tussen de componenten verloopt via een gestandaardiseerd protocol:
 
-<!-- TODO: ask Lennard about the ports. Do they mean port 3001 for the api? -->
--   Poorten: De frontend gebruikt poort 3000 en de backend API gebruikt poort 3001 voor communicatie.
+- **Client-server communicatie**: HTTP/HTTPS requests tussen frontend en backend
+- **API Gateway**: Centraal punt voor alle API-requests, zorgt voor routing naar de juiste endpoints
+- **Sessiemanagement**: Implementeert sessie-tracking voor gebruikersauthenticatie en spelvoortgang
+
+### Toegangspunten
+
+Onze game is toegankelijk via de volgende URLs:
+
+- **Frontend URL**: [https://qaaquubaavii72-pb3sed2425.hbo-ict.cloud](https://qaaquubaavii72-pb3sed2425.hbo-ict.cloud)
+- **Backend URL**: [https://qaaquubaavii72-pb3sed2425.hbo-ict.cloud/api/](https://qaaquubaavii72-pb3sed2425.hbo-ict.cloud/api/)
+
+### Netwerkconfiguratie
+
+- **Poorten**: De frontend draait lokaal op poort 3000 tijdens ontwikkeling, terwijl de backend API gebruikmaakt van poort 3001 voor communicatie. In de productieomgeving worden standaard HTTP/HTTPS poorten gebruikt.
+- **Protocollen**: Alle communicatie verloopt via beveiligde HTTPS-verbindingen in de productieomgeving.
+
+### Responsiveness
+
+De infrastructuur is ontworpen met responsiveness in gedachten:
+
+- **Adaptieve interface**: De frontend past zich aan verschillende schermgroottes en apparaten aan
+- **Efficiënte verwerking**: Asynchrone communicatie zorgt voor een soepele gebruikerservaring
+- **Caching-strategieën**: Geïmplementeerd voor veelgebruikte resources om de reactietijd te verbeteren
+
+Deze focus op responsiveness zorgt voor een vloeiende en interactieve spelervaring, ongeacht het apparaat of de netwerksnelheid van de gebruiker.
 
 ## Communicatie en sequence diagram
 
@@ -191,22 +224,116 @@ sequenceDiagram
     Backend-->>Frontend: HTTP Response 200 OK
     Frontend-->>Gebruiker: Toon item beschrijving {description}
 ```
+### Uitleg van de communicatiestromen
+
+Het bovenstaande sequence diagram toont drie belangrijke communicatiestromen in onze game-applicatie:
+
+#### 1. "Pick Up" actie uitvoeren
+Wanneer de gebruiker een item wil oppakken, wordt de volgende communicatiestroom geïnitieerd:
+
+- **Frontend naar Backend**: De frontend verstuurt een HTTP POST request naar het `/game/action` endpoint, met daarin de actie "pick up" en de alias van het op te pakken object.
+- **Backend verwerking**: De `GameController` verwerkt dit request via de `handleActionRequest` methode en voert de actie uit met behulp van de `GameService`.
+- **Response**: Het resultaat wordt omgezet naar een `GameState` en teruggestuurd naar de frontend, waardoor de spelstatus wordt bijgewerkt.
+
+#### 2. Inventaris ophalen
+Na het oppakken van een item wordt de inventaris automatisch bijgewerkt:
+
+- **Frontend naar Backend**: De frontend stuurt een HTTP GET request naar het `/game/inventory` endpoint om de bijgewerkte inventaris op te halen.
+- **Backend verwerking**: De `GameController` haalt via de `handleInventoryRequest` methode de speler-sessie op en extraheert de inventarisgegevens.
+- **Response**: De backend stuurt een lijst van items terug naar de frontend, die deze vervolgens weergeeft aan de gebruiker.
+
+#### 3. Item beschrijving bekijken
+Wanneer de gebruiker op een item in de inventaris klikt:
+
+- **Frontend naar Backend**: De frontend stuurt een HTTP GET request naar het `/game/item/{alias}/description` endpoint met de alias van het geselecteerde item.
+- **Backend verwerking**: De `GameController` verwerkt dit via de `handleItemDescriptionRequest` methode.
+- **Response**: De beschrijving van het item wordt teruggestuurd en aan de gebruiker getoond.
+
+### Technische implementatie
+
+De communicatie tussen de frontend en backend maakt gebruik van de volgende componenten:
+
+1. **Frontend services**:
+   - `InventoryService` voor het ophalen van de inventaris en itembeschrijvingen
+   - `GameRouteService` voor het uitvoeren van game-acties zoals "pick up"
+
+2. **Backend controllers en routes**:
+   - Route `/game/action` voor het uitvoeren van spelacties
+   - Route `/game/inventory` voor het ophalen van de inventaris
+   - Route `/game/item/{alias}/description` voor het ophalen van itembeschrijvingen
+
+3. **Communicatieprotocol**:
+   - Alle communicatie verloopt via HTTP GET en POST requests
+   - Data wordt uitgewisseld in JSON-formaat
+   - Elke request bevat een header met de speler-sessie ID voor authenticatie
+
+Deze architectuur zorgt voor een duidelijke scheiding van verantwoordelijkheden en maakt een efficiënte communicatie tussen frontend en backend mogelijk, wat essentieel is voor een responsieve en interactieve spelervaring.
 
 ## Beveiliging van de infrastructuur
 
 **Stap 6: Omschrijf hoe de systemen veilig ingericht kunnen worden**
 
-De Express.js-server biedt mogelijkheden om de infrastructuur veiliger te maken. Onderzoek en beschrijf welke beveiligingen je kunt implementeren, zoals:
+### Waarom beveiliging essentieel is
+Online applicaties, maar zelfs echte apps, zijn voortdurend blootgesteld aan verschillende soorten bedreigingen. Zonder adequate beveiliging kunnen kwaadwillende personen toegang krijgen tot gegevens en uiteindelijk de functionaliteit van de applicatie manipuleren, of zelfs de hele infrastructuur verstoren. Dit kan leiden tot een slechte gebruikerservaring en in ernstige gevallen zelfs juridische gevolgen.
 
--   HTTPS: Je hoeft HTTPS niet zelf te configureren, omdat dit al standaard is geregeld binnen de HBO-ICT.Cloud. Alle communicatie via de cloudomgeving verloopt automatisch versleuteld.Inputvalidatie: Bescherm tegen injectie-aanvallen door gebruikersinput te valideren.
+### Beveiligingsmaatregelen
+De Express.js-server biedt verschillende mogelijkheden om de infrastructuur veiliger te maken. Sommige maatregelen beperken misbruik, terwijl andere bepaalde aanvallen volledig kunnen voorkomen:
 
--   Rate limiting: Beperk het aantal requests per gebruiker om misbruik te voorkomen.
+- **HTTPS**: Je hoeft HTTPS niet zelf te configureren, omdat dit al standaard is geregeld binnen de HBO-ICT.Cloud. Alle communicatie via de cloudomgeving verloopt automatisch versleuteld. HTTPS voorkomt het onderscheppen van gegevens tussen client en server (man-in-the-middle aanvallen).
 
--   CORS: Stel specifieke regels in voor welke domeinen toegang hebben tot de API.
 
--   Environment variables: Gebruik .env-bestanden om gevoelige gegevens zoals wachtwoorden en API-keys veilig te beheren.
+- **Rate limiting**: Beperkt het aantal requests per gebruiker om misbruik te voorkomen. Dit kan worden geïmplementeerd met middleware zoals `express-rate-limit`. Rate limiting beperkt brute force aanvallen en DoS-pogingen, maar voorkomt ze niet volledig als aanvallers over meerdere IP-adressen beschikken.
 
-# Realiseren
+``` TS
+const rateLimit = require('express-rate-limit');
+
+// Create a rate limiter to limit requests to a specific route
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // Time window: 15 minutes
+  max: 100, // Maximum 100 requests per window per IP
+  standardHeaders: true, // Include rate limit info in response headers
+  message: 'Too many requests, please try again later' // Message sent when limit is exceeded
+});
+
+app.use('/game/action', limiter); // Apply on specific routes
+```
+
+- **CORS**: Stel specifieke regels in voor welke domeinen toegang hebben tot de API. Dit kan worden ingesteld met de `cors` middleware in Express.js. Correcte CORS-configuratie voorkomt ongeautoriseerde cross-domain requests.
+``` TS
+const cors = require('cors'); // Import the CORS middleware
+
+// Configure CORS to allow requests only from our specific frontend
+const corsOptions = {
+  origin: 'https://qaaquubaavii72-pb3sed2425.hbo-ict.cloud', // Allow requests only from this domain
+  optionsSuccessStatus: 200 // Ensure successful responses for legacy browsers
+};
+
+// Apply the CORS middleware with the defined options
+app.use(cors(corsOptions));
+```
+- **Content Security Policy (CSP):** Deze header voorkomt XSS-aanvallen door te specificeren welke bronnen van content mogen worden uitgevoerd in de browser. Met de juiste configuratie kunnen kwaadaardige scripts worden geblokkeerd voordat ze worden uitgevoerd.
+  
+
+- **Environment variables**: Het gebruik van `.env`-bestanden voor gevoelige gegevens voorkomt het lekken van wachtwoorden en API-keys via versiebeheersystemen. Dit is cruciaal voor de bescherming van toegangsgegevens.
+
+
+- **Security Headers**: Voeg beveiligingsheaders toe aan HTTP-responses om aanvallen zoals XSS en clickjacking te voorkomen. Dit kan worden gedaan met de `helmet` middleware. Deze Express middleware voorkomt verschillende soorten aanvallen door beveiligingsheaders in te stellen:
+``` TS
+const helmet = require('helmet'); // Import the Helmet middleware
+
+// Use Helmet to enhance security by setting various HTTP headers
+app.use(helmet());
+```
+
+- **Database Security**: Zorg ervoor dat de database alleen toegankelijk is voor geautoriseerde applicaties en gebruikers. Gebruik sterke wachtwoorden en versleuteling voor gevoelige gegevens.
+
+### Balans tussen beveiliging en gebruiksvriendelijkheid
+Het is belangrijk om te beseffen dat sommige beveiligingsmaatregelen de gebruikservaring kunnen beïnvloeden. Te strikte rate limiting kan legitieme gebruikers blokkeren, en te strikte CSP-regels kunnen functionaliteiten van de website beperken. Daarom moet je een balans vinden die de gebruiksvriendelijkheid niet in gevaar brengt.
+
+### Gelaagde beveiliging
+Geen enkele beveiligingsmaatregel is perfect, daarom implementeren we een gelaagde benadering. Als één beveileing methode faalt, kunnen andere lagen nog steeds bescherming bieden. Deze "defense in depth"-strategie is de meest effectieve aanpak voor het beveiligen van complexe systemen.
+
+## Realiseren
 
 In dit hoofdstuk beschrijf je hoe het project live wordt gezet op de HBO-ICT.Cloud, welke beveiligingsmaatregelen je implementeert, en hoe je omgaat met de inrichting van de database.
 
