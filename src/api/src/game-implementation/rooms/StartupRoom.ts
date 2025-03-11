@@ -6,6 +6,9 @@ import { Room } from "../../game-base/gameObjects/Room";
 import { gameService } from "../../global";
 import { PathToTheCastleRoom } from "./PathToTheCastleRoom";
 
+
+// import { PathToTheCastleRoom } from "./PathToTheCastleRoom";
+
 /**
  * Implemention of the startup room
  *
@@ -56,6 +59,7 @@ export class StartupRoom extends Room implements Simple {
     public simple(alias: string): ActionResult | undefined {
         if (alias === "start-game-from-image") {
             // TODO: plaats hier de class naam van de kamer waar je heen wilt gaan nadat je op start hebt gedrukt.
+            // const room: Room = new PathToTheCastleRoom();
             const room: Room = new PathToTheCastleRoom();
 
             // Set the current room to the startup room
