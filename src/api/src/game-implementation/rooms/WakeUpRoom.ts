@@ -1,64 +1,59 @@
 import { ActionResult } from "../../game-base/actionResults/ActionResult";
 import { TextActionResult } from "../../game-base/actionResults/TextActionResult";
 import { Action } from "../../game-base/actions/Action";
+import { ExamineAction } from "../../game-base/actions/ExamineAction";
 import { Simple, SimpleAction } from "../../game-base/actions/SimpleAction";
+import { GameObject } from "../../game-base/gameObjects/GameObject";
 import { Room } from "../../game-base/gameObjects/Room";
 import { gameService } from "../../global";
-import { WakeUpRoom } from "./WakeUpRoom";
-// import { LobbyRoom } from "./LobbyRoom";
-// import { GuestRoomAttic } from "./GuestRoomAttic";
+import { StartAreaItem } from "../items/StartAreaItem";
+import { ForrestRoom } from "./ForrestRoom";
 
-/**
- * Implemention of the startup room
- *
- * @remarks Used as the first room for new player sessions.
- */
-export class StartupRoom extends Room implements Simple {
-    /** Alias of this room */
-    public static readonly Alias: string = "startup";
-
-    /**
-     * Create a new instance of this room
-     */
+export class WakeUpRoom extends Room implements Simple {
+    public static readonly Alias: string = "WakeUpRoom";
     public constructor() {
-        super(StartupRoom.Alias);
+        super(WakeUpRoom.Alias);
     }
 
-    /**
-     * @inheritdoc
-     */
     public name(): string {
-        return "The shadows of the forgotten Castle";
+        return "WakeUpRoom";
     }
 
-    /**
-     * @inheritdoc
-     */
     public images(): string[] {
-        return ["logo"];
+        return ["WakeUpRoom"];
     }
 
     /**
-     * @inheritdoc
-     */
+         * Returns the actions available in the room.
+         * @returns {Action[]} An array of actions.
+         */
     public actions(): Action[] {
-        return [new SimpleAction("start-game", "Start Game")];
+        return [
+            new ExamineAction(),
+            new SimpleAction("StandUp", "Stand up"),
+        ];
+    }
+
+    public objects(): GameObject [] {
+        return [new StartAreaItem(),
+        ];
     }
 
     /**
-     * @inheritdoc
+     * Returns text array when entering this scene
      */
+
     public examine(): ActionResult | undefined {
-        return new TextActionResult([""]); // TODO: Ask if this is nessesary
+        return new TextActionResult(["'Ugh... my head...'"]);
     }
 
     /**
-     * @inheritdoc
-     */
+         * @inheritdoc
+         */
     public simple(alias: string): ActionResult | undefined {
-        if (alias === "start-game-from-image") {
+        if (alias === "StandUp") {
             // TODO: plaats hier de class naam van de kamer waar je heen wilt gaan nadat je op start hebt gedrukt.
-            const room: Room = new WakeUpRoom();
+            const room: Room = new ForrestRoom();
 
             // Set the current room to the startup room
             gameService.getPlayerSession().currentRoom = room.alias;

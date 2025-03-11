@@ -36,6 +36,10 @@ import { BookshelfItem } from "../items/BookshelfItem";
 import { KnifeItem } from "../items/KnifeItem";
 import { GiveAction } from "../actions/GiveAction";
 import { RavenCharacter } from "../characters/RavenCharacter";
+import { BirdCharacter } from "../characters/BirdCharacter";
+import { ForrestRoom } from "../rooms/ForrestRoom";
+import { WakeUpRoom } from "../rooms/WakeUpRoom";
+import { StartAreaItem } from "../items/StartAreaItem";
 /**
  * Implementation of the game service used to operate the game engine
  */
@@ -48,6 +52,8 @@ export class GameService extends BaseGameService<PlayerSession> {
 
         // Rooms
         this.registerGameObject(StartupRoom);
+        this.registerGameObject(WakeUpRoom);
+        this.registerGameObject(ForrestRoom);
         this.registerGameObject(LobbyRoom);
         this.registerGameObject(UpperFloorRoom);
         this.registerGameObject(PathToTheCastleRoom);
@@ -67,6 +73,7 @@ export class GameService extends BaseGameService<PlayerSession> {
         this.registerGameObject(Stone3Item);
         this.registerGameObject(Stone4Item);
         this.registerGameObject(KeyItem);
+        this.registerGameObject(StartAreaItem);
         this.registerGameObject(CastleEnteranceDoorItem);
         this.registerGameObject(ServeerplaatItem);
         this.registerGameObject(AtticAccessItem);
@@ -83,6 +90,7 @@ export class GameService extends BaseGameService<PlayerSession> {
         this.registerGameObject(ButlerCharacter);
         this.registerGameObject(GhostCharacter);
         this.registerGameObject(RavenCharacter);
+        this.registerGameObject(BirdCharacter);
 
         // Actions
         this.registerAction(WalkAction);
@@ -115,6 +123,7 @@ export class GameService extends BaseGameService<PlayerSession> {
             knifeGiven: false,
             guestdooropen: false,
             guestaticdooropen: false,
+            SpokeToBird: false,
         };
     }
 
