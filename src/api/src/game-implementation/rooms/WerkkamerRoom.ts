@@ -66,7 +66,7 @@ export class WerkkamerRoom extends Room implements Walk {
             return undefined;
         }
         return new TextActionResult([
-            "What a nice office!",
+            "The air is thick with dust and forgotten whispers… Papers are scattered, a broken chair creaks softly—what secrets were left behind in this abandoned office?",
         ]);
     }
 

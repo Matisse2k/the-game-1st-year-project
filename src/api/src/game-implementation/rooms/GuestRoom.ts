@@ -2,10 +2,12 @@ import { ActionResult } from "../../game-base/actionResults/ActionResult";
 import { TextActionResult } from "../../game-base/actionResults/TextActionResult";
 import { Action } from "../../game-base/actions/Action";
 import { ExamineAction } from "../../game-base/actions/ExamineAction";
+import { TalkAction } from "../../game-base/actions/TalkAction";
 import { GameObject } from "../../game-base/gameObjects/GameObject";
 import { Room } from "../../game-base/gameObjects/Room";
 import { gameService } from "../../global";
 import { Walk, WalkAction } from "../actions/WalkAction";
+import { RavenCharacter } from "../characters/RavenCharacter";
 import { PlayerSession } from "../types";
 import { UpperFloorRoom } from "./UpperFloor";
 
@@ -21,12 +23,14 @@ export class GuestRoom extends Room implements Walk {
     }
 
     public images(): string[] {
-        return ["GuestRoom"];
+        return ["GuestRoom", "layers/Raven"];
     }
 
     public objects(): GameObject[] {
         return [
             new UpperFloorRoom(),
+            new RavenCharacter(),
+
         ];
     }
 
@@ -34,6 +38,8 @@ export class GuestRoom extends Room implements Walk {
         return [
             new ExamineAction(),
             new WalkAction(),
+            new TalkAction(),
+
         ];
     }
 
@@ -43,7 +49,7 @@ export class GuestRoom extends Room implements Walk {
             return undefined;
         }
         return new TextActionResult([
-            "“An eerie silence fills the room, as if time has stood still.”",
+            "An eerie silence fills the room, as if time has stood still. I don't know if i made the right choice for the room.",
         ]);
     }
 

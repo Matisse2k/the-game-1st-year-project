@@ -34,6 +34,8 @@ import { TableItem } from "../items/TableItem";
 import { MysteriousStickItem } from "../items/MysteriousStickItem";
 import { BookshelfItem } from "../items/BookshelfItem";
 import { KnifeItem } from "../items/KnifeItem";
+import { GiveAction } from "../actions/GiveAction";
+import { RavenCharacter } from "../characters/RavenCharacter";
 /**
  * Implementation of the game service used to operate the game engine
  */
@@ -80,12 +82,14 @@ export class GameService extends BaseGameService<PlayerSession> {
         // Characters
         this.registerGameObject(ButlerCharacter);
         this.registerGameObject(GhostCharacter);
+        this.registerGameObject(RavenCharacter);
 
         // Actions
         this.registerAction(WalkAction);
         this.registerAction(SearchAction);
         this.registerAction(UseItemAction);
         this.registerAction(PickUpAction);
+        this.registerAction(GiveAction);
     }
 
     /**
