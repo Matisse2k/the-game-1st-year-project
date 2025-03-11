@@ -7,7 +7,7 @@ import { Room } from "../../game-base/gameObjects/Room";
 import { gameService } from "../../global";
 import { PickUpAction } from "../actions/PickUpActions";
 import { SearchAction } from "../actions/SearchAction";
-import { WalkAction } from "../actions/WalkAction";
+import { Walk, WalkAction } from "../actions/WalkAction";
 import { KeyItem } from "../items/KeyItem";
 import { Stone1Item } from "../items/Stone1Item";
 import { Stone2Item } from "../items/Stone2Item";
@@ -17,7 +17,7 @@ import { StonesItem } from "../items/StonesItem";
 import { PlayerSession } from "../types";
 import { CastleDoorEnteranceRoom } from "./CastleDoorEnteranceRoom";
 
-export class PathToTheCastleRoom extends Room {
+export class PathToTheCastleRoom extends Room implements Walk {
     public static readonly Alias: string = "PathToTheCastle";
 
     /**
@@ -112,5 +112,29 @@ export class PathToTheCastleRoom extends Room {
         return new TextActionResult([
             "You notice a narrow path winding between the ancient trees of the forest. The trees are old and gnarled, their twisted branches creating eerie shadows on the ground. In the distance, you can see the silhouette of the castle.",
         ]);
+    }
+
+    /**
+     * Handles the walk action in the room.
+     * @param {string} _alias - The alias of the target object.
+     * @param {GameObject[]} gameObjects - The game objects to walk to.
+     * @returns {ActionResult} The result of the walk action.
+     */
+    public walk(_alias: string, gameObjects: GameObject[]): ActionResult {
+        const PlayerSession: PlayerSession = gameService.getPlayerSession();
+
+        // hier kijkt hij wat de gameobject is van de kamer.
+        const targetRoom: Room | undefined = gameObjects.find(obj => obj instanceof Room);
+
+        // Als er geen kamer kan worden gevonden om naar toe te lopen is dit het resultaat
+        if (!targetRoom) {
+            console.error("❌ Geen geldige kamer gevonden!");
+            return new TextActionResult(["❌ You can't walk to that!"]);
+        }
+
+        // Update the player's current room to the target room
+        PlayerSession.currentRoom = targetRoom.alias;
+        // Call the examine method of the target room
+        return targetRoom.examine() || new TextActionResult([`✅ You walked to the ${targetRoom.alias}!`]);
     }
 }
