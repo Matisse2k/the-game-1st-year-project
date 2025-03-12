@@ -42,7 +42,7 @@ import { WakeUpRoom } from "../rooms/WakeUpRoom";
 import { StartAreaItem } from "../items/StartAreaItem";
 import { KitchenRoom } from "../rooms/KitchenRoom";
 import { ChefCharacter } from "../characters/ChefCharacter";
-import { EasterEggPaperItem } from "../items/EasterEggPaperItem";
+import { MysteriousPaperItem } from "../items/MysteriousPaperItem";
 /**
  * Implementation of the game service used to operate the game engine
  */
@@ -89,7 +89,7 @@ export class GameService extends BaseGameService<PlayerSession> {
         this.registerGameObject(MysteriousStickItem);
         this.registerGameObject(BookshelfItem);
         this.registerGameObject(KnifeItem);
-        this.registerGameObject(EasterEggPaperItem);
+        this.registerGameObject(MysteriousPaperItem);
 
         // Characters
         this.registerGameObject(ButlerCharacter);
@@ -125,7 +125,8 @@ export class GameService extends BaseGameService<PlayerSession> {
             pickedupDoorhandle: false,
             pickedupGlue: false,
             pickedupTeddyBear: false,
-            ChefQuestStarted: true,
+            ChefQuestStarted: false,
+            ChefQuestCompleted: false,
             knifeGiven: false,
             guestdooropen: false,
             guestaticdooropen: false,

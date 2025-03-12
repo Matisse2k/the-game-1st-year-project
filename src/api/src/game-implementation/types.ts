@@ -24,6 +24,7 @@ export type PlayerSession = {
     MysteriousStickRevealed?: boolean;
     pickedupTeddyBear: boolean;
     ChefQuestStarted: boolean;
+    ChefQuestCompleted: boolean;
     knifeGiven: boolean;
     SpokeToBird: boolean;
 };

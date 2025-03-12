@@ -37,6 +37,10 @@ export class KitchenRoom extends Room implements Walk {
     }
 
     public images(): string[] {
+        const playerSession: PlayerSession = gameService.getPlayerSession();
+        if (playerSession.ChefQuestCompleted) {
+            return ["layers/KitchenMetMes"];
+        }
         return ["layers/KitchenMetMes", "KitchenGeenMes"];
     }
 

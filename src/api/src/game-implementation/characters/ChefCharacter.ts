@@ -25,6 +25,17 @@ export class ChefCharacter extends Character implements Examine {
     // TODO: Underscore voor choiceId weghalen
     public talk(choiceId?: number): ActionResult | undefined {
         const PlayerSession: PlayerSession = gameService.getPlayerSession();
+
+        // Check if the ChefQuestCompleted is true
+        if (PlayerSession.ChefQuestCompleted) {
+            return new TextActionResult([
+                "Gustavo: Ah, there you are! Thank you again for the knife. Now I can finally cook properly!",
+                "The chef is busy chopping ingredients with precision and care.",
+                "Gustavo: This stew will be magnificent. I haven't been able to cook like this in ages.",
+                "He smiles at you, then returns to his work, fully absorbed in his craft.",
+            ]);
+        }
+
         if (choiceId === 1) {
             return new TalkActionResult (
                 this,
@@ -51,7 +62,7 @@ export class ChefCharacter extends Character implements Examine {
         }
         else if (choiceId === 3) {
             PlayerSession.ChefQuestStarted = true;
-            return new TextActionResult (["Yes!, that is exactly What I am missing"]);
+            return new TextActionResult (["Yes!, that is exactly What I am missing. Can you help find it?", "I think it is somewhere where it's dark and cold."]); // The cheff gives a tip to the player where to find the knife
         }
         else if (choiceId === 4) {
             return new TalkActionResult (
@@ -66,7 +77,7 @@ export class ChefCharacter extends Character implements Examine {
         }
         else if (choiceId === 5) {
             PlayerSession.ChefQuestStarted = true;
-            return new TextActionResult (["Ah! At last,", " someone who understands! Yes, yes, exactly what I need!", "You have done well!"]);
+            return new TextActionResult (["Ah! At last,", " someone who understands! Yes, yes, exactly what I need!", " Can you find it for me? I believe it's somewhere dark and cold."]); // The cheff gives a tip to the player where to find the knife
         }
         else if (choiceId === 6) {
             return new TalkActionResult (
@@ -85,8 +96,8 @@ export class ChefCharacter extends Character implements Examine {
             this,
             [
                 "You: That smell… it's stew, isn't it? But tell me, chef—what exactly are you preparing?",
-
-                "Gustavo: The stew… ah, it will be unlike any other. A rich, thick broth, tender cuts, the kind that melt upon the tongue. But...", "there is one thing I still require.",
+                "Gustavo: The stew… ah, it will be unlike any other. A rich, thick broth, tender cuts, the kind that melt upon the tongue. But...",
+                " there is one thing I still require.",
             ],
             [
                 new TalkChoice(1, "I see. And what is this missing piece?"),

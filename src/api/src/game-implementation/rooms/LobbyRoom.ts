@@ -18,6 +18,7 @@ import { CabinetItem } from "../items/CabinetItem";
 import { TableItem } from "../items/TableItem";
 import { SearchAction } from "../actions/SearchAction";
 import { PickUpAction } from "../actions/PickUpActions";
+import { KitchenRoom } from "./KitchenRoom";
 
 export class LobbyRoom extends Room implements Simple, Walk {
     public static readonly Alias: string = "lobby";
@@ -37,6 +38,7 @@ export class LobbyRoom extends Room implements Simple, Walk {
     public objects(): GameObject[] {
         const playerSession: PlayerSession = gameService.getPlayerSession();
         const objects: GameObject[] = [
+            new KitchenRoom(),
             new UpperFloorRoom(),
             new ButlerCharacter(),
             new BasementRoom(),
@@ -59,8 +61,8 @@ export class LobbyRoom extends Room implements Simple, Walk {
     public actions(): Action[] {
         return [
             new ExamineAction(),
-            new TalkAction(),
             new WalkAction(),
+            new TalkAction(),
             new SearchAction(),
             new PickUpAction(),
             // new SimpleAction("start", "Startscherm"),
