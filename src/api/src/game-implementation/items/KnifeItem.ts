@@ -2,15 +2,20 @@ import { ActionResult } from "../../game-base/actionResults/ActionResult";
 import { TextActionResult } from "../../game-base/actionResults/TextActionResult";
 import { Examine } from "../../game-base/actions/ExamineAction";
 import { Item } from "../../game-base/gameObjects/Item";
+import { Give } from "../actions/GiveAction";
 // import { gameService } from "../../global";
 import { PickUp } from "../actions/PickUpActions";
 // import { PlayerSession } from "../types";
 
-export class KnifeItem extends Item implements Examine, PickUp {
+export class KnifeItem extends Item implements Examine, PickUp, Give {
     public static readonly Alias: string = "knife";
 
     public constructor() {
         super(KnifeItem.Alias);
+    }
+
+    public give(): ActionResult | undefined {
+        throw new Error("Method not implemented.");
     }
 
     public pickUp(): string | undefined {
