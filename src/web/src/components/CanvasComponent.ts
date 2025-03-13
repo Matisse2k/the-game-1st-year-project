@@ -42,6 +42,8 @@ const styles: string = css`
         position: absolute;
     }
 
+    
+
     .header img.startup {
         min-height: 90vh;
     }
@@ -68,6 +70,21 @@ const styles: string = css`
         background-color: #444;
     }
 
+
+    .header.game-over-header img.game-over-img {
+    position: relative;
+    width: 100%;
+    height: auto;
+    min-height: 75vh;
+}
+
+.game-over-content {
+    text-align: center;
+    color: #ff0000;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
     .start-game-text {
         position: absolute;
         bottom: -74%;
@@ -82,6 +99,35 @@ const styles: string = css`
         width: 70%;
         max-width: 100%;
     }
+
+    .content.game-over-content {
+        margin-top: 360px;
+        z-index: 10000; /* Zorgt ervoor dat de content onder eventuele overlappende elementen komt */
+    }
+
+    .quit-game-button {
+    position: absolute;
+    bottom: -74%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgb(0, 0, 0);
+    opacity: 0.78;
+    border-radius: 8px;
+    padding: 10px 15px;
+    cursor: pointer;
+    display: inline-block;
+    user-select: none;
+    color: white;
+    font-family: "Onesize";
+    font-size: 1.2em;
+    border: 1px solid #ff0000;
+    z-index: 1001;
+}
+
+.quit-game-button:hover {
+    background-color: #444;
+    border-color: #ff5555;
+}
 
     .content {
         flex-grow: 1;
@@ -281,6 +327,12 @@ export class CanvasComponent extends HTMLElement {
             startGameButton.addEventListener("click", () => this.handleClickAction({ alias: "start-game-from-image", name: "Start Game", needsObject: false }));
         }
 
+        // Add event listener for the quit game button in the game over room
+        const quitGameButton: Element | null = this.shadowRoot.querySelector(".quit-game-button");
+        if (quitGameButton) {
+            quitGameButton.addEventListener("click", () => this.handleClickAction({ alias: "quit-game", name: "Game Over", needsObject: false }));
+        }
+
         // Apply typewriter effect to the content only if the text has changed
         const newText: string = this._currentGameState?.text.join(" ") || "";
         if (newText !== this._previousText) {
@@ -320,16 +372,21 @@ export class CanvasComponent extends HTMLElement {
 
         if (roomImages && roomImages.length > 0) {
             const isStartupRoom: boolean = this._currentGameState?.roomName === "The shadows of the forgotten Castle";
+            const isGameOverRoom: boolean = this._currentGameState?.roomName === "Game Over";
+
             return `
-                <div class="header">
-                    ${roomImages.map(url => `<img class="${isStartupRoom ? "startup" : ""}" src="/assets/img/rooms/${url}.png"
+                <div class="header ${isGameOverRoom ? "game-over-header" : ""}">
+                    ${roomImages.map(url => `<img class="${isStartupRoom ? "startup" : ""} ${isGameOverRoom ? "game-over-img" : ""}" src="/assets/img/rooms/${url}.png"
                          onerror="this.onerror=null;this.src='/assets/img/rooms/${url}.gif';" />
                         ${isStartupRoom
-? `
-                            <div class="start-game-text">Press the button below to start your journey.</div>
-                            <button class="start-game-button">Start Game</button>
-                        `
-: ""}
+                            ? `
+                                <div class="start-game-text">Press the button below to start your journey.</div>
+                                <button class="start-game-button">Start Game</button>
+                            `
+                            : ""}
+                        ${isGameOverRoom
+                            ? "<button class=\"quit-game-button\">Quit Game</button>"
+                            : ""}
                     `).join("")}
                 </div>
             `;
@@ -344,10 +401,11 @@ export class CanvasComponent extends HTMLElement {
      * @returns String with raw HTML for the content element
      */
     private renderContent(): string {
+        const isGameOverRoom: boolean = this._currentGameState?.roomName === "Game Over";
+
         return `
-            <div class="content">
-            <span id="typewriter" class="typewriter"></span>
-                
+            <div class="content ${isGameOverRoom ? "game-over-content" : ""}">
+                <span id="typewriter" class="typewriter"></span>
             </div>
         `;
     }
@@ -358,7 +416,8 @@ export class CanvasComponent extends HTMLElement {
      * @returns String with raw HTML for the inventory element
      */
     private renderInventory(): string {
-        if (this._currentGameState?.roomName === "The shadows of the forgotten Castle") {
+        const roomName: string | undefined = this._currentGameState?.roomName;
+        if (roomName === "The shadows of the forgotten Castle" || roomName === "Game Over") {
             return "";
         }
 
@@ -396,10 +455,9 @@ export class CanvasComponent extends HTMLElement {
      * @returns HTML element of the footer
      */
     private renderFooter(): HTMLElement {
-        if (this._currentGameState?.roomName === "The shadows of the forgotten Castle") {
-            return html`<div>`; // Do not render footer for startup room
-            // if you place something in between `` then undefined will be gone.
-            // TODO: ask teacher about this (engine related)
+        const roomName: string | undefined = this._currentGameState?.roomName;
+        if (roomName === "The shadows of the forgotten Castle" || roomName === "Game Over") {
+            return html`<div>`; // Do not render footer for startup room or Game Over room
         }
 
         return html`
