@@ -27,4 +27,7 @@ export type PlayerSession = {
     ChefQuestCompleted: boolean;
     knifeGiven: boolean;
     SpokeToBird: boolean;
+    incorrectAnswers: number;
+    quizCompleted: boolean;
+    quizFailed: boolean;
 };

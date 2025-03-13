@@ -43,6 +43,9 @@ import { StartAreaItem } from "../items/StartAreaItem";
 import { KitchenRoom } from "../rooms/KitchenRoom";
 import { ChefCharacter } from "../characters/ChefCharacter";
 import { MysteriousPaperItem } from "../items/MysteriousPaperItem";
+import { GuardQuizRoom } from "../rooms/GuardQuizRoom";
+import { GuardCharacter } from "../characters/GuardCharacter";
+import { GameOverRoom } from "../rooms/GameOverRoom";
 /**
  * Implementation of the game service used to operate the game engine
  */
@@ -68,6 +71,8 @@ export class GameService extends BaseGameService<PlayerSession> {
         this.registerGameObject(BasementRoom);
         this.registerGameObject(BasementRoom);
         this.registerGameObject(KitchenRoom);
+        this.registerGameObject(GuardQuizRoom);
+        this.registerGameObject(GameOverRoom);
 
         // Items
         this.registerGameObject(TeddyBearItem);
@@ -97,6 +102,7 @@ export class GameService extends BaseGameService<PlayerSession> {
         this.registerGameObject(RavenCharacter);
         this.registerGameObject(BirdCharacter);
         this.registerGameObject(ChefCharacter);
+        this.registerGameObject(GuardCharacter);
 
         // Actions
         this.registerAction(WalkAction);
@@ -131,6 +137,9 @@ export class GameService extends BaseGameService<PlayerSession> {
             guestdooropen: false,
             guestaticdooropen: false,
             SpokeToBird: false,
+            quizCompleted: false,
+            incorrectAnswers: 0,
+            quizFailed: false,
         };
     }
 
