@@ -67,17 +67,30 @@ Hoge beschikbaarheid, lage latentie, en sterke beveiligingsmaatregelen.
 
 **Stap 2: Beschrijf de belangrijkste infrastructuur-concepten**
 
-Gebruik de HBO-ICT Knowledgebase om de infrastructuur-concepten beter te begrijpen en concreet te maken. Hier zijn enkele voorbeelden:
+Bij het bouwen van onze game moeten alle onderdelen goed samenwerken, anders wordt het een chaos. Daarom gebruiken we een paar slimme infrastructuurmethoden die ervoor zorgen dat alles soepel verloopt en makkelijk uit te breiden is. Drie belangrijke onderdelen daarvan zijn API’s voor communicatie, frontend-componenten en data-uitwisseling. Hieronder leg ik uit hoe die werken en waarom ze perfect passen bij onze game.
 
--   Centrale data-opslag: Een database waarin voortgang, keuzes en spelgegevens worden opgeslagen, zoals MySQL.
+-  ### API's voor communicatie:
 
--   API's voor communicatie: Back-end endpoints gebouwd met Express om frontend en database te verbinden.
+    Stel je voor: de speler loopt door een donkere gang en komt bij een grote houten deur. Maar voordat hij erdoor mag, moet hij een wachtwoord invoeren. Hoe weet het spel of het antwoord correct is? Hier komt een API om de hoek kijken.
 
--   Authenticatie en beveiliging: Mechanismen zoals inloggen, HTTPS, en encryptie om gegevens veilig te houden.
+    Een API is als een boodschapper tussen de frontend (de visuele kant van de game) en de backend (de plek waar alle gegevens worden opgeslagen en verwerkt). In onze game kunnen we dit gebruiken voor verschillende dingen. Bijvoorbeeld, als een speler een quiz beantwoordt in de GuardQuizRoom, kan de API controleren of het antwoord goed is en bepalen of de speler door mag naar de volgende kamer. Ook kan een API helpen om spelerprogressie op te slaan, zodat we kunnen onthouden welke deuren al zijn geopend of welke items de speler bij zich draagt.
 
--   Frontend-componenten: Herbruikbare en modulaire elementen met Web Components om de gebruikersinterface te ondersteunen.
+    Dankzij API’s voelt de game dynamischer aan en kunnen acties van de speler echte gevolgen hebben. Een fout antwoord? Misschien blijft de poort dan gesloten. Een goed antwoord? Dan schuiven de zware deuren langzaam open, terwijl een diepe stem zegt: "Je hebt de juiste keuze gemaakt..."
 
--   Data-uitwisseling: Gebruik van de Fetch API voor real-time communicatie tussen de frontend en backend.
+
+-   ### Frontend-componenten:
+    In onze game bestaan kamers uit verschillende objecten waarmee de speler kan interacteren: een tafel met mysterieuze papieren, een oude kast die misschien iets verbergt, een sleutel die glinstert in het maanlicht. Maar stel je voor dat we al deze elementen telkens opnieuw moesten programmeren voor elke kamer… Dat zou enorm veel tijd kosten.
+
+    Gelukkig gebruiken we frontend-componenten, die werken als bouwstenen voor de interface. Dit betekent dat als we eenmaal een interactief object, zoals een deur of een NPC, hebben gemaakt, we dat in meerdere kamers kunnen gebruiken. De GameOverRoom bijvoorbeeld, heeft een standaard lay-out met een eindscherm en een knop om opnieuw te beginnen. Dankzij frontend-componenten hoeven we dat niet steeds opnieuw te programmeren – we kunnen het gewoon hergebruiken.
+
+    Door de kamers en hun objecten modulair op te bouwen, wordt het makkelijker om de game uit te breiden. Stel je voor dat we later een nieuwe kamer toevoegen, zoals een geheime bibliotheek vol raadselachtige boeken. In plaats van alles opnieuw te maken, kunnen we gewoon bestaande componenten combineren en aanpassen. Dit bespaart tijd en maakt het spel consistenter.
+
+-   ### Data-uitwisseling: 
+    De speler heeft eindelijk een belangrijk item gevonden: een gouden sleutel. Maar hoe weet het spel dat hij deze bij zich heeft als hij bij de CastleDoorEntranceRoom aankomt? Dit is waar data-uitwisseling met de Fetch API van pas komt.
+
+    De Fetch API zorgt ervoor dat gegevens in real-time worden opgehaald of opgeslagen. Wanneer de speler een sleutel oppakt, kan dit meteen worden vastgelegd, zodat het spel later kan controleren of hij deze nog steeds heeft. Dit voorkomt frustratie en zorgt ervoor dat acties betekenis hebben. Ook bij interactieve elementen zoals quizzen of dialogen kan de Fetch API helpen om antwoorden direct te verwerken en feedback te geven zonder dat de hele game hoeft te herladen.
+
+    Dankzij deze technologie voelt de game vloeiender en responsiever aan. Stel je voor dat de speler een raadsel moet oplossen bij een mysterieuze poort. In plaats van dat de game vastloopt terwijl er op een antwoord wordt gewacht, reageert de wereld meteen: de lichten flikkeren, een diepe stem lacht, en de poort opent langzaam… Of niet, als het antwoord fout was.
 
 > De volgende Deployment Diagram geeft inzicht in de verschillende onderdelen van "The Game":
 
@@ -444,3 +457,24 @@ Hoewel HTTPS standaard is geactiveerd op de HBO-ICT.Cloud, zijn aanvullende beve
     - Voer een volledige end-to-end test uit om te controleren of alle onderdelen correct samenwerken.
     - Controleer de beveiligingsmaatregelen om ervoor te zorgen dat de applicatie veilig is.
     - Zet de applicatie live en monitor de prestaties en beveiliging.
+
+## Bronnen stap 2: Beschrijf de belangrijkste infrastructuur-concepten
+
+* [GeeksforGeeks - Connect Frontend and Backend](https://www.geeksforgeeks.org/how-to-connect-front-end-and-backend/?utm_source=chatgpt.com)
+
+### Waarom is dit een goede bron?
+GeeksforGeeks is een van de grootste educatieve platforms voor programmeurs. Ze bieden duidelijke uitleg en praktijkvoorbeelden die direct toepasbaar zijn. De site wordt actief onderhouden en gebruikt door ontwikkelaars wereldwijd. Hierdoor is de informatie up-to-date en betrouwbaar.
+
+---
+* [MDN Web Docs - Web Components](https://developer.mozilla.org/en-US/docs/Web/API/Web_components?utm_source=chatgpt.com)
+
+### Waarom is dit een goede bron?
+MDN Web Docs is dé officiële documentatie van Mozilla en wordt door ontwikkelaars wereldwijd gebruikt als dé bron voor webstandaarden. De informatie is altijd up-to-date en geschreven door experts. Dit maakt het een uiterst betrouwbare en relevante bron.
+
+-----
+* [Index.dev - Backend vs Frontend API](https://www.index.dev/blog/backend-vs-frontend-api-differences?utm_source=chatgpt.com)
+
+### Waarom is dit een goede bron?
+Index.dev is een modern en professioneel platform dat zich richt op softwareontwikkeling en technische trends. De artikelen zijn geschreven door ervaren ontwikkelaars en bevatten duidelijke praktijkvoorbeelden, waardoor ze een betrouwbare en relevante informatiebron vormen.
+
+---
