@@ -28,8 +28,8 @@ export class KitchenRoom extends Room implements Walk {
         const playerSession: PlayerSession = gameService.getPlayerSession();
         const actions: Action[] = [
             new ExamineAction(),
-            new WalkAction(),
             new TalkAction(),
+            new WalkAction(),
             new InspectAction(),
         ];
         if (playerSession.ChefQuestStarted) {

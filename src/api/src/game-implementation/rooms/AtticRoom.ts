@@ -28,8 +28,8 @@ export class AtticRoom extends Room implements Walk, Examine {
 
     public actions(): Action[] {
         return [
-            new TalkAction(),
             new ExamineAction(),
+            new TalkAction(),
             new WalkAction(),
         ];
     }

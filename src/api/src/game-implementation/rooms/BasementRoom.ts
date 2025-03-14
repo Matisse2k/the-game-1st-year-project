@@ -92,8 +92,8 @@ export class BasementRoom extends Room implements Walk {
     public actions(): Action[] {
         return [
             new ExamineAction(),
-            new WalkAction(),
             new TalkAction(),
+            new WalkAction(),
             new PickUpAction(),
         ];
     }

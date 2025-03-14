@@ -55,8 +55,8 @@ export class WerkkamerRoom extends Room implements Walk {
     public actions(): Action[] {
         return [
             new ExamineAction(),
-            new WalkAction(),
             new PickUpAction(),
+            new WalkAction(),
         ];
     }
 

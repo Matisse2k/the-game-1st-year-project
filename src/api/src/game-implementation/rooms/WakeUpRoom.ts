@@ -16,7 +16,7 @@ export class WakeUpRoom extends Room implements Simple {
     }
 
     public name(): string {
-        return "WakeUpRoom";
+        return "???";
     }
 
     public images(): string[] {

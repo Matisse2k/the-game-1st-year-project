@@ -72,8 +72,8 @@ export class LobbyRoom extends Room implements Simple, Walk, Simple {
 
         return [
             new ExamineAction(),
-            new WalkAction(),
             new TalkAction(),
+            new WalkAction(),
             new SearchAction(),
             new PickUpAction(),
             // new SimpleAction("start", "Startscherm"),
@@ -87,7 +87,7 @@ export class LobbyRoom extends Room implements Simple, Walk, Simple {
         }
 
         return new TextActionResult([
-            "It looks like a lobby!",
+            "The door shuts behind you as you enter the lobby. You try to open the door again, but it's locked.",
         ]);
     }
 

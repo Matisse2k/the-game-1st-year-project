@@ -19,7 +19,7 @@ export class GuestRoom extends Room implements Walk {
     }
 
     public name(): string {
-        return "GuestRoom";
+        return "GuestRoom 2";
     }
 
     public images(): string[] {
@@ -37,8 +37,8 @@ export class GuestRoom extends Room implements Walk {
     public actions(): Action[] {
         return [
             new ExamineAction(),
-            new WalkAction(),
             new TalkAction(),
+            new WalkAction(),
 
         ];
     }

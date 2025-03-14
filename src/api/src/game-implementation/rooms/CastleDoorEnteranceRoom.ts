@@ -31,7 +31,7 @@ export class CastleDoorEnteranceRoom extends Room implements Walk, Simple {
      * @returns {string} The name of the room.
      */
     public name(): string {
-        return "Castle Door Enterance";
+        return "Castle Door";
     }
 
     /**

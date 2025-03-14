@@ -45,8 +45,8 @@ export class UpperFloorRoom extends Room implements Simple, Walk {
     public objects(): GameObject[] {
         return [
             new LobbyRoom(),
-            new GuestRoomAttic(),
             new WerkkamerRoom(),
+            new GuestRoomAttic(),
             new GuestRoom(),
         ];
     }
@@ -153,7 +153,7 @@ export class UpperFloorRoom extends Room implements Simple, Walk {
         if (PlayerSession.GhostQuestCompleted) {
             const room: Room = new UpperFloorRoom();
             PlayerSession.currentRoom = room.alias;
-            return new TextActionResult(["✅ You walked to the Upper room."]);
+            return new TextActionResult(["✅ You walked to the Upper floor."]);
         }
 
         return new TextActionResult(["Butler: I can't let you go there yet"]);
