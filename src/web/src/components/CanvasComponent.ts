@@ -79,11 +79,13 @@ const styles: string = css`
 }
 
 .game-over-content {
+    flex-grow: 1;
     text-align: center;
     color: #ff0000;
     font-size: 1.5em;
     font-weight: bold;
-}
+    margin-top: 20px;
+    }
 
     .start-game-text {
         position: absolute;
@@ -101,7 +103,7 @@ const styles: string = css`
     }
 
     .content.game-over-content {
-        margin-top: 360px;
+        margin-top: 40vh;
         z-index: 10000; /* Zorgt ervoor dat de content onder eventuele overlappende elementen komt */
     }
 
@@ -122,12 +124,12 @@ const styles: string = css`
     font-size: 1.2em;
     border: 1px solid #ff0000;
     z-index: 1001;
-}
+    }
 
-.quit-game-button:hover {
+    .quit-game-button:hover {
     background-color: #444;
     border-color: #ff5555;
-}
+    }
 
     .content {
         flex-grow: 1;
@@ -196,6 +198,11 @@ const styles: string = css`
         .content {
             margin-bottom: 50px; /* Increase margin to ensure space between content and inventory */
         }
+
+        .game-over-content {
+            font-size: 1.2em;
+            margin-top: 15px;
+        }
     }
 
     @media (max-width: 480px) {
@@ -217,11 +224,11 @@ const styles: string = css`
         }
 
         .typewriter {
-    display: inline-block;
-    white-space: pre-wrap;
-    overflow: hidden;
-    border-right: 0.15em solid orange; /* Cursor effect */
-    animation: blink-caret 0.75s step-end infinite;
+            display: inline-block;
+            white-space: pre-wrap;
+            overflow: hidden;
+            border-right: 0.15em solid orange; /* Cursor effect */
+            animation: blink-caret 0.75s step-end infinite;
 }
 
 @keyframes blink-caret {
@@ -231,6 +238,11 @@ const styles: string = css`
 
         .content {
             margin-bottom: 20px; /* Further increase margin to ensure space between content and inventory */
+        }
+
+        .game-over-content {
+            font-size: 1em;
+            margin-bottom: 1vh;
         }
     }
 `;

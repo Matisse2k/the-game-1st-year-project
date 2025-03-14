@@ -142,6 +142,7 @@ export class GameService extends BaseGameService<PlayerSession> {
             quizCompleted: false,
             incorrectAnswers: 0,
             quizFailed: false,
+            confirmingWalkToGuardQuiz: false,
         };
     }
 

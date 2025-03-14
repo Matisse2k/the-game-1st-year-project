@@ -2,7 +2,7 @@ import { ActionResult } from "../../game-base/actionResults/ActionResult";
 import { TextActionResult } from "../../game-base/actionResults/TextActionResult";
 import { Action } from "../../game-base/actions/Action";
 import { ExamineAction } from "../../game-base/actions/ExamineAction";
-import { Simple } from "../../game-base/actions/SimpleAction";
+import { Simple, SimpleAction } from "../../game-base/actions/SimpleAction";
 import { TalkAction } from "../../game-base/actions/TalkAction";
 import { GameObject } from "../../game-base/gameObjects/GameObject";
 import { Room } from "../../game-base/gameObjects/Room";
@@ -19,8 +19,9 @@ import { TableItem } from "../items/TableItem";
 import { SearchAction } from "../actions/SearchAction";
 import { PickUpAction } from "../actions/PickUpActions";
 import { KitchenRoom } from "./KitchenRoom";
+import { GuardQuizRoom } from "./GuardQuizRoom";
 
-export class LobbyRoom extends Room implements Simple, Walk {
+export class LobbyRoom extends Room implements Simple, Walk, Simple {
     public static readonly Alias: string = "lobby";
 
     public constructor() {
@@ -45,6 +46,7 @@ export class LobbyRoom extends Room implements Simple, Walk {
             new CouchItem(),
             new CabinetItem(),
             new TableItem(),
+            new GuardQuizRoom(),
         ];
 
         // Voeg de teddybeer alleen toe als deze is gevonden
@@ -59,6 +61,15 @@ export class LobbyRoom extends Room implements Simple, Walk {
      * @inheritdoc
      */
     public actions(): Action[] {
+        const playerSession: PlayerSession = gameService.getPlayerSession();
+
+        if (playerSession.confirmingWalkToGuardQuiz) {
+            return [
+                new SimpleAction("walk-to-guard-quiz", "Yes, I want to go to the guard quiz!"),
+                new SimpleAction("cancel-walk-to-guard-quiz", "Nevermind, I will learn more first."),
+            ];
+        }
+
         return [
             new ExamineAction(),
             new WalkAction(),
@@ -80,7 +91,28 @@ export class LobbyRoom extends Room implements Simple, Walk {
         ]);
     }
 
-    public simple(_alias: string): ActionResult | undefined {
+    public simple(alias: string): ActionResult | undefined {
+        const playerSession: PlayerSession = gameService.getPlayerSession();
+
+        if (alias === "walk-to-guard-quiz") {
+            playerSession.confirmingWalkToGuardQuiz = false;
+            const targetRoom: Room = new GuardQuizRoom();
+
+            try {
+                playerSession.currentRoom = targetRoom.alias;
+                return targetRoom.examine();
+            }
+            catch (error) {
+                console.error("🔥 Fout bij het wisselen van kamer:", error);
+                return new TextActionResult(["❌ Er ging iets mis bij het lopen!"]);
+            }
+        }
+
+        if (alias === "cancel-walk-to-guard-quiz") {
+            playerSession.confirmingWalkToGuardQuiz = false;
+            return new TextActionResult(["You decided to explore more of the castle first."]);
+        }
+
         return undefined;
     }
 

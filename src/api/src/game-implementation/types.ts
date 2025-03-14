@@ -30,4 +30,5 @@ export type PlayerSession = {
     incorrectAnswers: number;
     quizCompleted: boolean;
     quizFailed: boolean;
+    confirmingWalkToGuardQuiz: boolean;
 };

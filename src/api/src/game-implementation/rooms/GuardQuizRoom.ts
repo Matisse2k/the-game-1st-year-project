@@ -6,13 +6,13 @@ import { TalkAction } from "../../game-base/actions/TalkAction";
 import { GameObject } from "../../game-base/gameObjects/GameObject";
 import { Room } from "../../game-base/gameObjects/Room";
 import { gameService } from "../../global";
-import { WalkAction } from "../actions/WalkAction";
+import { Walk, WalkAction } from "../actions/WalkAction";
 import { GuardCharacter } from "../characters/GuardCharacter";
 import { PlayerSession } from "../types";
 import { GameOverRoom } from "./GameOverRoom";
 import { LobbyRoom } from "./LobbyRoom";
 
-export class GuardQuizRoom extends Room implements Simple {
+export class GuardQuizRoom extends Room implements Simple, Walk {
     public static readonly Alias: string = "GuardQuiz";
 
     /**
@@ -105,5 +105,28 @@ export class GuardQuizRoom extends Room implements Simple {
         setTimeout(() => {
             // gameService.goToStartScreen();
         }, 5000); // Wait for 5 seconds before going to the start screen
+    }
+
+    public walk(_alias: string, gameObjects: GameObject[]): ActionResult {
+        const PlayerSession: PlayerSession = gameService.getPlayerSession();
+
+        // hier kijkt hij wat de gameobject is van de kamer.
+        const targetRoom: Room | undefined = gameObjects.find(obj => obj instanceof Room);
+
+        // Als er geen kamer kan worden gevonden om naar toe te lopen is dit het resultaat
+        if (!targetRoom) {
+            console.error("❌ Geen geldige kamer gevonden!");
+            return new TextActionResult(["❌ You can't walk to that!"]);
+        }
+
+        if (targetRoom.alias === GuardQuizRoom.Alias) {
+            PlayerSession.confirmingWalkToGuardQuiz = true;
+            return new TextActionResult(["Are you sure you want to walk to the Quiz Room? There is no way back!"]);
+        }
+
+        // Update the player's current room to the target room
+        PlayerSession.currentRoom = targetRoom.alias;
+        // Call the examine method of the target room
+        return targetRoom.examine() || new TextActionResult([`✅ You walked to the ${targetRoom.alias}!`]);
     }
 }
