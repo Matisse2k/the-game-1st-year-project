@@ -93,7 +93,7 @@ export class WerkkamerRoom extends Room implements Walk {
         try {
             gameService.getPlayerSession().currentRoom = targetRoom.alias;
             console.log(`✅ Huidige kamer is nu: ${getPlayerSession.currentRoom}`);
-            return new TextActionResult([`✅ You walked to ${targetRoom.alias}!`]);
+            return new TextActionResult(["✅ You walked to the office"]);
         }
         catch (error) {
             console.error("🔥 Fout bij het wisselen van kamer:", error);

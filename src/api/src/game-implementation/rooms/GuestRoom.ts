@@ -19,7 +19,7 @@ export class GuestRoom extends Room implements Walk {
     }
 
     public name(): string {
-        return "GuestRoom 2";
+        return "East GuestRoom";
     }
 
     public images(): string[] {

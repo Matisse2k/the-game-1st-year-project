@@ -26,7 +26,7 @@ export class GuestRoomAttic extends Room implements Simple, Walk {
     }
 
     public name(): string {
-        return "Guestroom 1";
+        return "West Guestroom";
     }
 
     public examine(): ActionResult | undefined {
