@@ -3,9 +3,10 @@ import { TextActionResult } from "../../game-base/actionResults/TextActionResult
 import { Examine } from "../../game-base/actions/ExamineAction";
 import { Item } from "../../game-base/gameObjects/Item";
 import { PickUp } from "../actions/PickUpActions";
+import { gameService } from "../../global";
 
 export class ServeerplaatItem extends Item implements Examine, PickUp {
-    public static readonly Alias: string = "Serveerplaat";
+    public static readonly Alias: string = "Serving platter";
 
     public constructor() {
         super(ServeerplaatItem.Alias);
@@ -21,7 +22,10 @@ export class ServeerplaatItem extends Item implements Examine, PickUp {
 
     public pickUp(): string | undefined {
         // Retourneer de alias van het item
-        console.error("wordt uitgevoerd");
+        if (gameService.getPlayerSession().inventory.includes("Serving platter")) {
+            return undefined;
+        }
+        console.log("zit in inventory");
         return ServeerplaatItem.Alias;
     }
 }

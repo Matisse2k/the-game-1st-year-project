@@ -10,6 +10,7 @@ import { Walk, WalkAction } from "../actions/WalkAction";
 import { GuardCharacter } from "../characters/GuardCharacter";
 import { PlayerSession } from "../types";
 import { GameOverRoom } from "./GameOverRoom";
+import { GoodEndingRoom } from "./GoodEndingRoom";
 import { LobbyRoom } from "./LobbyRoom";
 
 export class GuardQuizRoom extends Room implements Simple, Walk {
@@ -51,6 +52,7 @@ export class GuardQuizRoom extends Room implements Simple, Walk {
         if (playerSession.quizCompleted) {
             return [
                 new LobbyRoom(), // TODO: place exit room
+                new GoodEndingRoom(),
             ];
         }
         else if (playerSession.quizFailed) {

@@ -11,6 +11,12 @@ import { PlayerSession } from "../types";
 import { Walk, WalkAction } from "../actions/WalkAction";
 import { Simple } from "../../game-base/actions/SimpleAction";
 import { UpperFloorRoom } from "./UpperFloor";
+import { PickUpAction } from "../actions/PickUpActions";
+import { BirdCharachter } from "../characters/BirdCharachter";
+import { TalkAction } from "../../game-base/actions/TalkAction";
+import { WoodenStickitem } from "../items/WoodenStickItem";
+import { AtticRoom } from "./AtticRoom";
+import { OpenAction } from "../actions/OpenAction";
 
 export class GuestRoomAttic extends Room implements Simple, Walk {
     public static readonly Alias: string = "GuestRoomAttic";
@@ -29,7 +35,7 @@ export class GuestRoomAttic extends Room implements Simple, Walk {
             return undefined;
         }
         return new TextActionResult([
-            "This is a Guestroom, but what's that on the celling?",
+            "This is a Guestroom, but there is a hatch on the celling.",
         ]);
     }
 
@@ -37,19 +43,37 @@ export class GuestRoomAttic extends Room implements Simple, Walk {
         return [
             new ExamineAction(),
             new WalkAction(),
+            new TalkAction(),
+            new PickUpAction(),
+            new OpenAction(),
         ];
     }
 
     public objects(): GameObject[] {
+        if (gameService.getPlayerSession().HatchOpened === true) {
+            return [
+                new AtticRoom(),
+            ];
+        }
         return [
+            new WoodenStickitem(),
             new ServeerplaatItem(),
             new AtticAccessItem(),
+            new BirdCharachter(),
             new UpperFloorRoom(),
         ];
     }
 
     public images(): string[] {
-        return ["GuestRoomWithItem"];
+        const baseLayers: string[] = ["GuestroomWithAttic", "layers/ServingPlatterFrame", "layers/WoodenStickFrame", "layers/BirdCharachterFrame"];
+        const result: Set<string> = new Set(baseLayers);
+        if (gameService.getPlayerSession().inventory.includes("Serving platter")) {
+            result.delete("layers/ServingPlatterFrame");
+        }
+        if (gameService.getPlayerSession().inventory.includes("Wooden Stick")) {
+            result.delete("layers/WoodenStickFrame");
+        }
+        return Array.from(result);
     }
 
     public simple(_alias: string): ActionResult | undefined {

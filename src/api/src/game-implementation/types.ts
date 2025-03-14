@@ -22,6 +22,7 @@ export type PlayerSession = {
     guestdooropen: boolean;
     guestaticdooropen: boolean;
     MysteriousStickRevealed?: boolean;
+    HatchOpened?: boolean;
     pickedupTeddyBear: boolean;
     ChefQuestStarted: boolean;
     ChefQuestCompleted: boolean;
