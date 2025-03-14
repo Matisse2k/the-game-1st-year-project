@@ -27,7 +27,7 @@ export class GuardQuizRoom extends Room implements Simple, Walk {
      * @returns {string} The name of the room.
      */
     public name(): string {
-        return "Quiz Room";
+        return "The Quiz";
     }
 
     public images(): string[] {
