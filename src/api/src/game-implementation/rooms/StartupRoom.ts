@@ -4,7 +4,8 @@ import { Action } from "../../game-base/actions/Action";
 import { Simple, SimpleAction } from "../../game-base/actions/SimpleAction";
 import { Room } from "../../game-base/gameObjects/Room";
 import { gameService } from "../../global";
-import { WakeUpRoom } from "./WakeUpRoom";
+import { GuestRoomAttic } from "./GuestRoomAttic";
+// import { WakeUpRoom } from "./WakeUpRoom";
 
 /**
  * Implemention of the startup room
@@ -56,7 +57,7 @@ export class StartupRoom extends Room implements Simple {
     public simple(alias: string): ActionResult | undefined {
         if (alias === "start-game-from-image") {
             // TODO: plaats hier de class naam van de kamer waar je heen wilt gaan nadat je op start hebt gedrukt.
-            const room: Room = new WakeUpRoom();
+            const room: Room = new GuestRoomAttic();
 
             // Set the current room to the startup room
             gameService.getPlayerSession().currentRoom = room.alias;

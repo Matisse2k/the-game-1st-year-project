@@ -46,6 +46,13 @@ import { MysteriousPaperItem } from "../items/MysteriousPaperItem";
 import { GuardQuizRoom } from "../rooms/GuardQuizRoom";
 import { GuardCharacter } from "../characters/GuardCharacter";
 import { GameOverRoom } from "../rooms/GameOverRoom";
+import { AtticRoom } from "../rooms/AtticRoom";
+import { HatchOpenerItem } from "../items/HatchOpenerItem";
+import { WoodenStickitem } from "../items/WoodenStickItem";
+import { GhostAtticCharacter } from "../characters/GhostAtticCharacter";
+import { BirdCharachter } from "../characters/BirdCharachter";
+import { GoodEndingRoom } from "../rooms/GoodEndingRoom";
+import { OpenAction } from "../actions/OpenAction";
 import { InspectAction } from "../actions/InspectAction";
 /**
  * Implementation of the game service used to operate the game engine
@@ -58,6 +65,7 @@ export class GameService extends BaseGameService<PlayerSession> {
         super("game");
 
         // Rooms
+        this.registerGameObject(AtticRoom);
         this.registerGameObject(StartupRoom);
         this.registerGameObject(WakeUpRoom);
         this.registerGameObject(ForrestRoom);
@@ -74,8 +82,11 @@ export class GameService extends BaseGameService<PlayerSession> {
         this.registerGameObject(KitchenRoom);
         this.registerGameObject(GuardQuizRoom);
         this.registerGameObject(GameOverRoom);
+        this.registerGameObject(GoodEndingRoom);
 
         // Items
+        this.registerGameObject(HatchOpenerItem);
+        this.registerGameObject(WoodenStickitem);
         this.registerGameObject(TeddyBearItem);
         this.registerGameObject(StonesItem);
         this.registerGameObject(Stone1Item);
@@ -98,6 +109,8 @@ export class GameService extends BaseGameService<PlayerSession> {
         this.registerGameObject(MysteriousPaperItem);
 
         // Characters
+        this.registerGameObject(GhostAtticCharacter);
+        this.registerGameObject(BirdCharachter);
         this.registerGameObject(ButlerCharacter);
         this.registerGameObject(GhostCharacter);
         this.registerGameObject(RavenCharacter);
@@ -111,6 +124,7 @@ export class GameService extends BaseGameService<PlayerSession> {
         this.registerAction(UseItemAction);
         this.registerAction(PickUpAction);
         this.registerAction(GiveAction);
+        this.registerAction(OpenAction);
         this.registerAction(InspectAction);
     }
 
@@ -142,7 +156,9 @@ export class GameService extends BaseGameService<PlayerSession> {
             quizCompleted: false,
             incorrectAnswers: 0,
             quizFailed: false,
+            HatchOpened: false,
             confirmingWalkToGuardQuiz: false,
+
         };
     }
 
