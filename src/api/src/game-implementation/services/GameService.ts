@@ -46,6 +46,7 @@ import { MysteriousPaperItem } from "../items/MysteriousPaperItem";
 import { GuardQuizRoom } from "../rooms/GuardQuizRoom";
 import { GuardCharacter } from "../characters/GuardCharacter";
 import { GameOverRoom } from "../rooms/GameOverRoom";
+import { InspectAction } from "../actions/InspectAction";
 /**
  * Implementation of the game service used to operate the game engine
  */
@@ -110,6 +111,7 @@ export class GameService extends BaseGameService<PlayerSession> {
         this.registerAction(UseItemAction);
         this.registerAction(PickUpAction);
         this.registerAction(GiveAction);
+        this.registerAction(InspectAction);
     }
 
     /**

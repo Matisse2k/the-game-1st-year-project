@@ -30,7 +30,7 @@ export class ChefCharacter extends Character implements Examine {
         if (PlayerSession.ChefQuestCompleted) {
             return new TextActionResult([
                 "Gustavo: Ah, there you are! Thank you again for the knife. Now I can finally cook properly!",
-                "The chef is busy chopping ingredients with precision and care.",
+                "The chef is busy chopping ingredients with precision and care.", "",
                 "Gustavo: This stew will be magnificent. I haven't been able to cook like this in ages.",
                 "He smiles at you, then returns to his work, fully absorbed in his craft.",
             ]);

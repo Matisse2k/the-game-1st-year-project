@@ -7,6 +7,7 @@ import { GameObject } from "../../game-base/gameObjects/GameObject";
 import { Room } from "../../game-base/gameObjects/Room";
 import { gameService } from "../../global";
 import { GiveAction } from "../actions/GiveAction";
+import { InspectAction } from "../actions/InspectAction";
 import { Walk, WalkAction } from "../actions/WalkAction";
 import { ChefCharacter } from "../characters/ChefCharacter";
 import { KnifeItem } from "../items/KnifeItem";
@@ -29,6 +30,7 @@ export class KitchenRoom extends Room implements Walk {
             new ExamineAction(),
             new WalkAction(),
             new TalkAction(),
+            new InspectAction(),
         ];
         if (playerSession.ChefQuestStarted) {
             actions.push(new GiveAction());
