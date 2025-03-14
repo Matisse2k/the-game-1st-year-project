@@ -11,7 +11,6 @@ import { GuardCharacter } from "../characters/GuardCharacter";
 import { PlayerSession } from "../types";
 import { GameOverRoom } from "./GameOverRoom";
 import { GoodEndingRoom } from "./GoodEndingRoom";
-import { LobbyRoom } from "./LobbyRoom";
 
 export class GuardQuizRoom extends Room implements Simple, Walk {
     public static readonly Alias: string = "GuardQuiz";
@@ -51,7 +50,6 @@ export class GuardQuizRoom extends Room implements Simple, Walk {
         const playerSession: PlayerSession = gameService.getPlayerSession();
         if (playerSession.quizCompleted) {
             return [
-                new LobbyRoom(), // TODO: place exit room
                 new GoodEndingRoom(),
             ];
         }
