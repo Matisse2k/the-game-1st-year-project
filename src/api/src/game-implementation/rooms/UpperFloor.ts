@@ -156,6 +156,6 @@ export class UpperFloorRoom extends Room implements Simple, Walk {
             return new TextActionResult(["✅ You walked to the Upper room."]);
         }
 
-        return new TextActionResult(["Butler: I can't let you go up there."]);
+        return new TextActionResult(["Butler: I can't let you go there yet"]);
     }
 }
