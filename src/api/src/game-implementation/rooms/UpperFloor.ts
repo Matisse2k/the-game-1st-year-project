@@ -150,10 +150,18 @@ export class UpperFloorRoom extends Room implements Simple, Walk {
             return new TextActionResult(["❌ You can't walk to that!"]);
         }
 
-        if (PlayerSession.GhostQuestCompleted) {
+        if (PlayerSession.GhostQuestCompleted && PlayerSession.ChefQuestCompleted) {
             const room: Room = new UpperFloorRoom();
             PlayerSession.currentRoom = room.alias;
             return new TextActionResult(["✅ You walked to the Upper floor."]);
+        }
+
+        else if (PlayerSession.GhostQuestCompleted && !PlayerSession.ChefQuestCompleted) {
+            return new TextActionResult(["Butler: I can't let you go there yet you haven't spoken to everybody yet"]);
+        }
+
+        else if (!PlayerSession.GhostQuestCompleted && PlayerSession.ChefQuestCompleted) {
+            return new TextActionResult(["Butler: I can't let you go there yet you haven't spoken to everybody yet"]);
         }
 
         return new TextActionResult(["Butler: I can't let you go there yet"]);
