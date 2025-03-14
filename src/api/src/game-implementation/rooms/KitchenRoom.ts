@@ -11,6 +11,7 @@ import { InspectAction } from "../actions/InspectAction";
 import { Walk, WalkAction } from "../actions/WalkAction";
 import { ChefCharacter } from "../characters/ChefCharacter";
 import { KnifeItem } from "../items/KnifeItem";
+import { MysteriousPaperItem } from "../items/MysteriousPaperItem";
 import { PlayerSession } from "../types";
 import { LobbyRoom } from "./LobbyRoom";
 
@@ -50,6 +51,7 @@ export class KitchenRoom extends Room implements Walk {
         return new TextActionResult (["working"]);
     }
 
+    // TODO: MysteriousPaperItem push when shef uest completed
     public objects(): GameObject[] {
         const playerSession: PlayerSession = gameService.getPlayerSession();
         const objects: GameObject[] = [
@@ -58,6 +60,9 @@ export class KitchenRoom extends Room implements Walk {
         ];
         if (playerSession.inventory.includes("knife")) {
             objects.push(new KnifeItem());
+        }
+        if (playerSession.inventory.includes("MysteriousPaperItem")) {
+            objects.push(new MysteriousPaperItem());
         }
         return objects;
     }

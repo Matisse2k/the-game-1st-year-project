@@ -10,7 +10,7 @@ export class StartAreaItem extends Item implements Examine {
     }
 
     public name(): string {
-        return "StartArea";
+        return "Forrest";
     }
 
     public examine(): ActionResult | undefined {
