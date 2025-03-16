@@ -15,6 +15,7 @@ Om deze hoofdvraag te beantwoorden, worden verschillende onderwerpen behandeld, 
 
 # Context en Vereisten
 
+#### **Gemaakt door Shivanio:**
 ## Organisatorische Context
 
 **Opdracht en Opdrachtgever**
@@ -63,8 +64,9 @@ Data wordt opgeslagen in een centrale database en beveiligd via encryptie en toe
 
 Hoge beschikbaarheid, lage latentie, en sterke beveiligingsmaatregelen.
 
-## Technische Context
+## Technische
 
+#### **Gemaakt door Matisse:**
 **Stap 2: Beschrijf de belangrijkste infrastructuur-concepten**
 
 Bij het bouwen van onze game moeten alle onderdelen goed samenwerken, anders wordt het een chaos. Daarom gebruiken we een paar slimme infrastructuurmethoden die ervoor zorgen dat alles soepel verloopt en makkelijk uit te breiden is. Drie belangrijke onderdelen daarvan zijn API’s voor communicatie, frontend-componenten en data-uitwisseling. Hieronder leg ik uit hoe die werken en waarom ze perfect passen bij onze game.
@@ -100,6 +102,7 @@ Deze concepten ondersteunen functionele vereisten zoals het opslaan van voortgan
 
 ## Vereisten, standaarden, en richtlijnen
 
+#### **Gemaakt door Samale:**
 **Stap 3: Beschrijf vereisten, standaarden, en richtlijnen**
 
 Bij het ontwerpen van de infrastructuur moet je de vereisten, standaarden, en richtlijnen van de opdrachtgever helder beschrijven. Je moet ze niet alleen noemen, maar ook uitleggen wat hier voor nodig is. Overleg met de product owner over wat hij hier van jullie verwacht. Hier zijn enkele voorbeelden:
@@ -138,7 +141,8 @@ Dit hoofdstuk richt zich op het beschrijven van de infrastructuur zoals deze dra
 
 ## Inrichting van de infrastructuur
 
-**Stap 4: Beschrijf de inrichting van de infrastructuur**
+#### **gemaakt door Dominik:**
+**Stap 4: Beschrijf de inrichting van de infrastructuur** 
 
 De infrastructuur voor dit project wordt volledig gehost op de HBO-ICT.Cloud, bestaande uit meerdere componenten die naadloos samenwerken om een complete game-ervaring te leveren.
 
@@ -200,6 +204,7 @@ Deze focus op responsiveness zorgt voor een vloeiende en interactieve spelervari
 
 ## Communicatie en sequence diagram
 
+#### **gemaakt door Dominik:**
 **Stap 5: Beschrijf de communicatie tussen de systemen**
 
 Hieronder staat ons sequence diagram. Dit diagram illustreert een fetch-verzoek van de frontend naar de backend en terug.
@@ -284,6 +289,7 @@ Deze architectuur zorgt voor een duidelijke scheiding van verantwoordelijkheden 
 
 ## Beveiliging van de infrastructuur
 
+#### **gemaakt door Dominik:**
 **Stap 6: Omschrijf hoe de systemen veilig ingericht kunnen worden**
 
 ### Waarom beveiliging essentieel is
@@ -352,6 +358,7 @@ In dit hoofdstuk beschrijf je hoe het project live wordt gezet op de HBO-ICT.Clo
 
 ## Deployen op de HBO-ICT.Cloud
 
+#### **Gemaakt door Chiel:**
 **Stap 7: Omschrijf hoe je het project uitrolt op de HBO-ICT.Cloud en welke methode je gebruikt:**
 
 In het begin hebben wij het eerst handmatig uitgerold naar de cloud via Filezilla. Na een paar weken zijn we overgegaan op het automatisch uitrollen. Hieronder laten wij zien hoe wij dit op beide manieren hebben gedaan.
@@ -422,22 +429,11 @@ Hoewel HTTPS standaard is geactiveerd op de HBO-ICT.Cloud, zijn aanvullende beve
 
 **Stap 9: Omschrijf welke gegevens je opslaat in de database en waarom, met aandacht voor "privacy by design":**
 
--   Data per tabel:
-
-    -   Gegevens: Welke gegevens sla je op? Voeg een ERD toe.
-
-    -   Waarom: Waarom heb je deze gegevens nodig?
-
--   Privacy by design:
-
-    -   Minimaliseer opgeslagen data: sla alleen op wat nodig is voor de functionaliteit.
-
-    -   Gebruik versleuteling (bijv. hashing voor wachtwoorden).
-
-    -   Zorg dat gevoelige gegevens niet toegankelijk zijn zonder authenticatie.
+Niet van toepassing bij dit project
 
 ## Implementatieplan
 
+#### **Gemaakt door Chiel:**
 **Stap 10: Stel een implementatieplan op met duidelijke stappen**
 
 1. **Backend configureren**
@@ -457,24 +453,3 @@ Hoewel HTTPS standaard is geactiveerd op de HBO-ICT.Cloud, zijn aanvullende beve
     - Voer een volledige end-to-end test uit om te controleren of alle onderdelen correct samenwerken.
     - Controleer de beveiligingsmaatregelen om ervoor te zorgen dat de applicatie veilig is.
     - Zet de applicatie live en monitor de prestaties en beveiliging.
-
-## Bronnen stap 2: Beschrijf de belangrijkste infrastructuur-concepten
-
-* [GeeksforGeeks - Connect Frontend and Backend](https://www.geeksforgeeks.org/how-to-connect-front-end-and-backend/?utm_source=chatgpt.com)
-
-### Waarom is dit een goede bron?
-GeeksforGeeks is een van de grootste educatieve platforms voor programmeurs. Ze bieden duidelijke uitleg en praktijkvoorbeelden die direct toepasbaar zijn. De site wordt actief onderhouden en gebruikt door ontwikkelaars wereldwijd. Hierdoor is de informatie up-to-date en betrouwbaar.
-
----
-* [MDN Web Docs - Web Components](https://developer.mozilla.org/en-US/docs/Web/API/Web_components?utm_source=chatgpt.com)
-
-### Waarom is dit een goede bron?
-MDN Web Docs is dé officiële documentatie van Mozilla en wordt door ontwikkelaars wereldwijd gebruikt als dé bron voor webstandaarden. De informatie is altijd up-to-date en geschreven door experts. Dit maakt het een uiterst betrouwbare en relevante bron.
-
------
-* [Index.dev - Backend vs Frontend API](https://www.index.dev/blog/backend-vs-frontend-api-differences?utm_source=chatgpt.com)
-
-### Waarom is dit een goede bron?
-Index.dev is een modern en professioneel platform dat zich richt op softwareontwikkeling en technische trends. De artikelen zijn geschreven door ervaren ontwikkelaars en bevatten duidelijke praktijkvoorbeelden, waardoor ze een betrouwbare en relevante informatiebron vormen.
-
----
