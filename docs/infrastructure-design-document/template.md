@@ -158,11 +158,22 @@ De infrastructuur voor dit project wordt volledig gehost op de HBO-ICT.Cloud, be
 #### 2. Backend
 - **Framework**: Een API-server gebouwd met Express.js, draaiend in een Node.js omgeving.
 - **Architectuur**: RESTful API met duidelijk gedefinieerde endpoints voor verschillende spelacties.
+
+> **Wat is een RESTful API?** 
+> 
+> Een RESTful API (Representational State Transfer) is een architectuurstijl voor het ontwerpen van netwerktoepassingen. In onze game fungeert deze API als een tussenpersoon die HTTP-verzoeken van de frontend ontvangt en verwerkt. Elk verzoek is gericht aan een specifiek "endpoint" (bijvoorbeeld `/game/action` of `/game/inventory`), volgt een standaard methode (GET voor gegevens ophalen, POST voor acties uitvoeren), en geeft een gestructureerd antwoord terug in JSON-formaat. Dit zorgt voor een gestandaardiseerde en efficiënte manier om de frontend en backend met elkaar te laten communiceren.
+
 - **Verantwoordelijkheden**:
   - Verwerken van spelacties
   - Bijhouden van spelerssessies en -voortgang
   - Uitvoeren van game-logica en regels
   - Beheren van de inventaris van de speler
+
+- **Dataopslag**:
+  - Implementeert een lichtgewicht JSON-gebaseerd opslagsysteem voor spelersdata
+  - Slaat spelerssessies op in JSON-formaat met unieke session ID's als sleutel
+  - Bewaart spelstatus, inventory items en questvoortgang in gestructureerde JSON-objecten
+  - Zorgt voor efficiënte toegang tot spelersgegevens zonder noodzaak voor een volledige databaseserver
 
 #### 3. CI/CD-pipeline
 - **Automatisering**: Geautomatiseerde processen voor het bouwen, testen en deployen van de applicatie.
@@ -172,13 +183,24 @@ De infrastructuur voor dit project wordt volledig gehost op de HBO-ICT.Cloud, be
   - Automatische tests worden uitgevoerd
   - Bij succesvolle tests wordt de applicatie automatisch gedeployed naar de HBO-ICT.Cloud
 
+Voor een gedetailleerde uitleg over de implementatie van de CI/CD-pipeline, zie [Stap 7: Deployen op de HBO-ICT.Cloud](#deployen-op-de-hbo-ictcloud).
+
 ### Netwerkarchitectuur
 
 De communicatie tussen de componenten verloopt via een gestandaardiseerd protocol:
 
-- **Client-server communicatie**: HTTP/HTTPS requests tussen frontend en backend
+- **Client-server communicatie**: HTTP/HTTPS requests tussen frontend en backend.
+
+ > **Wat zijn HTTP en HTTPS?** 
+ >
+  > HTTP (Hypertext Transfer Protocol) en HTTPS (HTTP Secure) zijn protocollen voor communicatie tussen clients (zoals webbrowsers) en servers. HTTP is het basisprotocol voor gegevensuitwisseling op het web, terwijl HTTPS een beveiligde versie is die encryptie toevoegt via TLS/SSL. In onze game-infrastructuur gebruiken we HTTPS om ervoor te zorgen dat alle communicatie tussen de frontend en backend versleuteld is, wat de privacy en veiligheid van spelersgegevens beschermt tegen onderschepping of manipulatie door kwaadwillenden.
+
 - **API Gateway**: Centraal punt voor alle API-requests, zorgt voor routing naar de juiste endpoints
 - **Sessiemanagement**: Implementeert sessie-tracking voor gebruikersauthenticatie en spelvoortgang
+
+ > **Hoe werkt sessiemanagement in onze game?**
+ >
+  > In onze game wordt sessiemanagement geïmplementeerd via unieke session ID's die worden gegenereerd wanneer een speler begint met spelen. Deze ID wordt meegestuurd in elke API-request en gebruikt om de specifieke spelstatus van de speler bij te houden. De backend slaat de spelvoortgang, maar ook de inventory-items en status van voltooide puzzels op onder deze session ID. Dit stelt spelers in staat om hun spel te pauzeren en later verder te gaan zonder voortgang te verliezen, zonder dat er een complex account-systeem nodig is.
 
 ### Toegangspunten
 
@@ -198,9 +220,8 @@ De infrastructuur is ontworpen met responsiveness in gedachten:
 
 - **Adaptieve interface**: De frontend past zich aan verschillende schermgroottes en apparaten aan
 - **Efficiënte verwerking**: Asynchrone communicatie zorgt voor een soepele gebruikerservaring
-- **Caching-strategieën**: Geïmplementeerd voor veelgebruikte resources om de reactietijd te verbeteren
 
-Deze focus op responsiveness zorgt voor een vloeiende en interactieve spelervaring, ongeacht het apparaat of de netwerksnelheid van de gebruiker.
+Deze focus op responsiveness zorgt voor een vloeiende en interactieve spelervaring, ongeacht het apparaat van de gebruiker.
 
 ## Communicatie en sequence diagram
 
