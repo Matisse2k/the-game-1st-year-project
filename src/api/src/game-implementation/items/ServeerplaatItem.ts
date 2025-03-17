@@ -28,4 +28,8 @@ export class ServeerplaatItem extends Item implements Examine, PickUp {
         console.log("zit in inventory");
         return ServeerplaatItem.Alias;
     }
+
+    public getDescription(): string {
+        return "A serving platter that seems to be out of place.";
+    }
 }

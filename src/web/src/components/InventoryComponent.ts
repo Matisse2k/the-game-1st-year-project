@@ -10,7 +10,7 @@ const styles: string = css`
         max-width: 1024px;
         margin: 0 auto;
         color: #fff;
-        font-family: 'Press Start 2P', cursive; /* Retro pixel font */
+        font-family: 'Onesize'; /* Retro pixel font */
         margin-top: -15vh;
     }
 
