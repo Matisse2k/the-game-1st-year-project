@@ -61,7 +61,7 @@ export class KitchenRoom extends Room implements Walk {
         if (playerSession.inventory.includes("knife")) {
             objects.push(new KnifeItem());
         }
-        if (playerSession.inventory.includes("MysteriousPaperItem")) {
+        if (playerSession.inventory.includes("MysteriousPaper")) {
             objects.push(new MysteriousPaperItem());
         }
         return objects;

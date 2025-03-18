@@ -14,9 +14,9 @@ import { UpperFloorRoom } from "./UpperFloor";
 import { PickUpAction } from "../actions/PickUpActions";
 import { BirdCharachter } from "../characters/BirdCharachter";
 import { TalkAction } from "../../game-base/actions/TalkAction";
-import { WoodenStickitem } from "../items/WoodenStickItem";
 import { AtticRoom } from "./AtticRoom";
 import { OpenAction } from "../actions/OpenAction";
+import { MysteriousStickItem } from "../items/MysteriousStickItem";
 
 export class GuestRoomAttic extends Room implements Simple, Walk {
     public static readonly Alias: string = "GuestRoomAttic";
@@ -50,18 +50,30 @@ export class GuestRoomAttic extends Room implements Simple, Walk {
     }
 
     public objects(): GameObject[] {
+        const playerSession: PlayerSession = gameService.getPlayerSession();
         if (gameService.getPlayerSession().HatchOpened === true) {
             return [
                 new AtticRoom(),
             ];
         }
-        return [
-            new WoodenStickitem(),
-            new ServeerplaatItem(),
+        // Basisobjecten die altijd worden getoond
+        const objects: GameObject[] = [
             new AtticAccessItem(),
             new BirdCharachter(),
             new UpperFloorRoom(),
         ];
+
+        // Voeg ServeerplaatItem alleen toe als het nog niet in de inventaris zit
+        if (!playerSession.inventory.includes("Serving platter")) {
+            objects.push(new ServeerplaatItem());
+        }
+
+        // Voeg MysteriousStickItem alleen toe als het nog niet in de inventaris zit
+        if (!playerSession.inventory.includes("MysteriousStick")) {
+            objects.push(new MysteriousStickItem());
+        }
+
+        return objects;
     }
 
     public images(): string[] {
@@ -70,7 +82,7 @@ export class GuestRoomAttic extends Room implements Simple, Walk {
         if (gameService.getPlayerSession().inventory.includes("Serving platter")) {
             result.delete("layers/ServingPlatterFrame");
         }
-        if (gameService.getPlayerSession().inventory.includes("Wooden Stick")) {
+        if (gameService.getPlayerSession().inventory.includes("MysteriousStick")) {
             result.delete("layers/WoodenStickFrame");
         }
         return Array.from(result);

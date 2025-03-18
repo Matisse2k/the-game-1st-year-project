@@ -48,7 +48,6 @@ import { GuardCharacter } from "../characters/GuardCharacter";
 import { GameOverRoom } from "../rooms/GameOverRoom";
 import { AtticRoom } from "../rooms/AtticRoom";
 import { HatchOpenerItem } from "../items/HatchOpenerItem";
-import { WoodenStickitem } from "../items/WoodenStickItem";
 import { GhostAtticCharacter } from "../characters/GhostAtticCharacter";
 import { BirdCharachter } from "../characters/BirdCharachter";
 import { GoodEndingRoom } from "../rooms/GoodEndingRoom";
@@ -86,7 +85,6 @@ export class GameService extends BaseGameService<PlayerSession> {
 
         // Items
         this.registerGameObject(HatchOpenerItem);
-        this.registerGameObject(WoodenStickitem);
         this.registerGameObject(TeddyBearItem);
         this.registerGameObject(StonesItem);
         this.registerGameObject(Stone1Item);
