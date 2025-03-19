@@ -65,8 +65,8 @@ export class UpperFloorRoom extends Room implements Simple, Walk {
 
         // Conditionally add SimpleActions if pickedupDoorhandle is true
         if (playerSession.pickedupDoorhandle && playerSession.inventory.includes("doorhandle")) {
-            actions.push(new SimpleAction("OpenGuestAtic", "Open Guestroom 1"));
-            actions.push(new SimpleAction("OpenGuest", "Open Guestroom 2"));
+            actions.push(new SimpleAction("OpenGuestAtic", "Open West Guestroom"));
+            actions.push(new SimpleAction("OpenGuest", "Open East Guestroom"));
         }
 
         return actions;
