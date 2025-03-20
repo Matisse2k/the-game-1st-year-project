@@ -6,13 +6,13 @@ import { Search } from "../actions/SearchAction";
 import { gameService } from "../../global";
 
 /**
- * Represents the Stone 2 item in the game.
+ * Represents the Upper Right Stone item in the game.
  */
-export class Stone2Item extends Item implements Examine, Search {
-    public static readonly Alias: string = "stone2";
+export class UpperRightStoneItem extends Item implements Examine, Search {
+    public static readonly Alias: string = "upperrightstone";
 
     public constructor() {
-        super(Stone2Item.Alias);
+        super(UpperRightStoneItem.Alias);
     }
 
     /**
@@ -20,7 +20,7 @@ export class Stone2Item extends Item implements Examine, Search {
      * @returns {string} The name of the item.
      */
     public name(): string {
-        return "Stone 2";
+        return "Upper Right Stone";
     }
 
     /**
@@ -28,7 +28,7 @@ export class Stone2Item extends Item implements Examine, Search {
      * @returns {ActionResult | undefined} The result of the examination.
      */
     public examine(): ActionResult | undefined {
-        return new TextActionResult(["This is a small stone. It looks like it has been here for a long time."]);
+        return new TextActionResult(["This is a small stone located on the right side of the path, above the first stone."]);
     }
 
     /**
@@ -41,8 +41,7 @@ export class Stone2Item extends Item implements Examine, Search {
         }
         else {
             gameService.getPlayerSession().lookedUnderStone2 = true;
-            return new TextActionResult(["You look under stone 2 and find nothing."]);
-            // test
+            return new TextActionResult(["You look under the upper right stone and find nothing."]);
         }
     }
 }

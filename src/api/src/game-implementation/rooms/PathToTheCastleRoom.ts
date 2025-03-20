@@ -9,10 +9,10 @@ import { PickUpAction } from "../actions/PickUpActions";
 import { SearchAction } from "../actions/SearchAction";
 import { Walk, WalkAction } from "../actions/WalkAction";
 import { KeyItem } from "../items/KeyItem";
-import { Stone1Item } from "../items/Stone1Item";
-import { Stone2Item } from "../items/Stone2Item";
-import { Stone3Item } from "../items/Stone3Item";
-import { Stone4Item } from "../items/Stone4Item";
+import { LowerRightStoneItem } from "../items/Stone1Item";
+import { UpperRightStoneItem } from "../items/Stone2Item";
+import { LowerLeftStoneItem } from "../items/Stone3Item";
+import { UpperLeftStoneItem } from "../items/Stone4Item";
 import { StonesItem } from "../items/StonesItem";
 import { PlayerSession } from "../types";
 import { CastleDoorEnteranceRoom } from "./CastleDoorEnteranceRoom";
@@ -72,12 +72,25 @@ export class PathToTheCastleRoom extends Room implements Walk {
         const playerSession: PlayerSession = gameService.getPlayerSession();
         const objects: GameObject[] = [
             new StonesItem(),
-            new Stone1Item(),
-            new Stone2Item(),
-            new Stone3Item(),
-            new Stone4Item(),
             new CastleDoorEnteranceRoom(),
         ];
+
+        // Only add stones that the player hasn't looked under yet
+        if (!playerSession.lookedUnderStone1) {
+            objects.push(new LowerRightStoneItem());
+        }
+
+        if (!playerSession.lookedUnderStone2) {
+            objects.push(new UpperRightStoneItem());
+        }
+
+        if (!playerSession.lookedUnderStone3) {
+            objects.push(new LowerLeftStoneItem());
+        }
+
+        if (!playerSession.lookedUnderStone4) {
+            objects.push(new UpperLeftStoneItem());
+        }
 
         // Voeg de sleutel alleen toe als deze is gevonden en niet in de inventaris zit
         if (playerSession.lookedUnderStone3 && !playerSession.inventory.includes(KeyItem.Alias)) {

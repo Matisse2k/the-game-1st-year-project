@@ -7,13 +7,13 @@ import { Search } from "../actions/SearchAction";
 import { PlayerSession } from "../types";
 
 /**
- * Represents the Stone 3 item in the game.
+ * Represents the Lower Left Stone item in the game.
  */
-export class Stone3Item extends Item implements Examine, Search {
-    public static readonly Alias: string = "stone3";
+export class LowerLeftStoneItem extends Item implements Examine, Search {
+    public static readonly Alias: string = "lowerleftstone";
 
     public constructor() {
-        super(Stone3Item.Alias);
+        super(LowerLeftStoneItem.Alias);
     }
 
     /**
@@ -21,7 +21,7 @@ export class Stone3Item extends Item implements Examine, Search {
      * @returns {string} The name of the item.
      */
     public name(): string {
-        return "Stone 3";
+        return "Lower Left Stone";
     }
 
     /**
@@ -29,7 +29,7 @@ export class Stone3Item extends Item implements Examine, Search {
      * @returns {ActionResult | undefined} The result of the examination.
      */
     public examine(): ActionResult | undefined {
-        return new TextActionResult(["This is a small stone. It looks like it has been here for a long time."]);
+        return new TextActionResult(["This is a small stone located on the left side of the path, closest to where you're standing."]);
     }
 
     /**
@@ -43,7 +43,7 @@ export class Stone3Item extends Item implements Examine, Search {
         }
         else {
             playerSession.lookedUnderStone3 = true;
-            return new TextActionResult(["You look under stone 3 and find a rusty key."]);
+            return new TextActionResult(["You look under the lower left stone and find a rusty key."]);
         }
     }
 }
