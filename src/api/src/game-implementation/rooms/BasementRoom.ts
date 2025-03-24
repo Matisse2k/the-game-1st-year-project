@@ -13,11 +13,13 @@ import { LobbyRoom } from "./LobbyRoom";
 import { BookshelfItem } from "../items/BookshelfItem";
 import { PickUpAction } from "../actions/PickUpActions";
 import { KnifeItem } from "../items/KnifeItem";
+import { Simple } from "../../game-base/actions/SimpleAction";
+import { SwitchPageActionResult } from "../actionResults/SwitchPageActionResult";
 
 /**
  * Represents the BasementRoom in the game.
  */
-export class BasementRoom extends Room implements Walk {
+export class BasementRoom extends Room implements Walk, Simple {
     public static readonly Alias: string = "Basement";
 
     /**
@@ -90,6 +92,21 @@ export class BasementRoom extends Room implements Walk {
             new WalkAction(),
             new PickUpAction(),
         ];
+    }
+
+    public simple(alias: string): ActionResult | undefined {
+        if (alias === "show-map") {
+            console.log("🗺️ Navigating to Plattegrond page..."); // Debugging log
+            try {
+                return new SwitchPageActionResult("plattegrond");
+            }
+            catch (error) {
+                console.error("🔥 Fout bij het wisselen naar plattegrond:", error);
+                return new TextActionResult(["❌ Er ging iets mis bij het tonen van de kaart!"]);
+            }
+        }
+
+        return undefined;
     }
 
     /**

@@ -40,7 +40,13 @@ export class RootComponent extends HTMLElement {
             return;
         }
 
-        const element: HTMLElement = this.renderCurrentPage();
+        const element: HTMLElement = html`
+            <div>
+                <game-canvas></game-canvas>
+
+                ${this.renderCurrentPage() || ""}
+            </div>
+        `;
 
         this.shadowRoot.firstChild?.remove();
         this.shadowRoot.append(element);
@@ -51,13 +57,15 @@ export class RootComponent extends HTMLElement {
      *
      * @returns HTML element of the current active page
      */
-    private renderCurrentPage(): HTMLElement {
+    private renderCurrentPage(): HTMLElement | undefined {
         switch (this._currentPage) {
             case Page.Canvas:
-                return html`<game-canvas></game-canvas>`;
+                // return html`<game-canvas></game-canvas>`;
+                return undefined;
             case Page.Inventory:
                 return html`<game-inventory></game-inventory>`;
-
+            case Page.Plattegrond:
+                return html`<game-plattegrond></game-plattegrond>`;
             default:
                 return html`<game-notfound page="${this._currentPage}"></game-notfound>`;
         }
