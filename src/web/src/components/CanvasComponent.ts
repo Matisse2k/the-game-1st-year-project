@@ -8,13 +8,14 @@ import { Page } from "../enums/Page";
 const styles: string = css`
     :host {
         font-family: "Onesize";
-        width: 100%;
+        width: 90vh;
         max-width: 1024px;
         height: 100%;
         display: grid;
         grid-template-columns: 1fr;
         grid-template-rows: auto calc(35vh + 10px) minmax(calc(35vh + 10px), 1fr) auto;
         grid-column-gap: 0px;
+        box-sizing: border-box;
         grid-row-gap: 0px;
     }
 
@@ -46,6 +47,7 @@ const styles: string = css`
 
     .header img.startup {
         min-height: 90vh;
+        min-width: 90vh;
     }
 
     .start-game-button {
@@ -135,8 +137,8 @@ const styles: string = css`
         flex-grow: 1;
         margin-top: 40px;
         padding: 0 10px;
-        overflow: auto; /* Ensure content is scrollable if it overflows */
-        margin-bottom: 20px; /* Add margin to ensure space between content and inventory */
+        overflow: auto; 
+        margin-bottom: 20px; 
     }
 
     .content p {
@@ -203,6 +205,13 @@ const styles: string = css`
             font-size: 1.2em;
             margin-top: 15px;
         }
+
+        .map-button {
+            top: 10px;
+            left: 10px;
+            font-size: 0.9em;
+            padding: 4px 8px;
+        }
     }
 
     @media (max-width: 480px) {
@@ -244,6 +253,32 @@ const styles: string = css`
             font-size: 1em;
             margin-bottom: 1vh;
         }
+
+        .map-button {
+            top: 5px;
+            left: 5px;
+            font-size: 0.8em;
+            padding: 3px 6px;
+        }
+    }
+
+    .map-button {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        background-color: rgba(0, 0, 0, 0.7);
+        color: white;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 5px 10px;
+        cursor: pointer;
+        font-family: "Onesize";
+        font-size: 1em;
+        z-index: 100;
+    }
+
+    .map-button:hover {
+        background-color: rgba(50, 50, 50, 0.7);
     }
 `;
 
@@ -321,6 +356,7 @@ export class CanvasComponent extends HTMLElement {
 
             ${this.renderTitle()}
             ${this.renderHeader()}
+            ${this.renderMapButton()}
             ${this.renderContent()}
             <div style="margin-bottom: 25px;"></div> <!-- Add a spacer div to ensure space between content and inventory -->
             ${this.renderInventory()}
@@ -343,6 +379,12 @@ export class CanvasComponent extends HTMLElement {
         const quitGameButton: Element | null = this.shadowRoot.querySelector(".quit-game-button");
         if (quitGameButton) {
             quitGameButton.addEventListener("click", () => this.handleClickAction({ alias: "quit-game", name: "Game Over", needsObject: false }));
+        }
+
+        // Add event listener for the map button
+        const mapButton: Element | null = this.shadowRoot.querySelector(".map-button");
+        if (mapButton) {
+            mapButton.addEventListener("click", () => this.showMap());
         }
 
         // Apply typewriter effect to the content only if the text has changed
@@ -584,6 +626,41 @@ export class CanvasComponent extends HTMLElement {
         }
 
         // Otherwise, update the game state.
+        this.updateGameState(state);
+    }
+
+    /**
+     * Render the map button
+     *
+     * @returns String with raw HTML for the map button. Empty if in rooms where map is not needed.
+     */
+    private renderMapButton(): string {
+        const roomName: string | undefined = this._currentGameState?.roomName;
+        // Hide the map button in the following rooms:
+        if (roomName === "The shadows of the forgotten Castle" || // Startup room
+          roomName === "Game Over" || // Game Over room
+          roomName === "Castle Door" || // Castle Door
+          roomName === "???" || // WakeUpRoom
+          roomName === "Forrest" || // ForrestRoom
+          roomName === "Path to the Castle" || // PathToTheCastleRoom
+          roomName === "home") { // GoodEndingRoom
+            return ""; // Don't show map button in these rooms
+        }
+
+        return "<button class=\"map-button\">Map</button>";
+    }
+
+    /**
+     * Show the map by requesting a switch to the map page through the API
+     */
+    private async showMap(): Promise<void> {
+        // Use the API's action for showing the map
+        const state: GameState | undefined = await this._gameRouteService.executeAction("show-map");
+
+        if (state === undefined) {
+            return;
+        }
+
         this.updateGameState(state);
     }
 }

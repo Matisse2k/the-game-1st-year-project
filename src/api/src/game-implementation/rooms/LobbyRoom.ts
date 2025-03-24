@@ -20,6 +20,7 @@ import { SearchAction } from "../actions/SearchAction";
 import { PickUpAction } from "../actions/PickUpActions";
 import { KitchenRoom } from "./KitchenRoom";
 import { GuardQuizRoom } from "./GuardQuizRoom";
+import { SwitchPageActionResult } from "../actionResults/SwitchPageActionResult";
 
 export class LobbyRoom extends Room implements Simple, Walk, Simple {
     public static readonly Alias: string = "lobby";
@@ -76,7 +77,6 @@ export class LobbyRoom extends Room implements Simple, Walk, Simple {
             new WalkAction(),
             new SearchAction(),
             new PickUpAction(),
-            // new SimpleAction("start", "Startscherm"),
         ];
     }
 
@@ -113,6 +113,17 @@ export class LobbyRoom extends Room implements Simple, Walk, Simple {
             return new TextActionResult(["You decided to explore more of the castle first."]);
         }
 
+        if (alias === "show-map") {
+            console.log("🗺️ Navigating to Plattegrond page..."); // Debugging log
+            try {
+                return new SwitchPageActionResult("plattegrond");
+            }
+            catch (error) {
+                console.error("🔥 Fout bij het wisselen naar plattegrond:", error);
+                return new TextActionResult(["❌ Er ging iets mis bij het tonen van de kaart!"]);
+            }
+        }
+
         return undefined;
     }
 
@@ -137,6 +148,7 @@ export class LobbyRoom extends Room implements Simple, Walk, Simple {
         }
 
         try {
+            getPlayerSession.BovenOfBeneden = false;
             gameService.getPlayerSession().currentRoom = targetRoom.alias;
             console.log(`✅ Huidige kamer is nu: ${getPlayerSession.currentRoom}`);
             return new TextActionResult([`✅ You walked to the ${targetRoom.alias}!`]);

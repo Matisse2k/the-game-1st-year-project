@@ -2,9 +2,11 @@ import { ActionResult } from "../../game-base/actionResults/ActionResult";
 import { TextActionResult } from "../../game-base/actionResults/TextActionResult";
 import { Action } from "../../game-base/actions/Action";
 import { ExamineAction } from "../../game-base/actions/ExamineAction";
+import { Simple } from "../../game-base/actions/SimpleAction";
 import { GameObject } from "../../game-base/gameObjects/GameObject";
 import { Room } from "../../game-base/gameObjects/Room";
 import { gameService } from "../../global";
+import { SwitchPageActionResult } from "../actionResults/SwitchPageActionResult";
 import { PickUpAction } from "../actions/PickUpActions";
 import { Walk, WalkAction } from "../actions/WalkAction";
 import { DoorHandleItem } from "../items/DoorhandleItem";
@@ -12,11 +14,26 @@ import { GlueItem } from "../items/GlueItem";
 import { PlayerSession } from "../types";
 import { UpperFloorRoom } from "./UpperFloor";
 
-export class WerkkamerRoom extends Room implements Walk {
+export class WerkkamerRoom extends Room implements Walk, Simple {
     public static readonly Alias: string = "Werkkamer";
 
     public constructor() {
         super(WerkkamerRoom.Alias);
+    }
+
+    public simple(alias: string): ActionResult | undefined {
+        if (alias === "show-map") {
+            console.log("🗺️ Navigating to Plattegrond page..."); // Debugging log
+            try {
+                return new SwitchPageActionResult("plattegrond");
+            }
+            catch (error) {
+                console.error("🔥 Fout bij het wisselen naar plattegrond:", error);
+                return new TextActionResult(["❌ Er ging iets mis bij het tonen van de kaart!"]);
+            }
+        }
+
+        return undefined;
     }
 
     public name(): string {

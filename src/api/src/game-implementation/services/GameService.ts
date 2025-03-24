@@ -156,7 +156,7 @@ export class GameService extends BaseGameService<PlayerSession> {
             quizFailed: false,
             HatchOpened: false,
             confirmingWalkToGuardQuiz: false,
-
+            BovenOfBeneden: false,
         };
     }
 

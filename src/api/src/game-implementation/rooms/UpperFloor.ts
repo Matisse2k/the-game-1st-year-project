@@ -13,7 +13,7 @@ import { GuestRoomAttic } from "./GuestRoomAttic";
 import { WerkkamerRoom } from "./WerkkamerRoom";
 import { GuestRoom } from "./GuestRoom";
 import { Simple, SimpleAction } from "../../game-base/actions/SimpleAction";
-import { BasementRoom } from "./BasementRoom";
+import { SwitchPageActionResult } from "../actionResults/SwitchPageActionResult";
 
 export class UpperFloorRoom extends Room implements Simple, Walk {
     public static readonly Alias: string = "Upper Floor";
@@ -59,6 +59,7 @@ export class UpperFloorRoom extends Room implements Simple, Walk {
             new ExamineAction(),
             new TalkAction(),
             new WalkAction(),
+            new SimpleAction("Kaart", "Web component"),
         ];
 
         const playerSession: PlayerSession = gameService.getPlayerSession();
@@ -73,16 +74,23 @@ export class UpperFloorRoom extends Room implements Simple, Walk {
     }
 
     public examine(): ActionResult | undefined {
-        const playerSession: PlayerSession = gameService.getPlayerSession();
-        if (playerSession.currentRoom !== BasementRoom.Alias) {
-            return undefined;
-        }
         return new TextActionResult([
             "3 doors but witch one do i need",
         ]);
     }
 
     public simple(alias: string): ActionResult | undefined {
+        if (alias === "Kaart") {
+            console.log("🗺️ Navigating to Plattegrond page..."); // Debugging log
+            try {
+                return new SwitchPageActionResult("plattegrond");
+            }
+            catch (error) {
+                console.error("🔥 Fout bij het wisselen van kamer:", error);
+                return new TextActionResult(["❌ Er ging iets mis bij het lopen!"]);
+            }
+        }
+
         if (alias === "OpenGuestAtic") {
             const PlayerSession: PlayerSession = gameService.getPlayerSession();
 
@@ -127,6 +135,17 @@ export class UpperFloorRoom extends Room implements Simple, Walk {
             ]);
         }
 
+        if (alias === "show-map") {
+            console.log("🗺️ Navigating to Plattegrond page..."); // Debugging log
+            try {
+                return new SwitchPageActionResult("plattegrond");
+            }
+            catch (error) {
+                console.error("🔥 Fout bij het wisselen naar plattegrond:", error);
+                return new TextActionResult(["❌ Er ging iets mis bij het tonen van de kaart!"]);
+            }
+        }
+
         return undefined;
     }
 
@@ -152,6 +171,7 @@ export class UpperFloorRoom extends Room implements Simple, Walk {
 
         if (PlayerSession.GhostQuestCompleted && PlayerSession.ChefQuestCompleted) {
             const room: Room = new UpperFloorRoom();
+            PlayerSession.BovenOfBeneden = true;
             PlayerSession.currentRoom = room.alias;
             return new TextActionResult(["✅ You walked to the Upper floor."]);
         }

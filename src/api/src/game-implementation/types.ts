@@ -32,4 +32,5 @@ export type PlayerSession = {
     quizCompleted: boolean;
     quizFailed: boolean;
     confirmingWalkToGuardQuiz: boolean;
+    BovenOfBeneden: boolean;
 };

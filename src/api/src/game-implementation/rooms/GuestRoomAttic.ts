@@ -17,6 +17,7 @@ import { TalkAction } from "../../game-base/actions/TalkAction";
 import { AtticRoom } from "./AtticRoom";
 import { OpenAction } from "../actions/OpenAction";
 import { MysteriousStickItem } from "../items/MysteriousStickItem";
+import { SwitchPageActionResult } from "../actionResults/SwitchPageActionResult";
 
 export class GuestRoomAttic extends Room implements Simple, Walk {
     public static readonly Alias: string = "GuestRoomAttic";
@@ -88,7 +89,17 @@ export class GuestRoomAttic extends Room implements Simple, Walk {
         return Array.from(result);
     }
 
-    public simple(_alias: string): ActionResult | undefined {
+    public simple(alias: string): ActionResult | undefined {
+        if (alias === "show-map") {
+            console.log("🗺️ Navigating to Plattegrond page..."); // Debugging log
+            try {
+                return new SwitchPageActionResult("plattegrond");
+            }
+            catch (error) {
+                console.error("🔥 Fout bij het wisselen naar plattegrond:", error);
+                return new TextActionResult(["❌ Er ging iets mis bij het tonen van de kaart!"]);
+            }
+        }
         return undefined;
     }
 
