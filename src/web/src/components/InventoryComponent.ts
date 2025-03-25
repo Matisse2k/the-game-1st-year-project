@@ -170,7 +170,7 @@ export class InventoryComponent extends HTMLElement {
             console.log("Server response:", response); // Log de respons om te controleren
             const items: { name: string; imageUrl: string; description: string }[] = await Promise.all(response.map(async (item: string) => ({
                 name: item,
-                imageUrl: `/public/assets/img/rooms/items/${item}.png`,
+                imageUrl: `/assets/img/rooms/items/${item}.png`,
                 // imageUrl: `/assets/img/rooms/items/${item}.png`, // Dit is voor de live server plaatjes.
                 description: await this._inventoryService.fetchItemDescription(item),
             })));
