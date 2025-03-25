@@ -41,6 +41,11 @@ export class GuardQuizRoom extends Room implements Simple, Walk {
     }
 
     public examine(): ActionResult | undefined {
+        const playerSession: PlayerSession = gameService.getPlayerSession();
+        if (playerSession.currentRoom !== GuardQuizRoom.Alias) {
+            return undefined;
+        }
+
         return new TextActionResult([
             "You are in the Quiz Room.",
         ]);

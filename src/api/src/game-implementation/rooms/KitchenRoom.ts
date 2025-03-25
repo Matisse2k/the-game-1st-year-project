@@ -65,6 +65,11 @@ export class KitchenRoom extends Room implements Walk, Simple {
     }
 
     public examine(): ActionResult | undefined {
+        const playerSession: PlayerSession = gameService.getPlayerSession();
+        if (playerSession.currentRoom !== KitchenRoom.Alias) {
+            return undefined;
+        }
+
         return new TextActionResult (["working"]);
     }
 

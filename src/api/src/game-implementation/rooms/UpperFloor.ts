@@ -74,6 +74,10 @@ export class UpperFloorRoom extends Room implements Simple, Walk {
     }
 
     public examine(): ActionResult | undefined {
+        const playerSession: PlayerSession = gameService.getPlayerSession();
+        if (playerSession.currentRoom !== UpperFloorRoom.Alias) {
+            return undefined;
+        }
         return new TextActionResult([
             "3 doors but witch one do i need",
         ]);
