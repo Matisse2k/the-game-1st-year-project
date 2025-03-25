@@ -20,7 +20,7 @@ export class UpperRightStoneItem extends Item implements Examine, Search {
      * @returns {string} The name of the item.
      */
     public name(): string {
-        return "Upper Right Stone";
+        return "Lower left Stone";
     }
 
     /**
@@ -28,7 +28,7 @@ export class UpperRightStoneItem extends Item implements Examine, Search {
      * @returns {ActionResult | undefined} The result of the examination.
      */
     public examine(): ActionResult | undefined {
-        return new TextActionResult(["This is a small stone located on the right side of the path, above the first stone."]);
+        return new TextActionResult([" This is a small stone located on the left side of the path, closest to where you're standing."]);
     }
 
     /**
@@ -41,7 +41,7 @@ export class UpperRightStoneItem extends Item implements Examine, Search {
         }
         else {
             gameService.getPlayerSession().lookedUnderStone2 = true;
-            return new TextActionResult(["You look under the upper right stone and find nothing."]);
+            return new TextActionResult(["You look under the lower left stone and find nothing."]);
         }
     }
 }
