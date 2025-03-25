@@ -19,6 +19,7 @@ import { TeddyBearItem } from "../items/TeddyBearItem";
 import { KnifeItem } from "../items/KnifeItem";
 import { MysteriousPaperItem } from "../items/MysteriousPaperItem";
 import { ServeerplaatItem } from "../items/ServeerplaatItem";
+import { GroundFloorMap } from "../items/GroundFloorMapItem";
 
 /**
  * Controller to handle all game related requests
@@ -245,6 +246,7 @@ export class GameController {
                 [KnifeItem.Alias]: KnifeItem,
                 [MysteriousPaperItem.Alias]: MysteriousPaperItem,
                 [ServeerplaatItem.Alias]: ServeerplaatItem,
+                [GroundFloorMap.Alias]: GroundFloorMap,
             // Add other items here as needed
             };
 

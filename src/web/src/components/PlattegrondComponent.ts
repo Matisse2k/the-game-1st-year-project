@@ -95,7 +95,7 @@ export class PlattegrondComponent extends HTMLElement {
                 ${styles}
             </style>
             <div class="container">
-                <img src="/public/assets/img/rooms/Plattegrondbeneden.png" alt="boven verdieping">
+                <img src="/assets/img/rooms/Plattegrondbeneden.png" alt="boven verdieping">
                 <button id="alert-button">X</button>
             </div>
         `;
@@ -112,7 +112,7 @@ export class PlattegrondComponent extends HTMLElement {
                 ${styles}
             </style>
             <div class="container">
-                <img src="/public/assets/img/rooms/Plattegrondboven.png" alt="boven verdieping">
+                <img src="/assets/img/rooms/Plattegrondboven.png" alt="boven verdieping">
                 <button id="alert-button">X</button>
             </div>
         `;
