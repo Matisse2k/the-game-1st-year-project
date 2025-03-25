@@ -73,8 +73,8 @@ export class BasementRoom extends Room implements Walk, Simple {
             new BookshelfItem(),
         ];
 
-        // Voeg het mes toe als het door de geest is gegeven
-        if (playerSession.knifeGiven && !playerSession.inventory.includes("knife")) {
+        // Only show the knife if it's been revealed by the ghost, hasn't been picked up yet, and hasn't been given to the chef
+        if (playerSession.knifeGiven && !playerSession.inventory.includes("knife") && !playerSession.ChefQuestCompleted) {
             objects.push(new KnifeItem());
         }
 

@@ -86,9 +86,15 @@ export class GhostCharacter extends Character implements Examine {
             }
         }
         else if (choiceId === 6) {
-            if (PlayerSession.ChefQuestStarted && !PlayerSession.inventory.includes("knife")) {
+            if (PlayerSession.ChefQuestStarted && !PlayerSession.inventory.includes("knife") && !PlayerSession.knifeGiven && !PlayerSession.ChefQuestCompleted) {
                 PlayerSession.knifeGiven = true; // Set knifeGiven to true
                 return new TextActionResult(["You are looking for the knife aren't you?", "I can help you with that. The knife lays on the table right next to me, just pick it up."]);
+            }
+            else if (PlayerSession.knifeGiven && !PlayerSession.ChefQuestCompleted) {
+                return new TextActionResult(["I've already helped you with the knife. It should be on the table if you haven't picked it up yet."]);
+            }
+            else if (PlayerSession.ChefQuestCompleted) {
+                return new TextActionResult(["I see you've already given the knife to the chef. I'm glad I could help."]);
             }
         }
         return new TalkActionResult(
@@ -100,7 +106,7 @@ export class GhostCharacter extends Character implements Examine {
                 new TalkChoice(1, "Who are you?"),
                 new TalkChoice(2, "Step away"),
                 ...(PlayerSession.GhostQuestStarted && !PlayerSession.GhostQuestCompleted ? [new TalkChoice(5, "Give teddy bear")] : []),
-                ...(PlayerSession.ChefQuestStarted ? [new TalkChoice(6, "Ask for help with chef's quest")] : []),
+                ...(PlayerSession.ChefQuestStarted && !PlayerSession.ChefQuestCompleted ? [new TalkChoice(6, "Ask for help with chef's quest")] : []),
             ]
         );
     }
