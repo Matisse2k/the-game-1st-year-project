@@ -53,6 +53,7 @@ import { BirdCharachter } from "../characters/BirdCharachter";
 import { GoodEndingRoom } from "../rooms/GoodEndingRoom";
 import { OpenAction } from "../actions/OpenAction";
 import { InspectAction } from "../actions/InspectAction";
+import { GroundFloorMap } from "../items/GroundFloorMapItem";
 /**
  * Implementation of the game service used to operate the game engine
  */
@@ -105,6 +106,7 @@ export class GameService extends BaseGameService<PlayerSession> {
         this.registerGameObject(BookshelfItem);
         this.registerGameObject(KnifeItem);
         this.registerGameObject(MysteriousPaperItem);
+        this.registerGameObject(GroundFloorMap);
 
         // Characters
         this.registerGameObject(GhostAtticCharacter);
@@ -157,6 +159,8 @@ export class GameService extends BaseGameService<PlayerSession> {
             HatchOpened: false,
             confirmingWalkToGuardQuiz: false,
             BovenOfBeneden: false,
+            GotCastleMap: false,
+            FirstTimeButler: false,
         };
     }
 

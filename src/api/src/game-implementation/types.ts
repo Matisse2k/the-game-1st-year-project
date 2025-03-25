@@ -33,4 +33,6 @@ export type PlayerSession = {
     quizFailed: boolean;
     confirmingWalkToGuardQuiz: boolean;
     BovenOfBeneden: boolean;
+    FirstTimeButler: boolean;
+    GotCastleMap: boolean;
 };

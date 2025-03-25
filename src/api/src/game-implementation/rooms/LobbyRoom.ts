@@ -39,7 +39,27 @@ export class LobbyRoom extends Room implements Simple, Walk, Simple {
 
     public objects(): GameObject[] {
         const playerSession: PlayerSession = gameService.getPlayerSession();
-        const objects: GameObject[] = [
+        const objects: GameObject[] = [];
+
+        if (!playerSession.FirstTimeButler && !playerSession.inventory.includes("ground floor map")) {
+            return [
+                new ButlerCharacter(),
+            ];
+        }
+
+        else if (playerSession.FirstTimeButler && !playerSession.inventory.includes("ground floor map")) {
+            return [
+                new ButlerCharacter(),
+            ];
+        }
+
+        else if (!playerSession.FirstTimeButler && playerSession.inventory.includes("ground floor map")) {
+            return [
+                new ButlerCharacter(),
+            ];
+        }
+
+        objects.push(
             new KitchenRoom(),
             new UpperFloorRoom(),
             new ButlerCharacter(),
@@ -47,8 +67,8 @@ export class LobbyRoom extends Room implements Simple, Walk, Simple {
             new CouchItem(),
             new CabinetItem(),
             new TableItem(),
-            new GuardQuizRoom(),
-        ];
+            new GuardQuizRoom()
+        );
 
         // Voeg de teddybeer alleen toe als deze is gevonden
         if (playerSession.TeddyBearFound && !playerSession.pickedupTeddyBear) {
@@ -68,6 +88,28 @@ export class LobbyRoom extends Room implements Simple, Walk, Simple {
             return [
                 new SimpleAction("walk-to-guard-quiz", "Yes, I want to go to the guard quiz!"),
                 new SimpleAction("cancel-walk-to-guard-quiz", "Nevermind, I will learn more first."),
+            ];
+        }
+
+        // Show only Examine and Talk actions if this is first butler interaction
+        if (!playerSession.FirstTimeButler && !playerSession.inventory.includes("ground floor map")) {
+            return [
+                new ExamineAction(),
+                new TalkAction(),
+            ];
+        }
+
+        else if (playerSession.FirstTimeButler && !playerSession.inventory.includes("ground floor map")) {
+            return [
+                new ExamineAction(),
+                new TalkAction(),
+            ];
+        }
+
+        else if (!playerSession.FirstTimeButler && playerSession.inventory.includes("ground floor map")) {
+            return [
+                new ExamineAction(),
+                new TalkAction(),
             ];
         }
 
@@ -115,12 +157,11 @@ export class LobbyRoom extends Room implements Simple, Walk, Simple {
 
         if (alias === "show-map") {
             console.log("🗺️ Navigating to Plattegrond page..."); // Debugging log
-            try {
+            if (playerSession.inventory.includes("ground floor map")) {
                 return new SwitchPageActionResult("plattegrond");
             }
-            catch (error) {
-                console.error("🔥 Fout bij het wisselen naar plattegrond:", error);
-                return new TextActionResult(["❌ Er ging iets mis bij het tonen van de kaart!"]);
+            else {
+                return new TextActionResult(["You don't have a map yet. Try to find one first!"]);
             }
         }
 
