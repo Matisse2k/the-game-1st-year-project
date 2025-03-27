@@ -59,7 +59,6 @@ export class UpperFloorRoom extends Room implements Simple, Walk {
             new ExamineAction(),
             new TalkAction(),
             new WalkAction(),
-            new SimpleAction("Kaart", "Web component"),
         ];
 
         const playerSession: PlayerSession = gameService.getPlayerSession();

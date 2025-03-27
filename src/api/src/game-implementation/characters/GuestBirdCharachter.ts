@@ -4,6 +4,8 @@ import { TextActionResult } from "../../game-base/actionResults/TextActionResult
 import { Examine } from "../../game-base/actions/ExamineAction";
 import { TalkChoice } from "../../game-base/actions/TalkAction";
 import { Character } from "../../game-base/gameObjects/Character";
+import { gameService } from "../../global";
+import { PlayerSession } from "../types";
 
 export class BirdCharachter extends Character implements Examine {
     public static readonly Alias: string = "BirdCharacter";
@@ -21,6 +23,7 @@ export class BirdCharachter extends Character implements Examine {
     }
 
     public talk(choiceId?: number): ActionResult | undefined {
+        const PlayerSession: PlayerSession = gameService.getPlayerSession();
         if (choiceId === 1) {
             return new TalkActionResult(
                 this,
@@ -77,10 +80,11 @@ export class BirdCharachter extends Character implements Examine {
         }
 
         else if (choiceId === 10 || choiceId === 13) {
+            PlayerSession.TalkedToBird = true;
             return new TalkActionResult(
                 this,
 
-                ["That is for you to figure out"],
+                ["That is for you to figure out, maybe some people you met earlier can help you"],
 
                 [
                     new TalkChoice (15, "I will escape this place!"),
@@ -89,6 +93,7 @@ export class BirdCharachter extends Character implements Examine {
         }
 
         else if (choiceId === 9 || choiceId === 12) {
+            PlayerSession.TalkedToBird = true;
             return new TalkActionResult(
                 this,
 

@@ -12,7 +12,7 @@ import { Walk, WalkAction } from "../actions/WalkAction";
 import { Simple } from "../../game-base/actions/SimpleAction";
 import { UpperFloorRoom } from "./UpperFloor";
 import { PickUpAction } from "../actions/PickUpActions";
-import { BirdCharachter } from "../characters/BirdCharachter";
+import { BirdCharachter } from "../characters/GuestBirdCharachter";
 import { TalkAction } from "../../game-base/actions/TalkAction";
 import { AtticRoom } from "./AtticRoom";
 import { OpenAction } from "../actions/OpenAction";

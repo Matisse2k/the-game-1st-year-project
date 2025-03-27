@@ -26,16 +26,6 @@ export class ChefCharacter extends Character implements Examine {
     public talk(choiceId?: number): ActionResult | undefined {
         const PlayerSession: PlayerSession = gameService.getPlayerSession();
 
-        // Check if the ChefQuestCompleted is true
-        if (PlayerSession.ChefQuestCompleted) {
-            return new TextActionResult([
-                "Gustavo: Ah, there you are! Thank you again for the knife. Now I can finally cook properly!",
-                "The chef is busy chopping ingredients with precision and care.", "",
-                "Gustavo: This stew will be magnificent. I haven't been able to cook like this in ages.",
-                "He smiles at you, then returns to his work, fully absorbed in his craft.",
-            ]);
-        }
-
         if (choiceId === 1) {
             return new TalkActionResult (
                 this,
@@ -91,6 +81,43 @@ export class ChefCharacter extends Character implements Examine {
                 ]
             );
         }
+
+        else if (choiceId === 7) {
+            return new TextActionResult ([
+                "Gustavo's eyes gleam with an unusual intensity. He lowers his voice:",
+                "So you know what's coming. The bird speaks of the truth. How many questions, I have no clue.",
+                "Although, I know an answer for the guard. Because you helped me with the knife, I will give you a hint.",
+                "The question is: 'What is the chef's most important tool?' The answer is 'A kitchen knife, of course'.",
+            ]);
+        }
+
+        // Check if the ChefQuestCompleted is true
+        if (PlayerSession.ChefQuestCompleted) {
+            if (PlayerSession.TalkedToBird) {
+                return new TalkActionResult(
+                    this,
+                    [
+                        "Gustavo: Ah, there you are! Thank you again for the knife. Now I can finally cook properly!",
+                        "The chef is busy chopping ingredients with precision and care.", "",
+                        "Gustavo: This stew will be magnificent. I haven't been able to cook like this in ages.",
+                        "He smiles at you, then returns to his work, fully absorbed in his craft.",
+                    ],
+                    [
+                        new TalkChoice(7, "What did the bird mean by answering questions right?"),
+                    ]
+                );
+            }
+
+            return new TextActionResult(
+                [
+                    "Gustavo: Ah, there you are! Thank you again for the knife. Now I can finally cook properly!",
+                    "The chef is busy chopping ingredients with precision and care.", "",
+                    "Gustavo: This stew will be magnificent. I haven't been able to cook like this in ages.",
+                    "He smiles at you, then returns to his work, fully absorbed in his craft.",
+                ]
+            );
+        }
+
         // Shows a choice menu of 3 answers to choose from when the player starts talking to the bird
         return new TalkActionResult (
             this,

@@ -36,7 +36,7 @@ import { BookshelfItem } from "../items/BookshelfItem";
 import { KnifeItem } from "../items/KnifeItem";
 import { GiveAction } from "../actions/GiveAction";
 import { RavenCharacter } from "../characters/RavenCharacter";
-import { BirdCharacter } from "../characters/BirdCharacter";
+import { BirdCharacter } from "../characters/ForestBirdCharacter";
 import { ForrestRoom } from "../rooms/ForrestRoom";
 import { WakeUpRoom } from "../rooms/WakeUpRoom";
 import { StartAreaItem } from "../items/StartAreaItem";
@@ -49,7 +49,7 @@ import { GameOverRoom } from "../rooms/GameOverRoom";
 import { AtticRoom } from "../rooms/AtticRoom";
 import { HatchOpenerItem } from "../items/HatchOpenerItem";
 import { GhostAtticCharacter } from "../characters/GhostAtticCharacter";
-import { BirdCharachter } from "../characters/BirdCharachter";
+import { BirdCharachter } from "../characters/GuestBirdCharachter";
 import { GoodEndingRoom } from "../rooms/GoodEndingRoom";
 import { OpenAction } from "../actions/OpenAction";
 import { InspectAction } from "../actions/InspectAction";
@@ -161,6 +161,7 @@ export class GameService extends BaseGameService<PlayerSession> {
             BovenOfBeneden: false,
             GotCastleMap: false,
             FirstTimeButler: false,
+            TalkedToBird: false,
         };
     }
 

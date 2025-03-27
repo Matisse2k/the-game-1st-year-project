@@ -4,6 +4,8 @@ import { TextActionResult } from "../../game-base/actionResults/TextActionResult
 import { Examine } from "../../game-base/actions/ExamineAction";
 import { TalkChoice } from "../../game-base/actions/TalkAction";
 import { Character } from "../../game-base/gameObjects/Character";
+import { gameService } from "../../global";
+import { PlayerSession } from "../types";
 
 export class RavenCharacter extends Character implements Examine {
     public static readonly Alias: string = " raven";
@@ -21,6 +23,7 @@ export class RavenCharacter extends Character implements Examine {
     }
 
     public talk(choiceId?: number): ActionResult | undefined {
+        const PlayerSession: PlayerSession = gameService.getPlayerSession();
         if (choiceId === 1) {
             return new TalkActionResult(
                 this,
@@ -79,7 +82,8 @@ export class RavenCharacter extends Character implements Examine {
         }
 
         else if (choiceId === 6) {
-            return new TextActionResult(["Raven: I do not deal in lies. Choose your answers wisely, traveler… for they will decide your fate"]);
+            PlayerSession.TalkedToBird = true;
+            return new TextActionResult(["Raven: I do not deal in lies. Choose your answers wisely, traveler… for they will decide your fate. Try asking the people you have met for help. Speak to the Guard when you are ready."]);
         }
 
         return new TalkActionResult(

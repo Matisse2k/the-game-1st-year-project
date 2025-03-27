@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 import { gameService } from "../../global";
 
 export class PlattegrondController {
-    public HandelPlaatje(_: Request, res: Response): void {
+    public handlePlaatje(_: Request, res: Response): void {
         // const playersession: PlayerSession = gameService.getPlayerSession();
 
         if (gameService.getPlayerSession().BovenOfBeneden) {

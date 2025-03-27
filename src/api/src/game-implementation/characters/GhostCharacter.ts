@@ -97,6 +97,18 @@ export class GhostCharacter extends Character implements Examine {
                 return new TextActionResult(["I see you've already given the knife to the chef. I'm glad I could help."]);
             }
         }
+
+        else if (choiceId === 7) {
+            return new TextActionResult ([
+                "The ghost's form flickers slightly as he considers your question. His voice echoes softly:",
+                "I'm sad to see you wanna go away from the mansion... I've grown fond of your presence here.",
+                "But you found my teddy bear, so I will honor my promise to help you.",
+                "One question is about where you found my little bear",
+                "The other is about the butler. Something about how old the castle is.",
+                "Be careful as you venture upward. Goodluck.",
+            ]);
+        }
+
         return new TalkActionResult(
             this,
             [
@@ -107,6 +119,7 @@ export class GhostCharacter extends Character implements Examine {
                 new TalkChoice(2, "Step away"),
                 ...(PlayerSession.GhostQuestStarted && !PlayerSession.GhostQuestCompleted ? [new TalkChoice(5, "Give teddy bear")] : []),
                 ...(PlayerSession.ChefQuestStarted && !PlayerSession.ChefQuestCompleted ? [new TalkChoice(6, "Ask for help with chef's quest")] : []),
+                ...(PlayerSession.TalkedToBird ? [new TalkChoice(7, "I need your help with the questions ")] : []),
             ]
         );
     }

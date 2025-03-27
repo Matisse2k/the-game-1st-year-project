@@ -4,7 +4,7 @@ import { TextActionResult } from "../../game-base/actionResults/TextActionResult
 import { Action } from "../../game-base/actions/Action";
 import { ExamineAction } from "../../game-base/actions/ExamineAction";
 import { GameObject } from "../../game-base/gameObjects/GameObject";
-import { BirdCharacter } from "../characters/BirdCharacter";
+import { BirdCharacter } from "../characters/ForestBirdCharacter";
 import { TalkAction } from "../../game-base/actions/TalkAction";
 import { WalkAction } from "../actions/WalkAction";
 import { PlayerSession } from "../types";
