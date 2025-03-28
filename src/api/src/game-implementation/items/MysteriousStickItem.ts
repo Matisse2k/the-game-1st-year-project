@@ -5,14 +5,14 @@ import { Item } from "../../game-base/gameObjects/Item";
 import { PickUp } from "../actions/PickUpActions";
 
 export class MysteriousStickItem extends Item implements Examine, PickUp {
-    public static readonly Alias: string = "MysteriousStick";
+    public static readonly Alias: string = "Mysterious stick";
 
     public constructor() {
         super(MysteriousStickItem.Alias);
     }
 
     public name(): string {
-        return "Mysterious Stick";
+        return "Mysterious stick";
     }
 
     public examine(): ActionResult {

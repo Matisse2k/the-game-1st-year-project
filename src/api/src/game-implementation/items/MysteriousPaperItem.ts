@@ -4,14 +4,14 @@ import { Item } from "../../game-base/gameObjects/Item";
 import { Inspect } from "../actions/InspectAction";
 
 export class MysteriousPaperItem extends Item implements Inspect {
-    public static readonly Alias: string = "MysteriousPaper";
+    public static readonly Alias: string = "Mysterious paper";
 
     public constructor() {
         super(MysteriousPaperItem.Alias);
     }
 
     public name(): string {
-        return "Mysterious Paper";
+        return "Mysterious paper";
     }
 
     public getDescription(): string {

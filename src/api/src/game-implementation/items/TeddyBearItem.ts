@@ -7,7 +7,7 @@ import { PickUp } from "../actions/PickUpActions";
 import { PlayerSession } from "../types";
 
 export class TeddyBearItem extends Item implements Examine, PickUp {
-    public static readonly Alias: string = "teddybear";
+    public static readonly Alias: string = "teddy bear";
 
     public constructor() {
         super(TeddyBearItem.Alias);
