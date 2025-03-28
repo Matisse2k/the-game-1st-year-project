@@ -144,7 +144,7 @@ export class ButlerCharacter extends Character implements Examine {
 
                     "Ghost: Yes, I have given him permission to go upstairs. He is a friend of mine.",
 
-                    "Butler: Very well then, but one person is not enough to go upstairs.",
+                    "Butler: Very well then, but one person's permission is not enough to go upstairs.",
                 ],
                 [
                     new TalkChoice(10, "I also got the chef's permission."),
