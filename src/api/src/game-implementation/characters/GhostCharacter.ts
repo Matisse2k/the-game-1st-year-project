@@ -78,7 +78,7 @@ export class GhostCharacter extends Character implements Examine {
         else if (choiceId === 5) {
             if (PlayerSession.TeddyBearFound) {
                 PlayerSession.GhostQuestCompleted = true;
-                PlayerSession.inventory = PlayerSession.inventory.filter(item => item !== "teddybear");
+                PlayerSession.inventory = PlayerSession.inventory.filter(item => item !== "teddy bear");
                 return new TextActionResult(["Thank you for finding my teddy bear. As promised, you now have my *permission* to go to the Upper floor."]);
             }
             else {
