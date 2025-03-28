@@ -123,6 +123,46 @@ export class ButlerCharacter extends Character implements Examine {
             return new TextActionResult(["You step back, concluding the conversation for now."]);
         }
 
+        else if (choiceId === 8) {
+            return new TalkActionResult(
+                this,
+                [
+                    "Butler: Oh but, I cannot allow you to go upstairs without permission.",
+                ],
+                [
+                    new TalkChoice(9, "I got the ghost's permission."),
+
+                ]
+            );
+        }
+
+        else if (choiceId === 9) {
+            return new TalkActionResult(
+                this,
+                [
+                    "Butler: Dear ghost is that true?",
+
+                    "Ghost: Yes, I have given him permission to go upstairs. He is a friend of mine.",
+
+                    "Butler: Very well then, but one person is not enough to go upstairs.",
+                ],
+                [
+                    new TalkChoice(10, "I also got the chef's permission."),
+                ]
+            );
+        }
+
+        else if (choiceId === 10) {
+            PlayerSession.butlerspermission = true;
+            return new TextActionResult([
+                "Butler: Oh wow you convinced the chef?, Gustavo is he speaking the truth? ?",
+
+                "Chef: Yes, That is indeed true. He knows how to cook.",
+
+                "Butler: Very well then, you may go upstairs. But be careful, the upper floor is not a place for the faint-hearted.",
+            ]);
+        }
+
         return new TalkActionResult(
             this,
             [
@@ -134,6 +174,7 @@ export class ButlerCharacter extends Character implements Examine {
                 new TalkChoice(1, "Who are you?"),
                 new TalkChoice(2, "Where am I?"),
                 new TalkChoice(3, "Never mind"),
+                ...(!PlayerSession.butlerspermission && PlayerSession.GhostQuestCompleted && PlayerSession.ChefQuestCompleted ? [new TalkChoice(8, "Can i go upstairs now?")] : []),
             ]
         );
     }

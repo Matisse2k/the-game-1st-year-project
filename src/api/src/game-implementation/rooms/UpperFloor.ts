@@ -172,7 +172,7 @@ export class UpperFloorRoom extends Room implements Simple, Walk {
             return new TextActionResult(["❌ You can't walk to that!"]);
         }
 
-        if (PlayerSession.GhostQuestCompleted && PlayerSession.ChefQuestCompleted) {
+        if (PlayerSession.butlerspermission) {
             const room: Room = new UpperFloorRoom();
             PlayerSession.BovenOfBeneden = true;
             PlayerSession.currentRoom = room.alias;
@@ -185,6 +185,10 @@ export class UpperFloorRoom extends Room implements Simple, Walk {
 
         else if (!PlayerSession.GhostQuestCompleted && PlayerSession.ChefQuestCompleted) {
             return new TextActionResult(["Butler: I can't let you go there yet you haven't spoken to everybody yet"]);
+        }
+
+        else if (PlayerSession.GhostQuestCompleted && PlayerSession.ChefQuestCompleted) {
+            return new TextActionResult(["Butler: Come speak to mee first."]);
         }
 
         return new TextActionResult(["Butler: I can't let you go there yet"]);

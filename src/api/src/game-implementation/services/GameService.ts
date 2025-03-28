@@ -162,6 +162,7 @@ export class GameService extends BaseGameService<PlayerSession> {
             GotCastleMap: false,
             FirstTimeButler: false,
             TalkedToBird: false,
+            butlerspermission: false,
         };
     }
 

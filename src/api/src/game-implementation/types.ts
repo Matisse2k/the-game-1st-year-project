@@ -36,4 +36,5 @@ export type PlayerSession = {
     FirstTimeButler: boolean;
     GotCastleMap: boolean;
     TalkedToBird: boolean;
+    butlerspermission: boolean;
 };
