@@ -80,7 +80,7 @@ export class PlattegrondComponent extends HTMLElement {
 
         // Add event listener for the button
         this.shadowRoot?.querySelector("#alert-button")?.addEventListener("click", () => {
-            window.location.href = ""; // Navigate to the default page
+            this.remove(); // Remove the map component from the DOM
         });
     }
 
