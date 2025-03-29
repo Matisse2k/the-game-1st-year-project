@@ -138,7 +138,8 @@ const styles: string = css`
         margin-top: 40px;
         padding: 0 10px;
         overflow: auto; 
-        margin-bottom: 20px; 
+        max-height: 30vh; /* Vaste maximale hoogte voor content */
+        margin-bottom: 100px; /* Vergroot de marge onder voor meer ruimte boven inventory */
     }
 
     .content p {
@@ -214,6 +215,12 @@ const styles: string = css`
         }
     }
 
+    @media (min-width: 768px) {
+        .header img {
+            max-height: 105%;
+        }
+    }
+
     @media (max-width: 480px) {
         .start-game-button {
             font-size: 0.9em;
@@ -236,8 +243,6 @@ const styles: string = css`
             display: inline-block;
             white-space: pre-wrap;
             overflow: hidden;
-            border-right: 0.15em solid orange; /* Cursor effect */
-            animation: blink-caret 0.75s step-end infinite;
 }
 
 @keyframes blink-caret {
@@ -491,11 +496,21 @@ export class CanvasComponent extends HTMLElement {
 
         element.innerHTML = ""; // Clear the element before starting the animation
 
+        // Vervang "\n" met een HTML break tag voor daadwerkelijke nieuwe regels
+        const formattedText: string = text.replace(/\n/g, "<br>");
+
         let i: number = 0;
         const interval: NodeJS.Timeout = setInterval(() => {
-            if (i < text.length) {
-                element.innerHTML += text.charAt(i);
-                i++;
+            if (i < formattedText.length) {
+                // Check of het huidige karakter en de volgende 3 karakters een <br> tag vormen
+                if (formattedText.substring(i, i + 4) === "<br>") {
+                    element.innerHTML += "<br>";
+                    i += 4; // Skip voorbij de <br> tag
+                }
+                else {
+                    element.innerHTML += formattedText.charAt(i);
+                    i++;
+                }
             }
             else {
                 clearInterval(interval);

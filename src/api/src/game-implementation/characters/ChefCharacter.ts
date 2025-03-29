@@ -123,6 +123,7 @@ export class ChefCharacter extends Character implements Examine {
             this,
             [
                 "You: That smell… it's stew, isn't it? But tell me, chef—what exactly are you preparing?",
+                "\n", "\n",
                 "Gustavo: The stew… ah, it will be unlike any other. A rich, thick broth, tender cuts, the kind that melt upon the tongue. But...",
                 " there is one thing I still require.",
             ],

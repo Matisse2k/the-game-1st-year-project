@@ -58,7 +58,11 @@ export class GhostCharacter extends Character implements Examine {
             return new TalkActionResult(
                 this,
                 [
-                    "I am here because I am bound to this place by a curse. Long ago, I was the caretaker of this mansion. One night, a terrible tragedy occurred, and I was unable to save those I cared for. As punishment for my failure, my soul was condemned to wander these halls for eternity, guarding the secrets and the sorrow that linger within these walls.",
+                    "I am here because I am bound to this place by a curse.\n\n" +
+                    "Long ago, I was the caretaker of this mansion. One night, a terrible tragedy occurred, " +
+                    "and I was unable to save those I cared for.\n\n" +
+                    "As punishment for my failure, my soul was condemned to wander these halls for eternity, " +
+                    "guarding the secrets and the sorrow that linger within these walls.",
                 ],
                 [
                     new TalkChoice(4, "Can I help you?"),
@@ -72,14 +76,21 @@ export class GhostCharacter extends Character implements Examine {
             }
             else {
                 PlayerSession.GhostQuestStarted = true;
-                return new TextActionResult(["There is one thing you could do for me. I lost my teddy bear somewhere in this mansion. It was the only thing that brought me comfort in this cursed place. If you find it and bring it back to me, I will grant you access to the first floor."]);
+                return new TextActionResult([
+                    "There is one thing you could do for me.\n\n" +
+                    "I lost my teddy bear somewhere in this mansion. It was the only thing that brought me comfort in this cursed place.\n\n" +
+                    "If you find it and bring it back to me, I will grant you access to the first floor.",
+                ]);
             }
         }
         else if (choiceId === 5) {
             if (PlayerSession.TeddyBearFound) {
                 PlayerSession.GhostQuestCompleted = true;
                 PlayerSession.inventory = PlayerSession.inventory.filter(item => item !== "teddy bear");
-                return new TextActionResult(["Thank you for finding my teddy bear. As promised, you now have my *permission* to go to the Upper floor."]);
+                return new TextActionResult([
+                    "Thank you for finding my teddy bear.\n\n" +
+                    "As promised, you now have my *permission* to go to the Upper floor.",
+                ]);
             }
             else {
                 return new TextActionResult(["You don't have the teddy bear."]);
@@ -87,25 +98,33 @@ export class GhostCharacter extends Character implements Examine {
         }
         else if (choiceId === 6) {
             if (PlayerSession.ChefQuestStarted && !PlayerSession.inventory.includes("knife") && !PlayerSession.knifeGiven && !PlayerSession.ChefQuestCompleted) {
-                PlayerSession.knifeGiven = true; // Set knifeGiven to true
-                return new TextActionResult(["You are looking for the knife aren't you?", "I can help you with that. The knife lays on the table right next to me, just pick it up."]);
+                PlayerSession.knifeGiven = true;
+                return new TextActionResult([
+                    "You are looking for the knife, aren't you?\n\n" +
+                    "I can help you with that. The knife lays on the table right next to me, just pick it up.",
+                ]);
             }
             else if (PlayerSession.knifeGiven && !PlayerSession.ChefQuestCompleted) {
-                return new TextActionResult(["I've already helped you with the knife. It should be on the table if you haven't picked it up yet."]);
+                return new TextActionResult([
+                    "I've already helped you with the knife.\n\n" +
+                    "It should be on the table if you haven't picked it up yet.",
+                ]);
             }
             else if (PlayerSession.ChefQuestCompleted) {
-                return new TextActionResult(["I see you've already given the knife to the chef. I'm glad I could help."]);
+                return new TextActionResult([
+                    "I see you've already given the knife to the chef.\n\n" +
+                    "I'm glad I could help.",
+                ]);
             }
         }
-
         else if (choiceId === 7) {
-            return new TextActionResult ([
-                "The ghost's form flickers slightly as he considers your question. His voice echoes softly:",
-                "I'm sad to see you wanna go away from the mansion... I've grown fond of your presence here.",
-                "But you found my teddy bear, so I will honor my promise to help you.",
-                "One question is about where you found my little bear",
-                "The other is about the butler. Something about how old the castle is.",
-                "Be careful as you venture upward. Goodluck.",
+            return new TextActionResult([
+                "The ghost's form flickers slightly as he considers your question. His voice echoes softly:\n\n" +
+                "\"I'm sad to see you want to go away from the mansion... I've grown fond of your presence here.\n\n" +
+                "But you found my teddy bear, so I will honor my promise to help you.\n\n" +
+                "One question is about where you found my little bear.\n\n" +
+                "The other is about the butler. Something about how old the castle is.\n\n" +
+                "Be careful as you venture upward. Good luck.\"",
             ]);
         }
 

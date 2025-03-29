@@ -28,8 +28,8 @@ export class BirdCharachter extends Character implements Examine {
             return new TalkActionResult(
                 this,
 
-                ["You came uninvited in the castle, which means you are here for answers",
-                    "and because you want answers they want answers."],
+                ["You came uninvited in the castle, which means you are here for answers.\n",
+                    "And because you want answers they want answers."],
 
                 [
                     new TalkChoice (4, "what do you mean with they want answers?"),
@@ -55,7 +55,9 @@ export class BirdCharachter extends Character implements Examine {
             return new TalkActionResult(
                 this,
 
-                ["This castle has a big story. if you shall answer the questions right, they will let you go. if not then......"],
+                ["This castle has a big story.\n",
+                    "If you shall answer the questions right, they will let you go.\n",
+                    "If not then......"],
 
                 [
                     new TalkChoice (9, "Then what will happen ??"),
@@ -69,7 +71,8 @@ export class BirdCharachter extends Character implements Examine {
             return new TalkActionResult(
                 this,
 
-                ["If you want to leave the castle you should answer the questions right. if not then......"],
+                ["If you want to leave the castle you should answer the questions right.\n",
+                    "If not then......"],
 
                 [
                     new TalkChoice (12, "Then what will happen ??"),
@@ -84,7 +87,8 @@ export class BirdCharachter extends Character implements Examine {
             return new TalkActionResult(
                 this,
 
-                ["That is for you to figure out, maybe some people you met earlier can help you"],
+                ["That is for you to figure out.\n",
+                    "Maybe some people you met earlier can help you"],
 
                 [
                     new TalkChoice (15, "I will escape this place!"),
@@ -111,13 +115,13 @@ export class BirdCharachter extends Character implements Examine {
         return new TalkActionResult(
             this,
 
-            ["Good to see you back. I bet you have some questions"],
+            ["Good to see you back.\n",
+                "I bet you have some questions"],
 
             [
                 new TalkChoice(1, "Why are they keeping me trapped here ?"),
                 new TalkChoice(2, "How did you enter the castle ?"),
                 new TalkChoice(3, "I don't have anything to ask you."),
-
             ]
         );
     }
