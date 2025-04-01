@@ -190,7 +190,6 @@ export class GuardCharacter extends Character {
                 ]
             );
         }
-
         else if (choiceId === 17 || choiceId === 19) {
             playerSession.incorrectAnswers++;
             return new TalkActionResult(
@@ -206,12 +205,67 @@ export class GuardCharacter extends Character {
                 ]
             );
         }
-
         else if (choiceId === 18) {
             return new TalkActionResult(
                 this,
                 [
+                    "Correct!\nNext question: What's the castle called?",
+                ],
+                [
+                    new TalkChoice(23, "Raven's Keep."),
+                    new TalkChoice(24, "Shadow's Hollow."),
+                    new TalkChoice(25, "Eagle's Nest."),
+                ]
+            );
+        }
+        else if (choiceId === 23) {
+            return new TalkActionResult(
+                this,
+                [
+                    "Correct!\nNext question: When was the fire in the west wing of this castle?",
+                ],
+                [
+                    new TalkChoice(26, "Late 1700's."),
+                    new TalkChoice(27, "Early 1800's."),
+                    new TalkChoice(28, "Mid 1600's."),
+                ]
+            );
+        }
+        else if (choiceId === 24 || choiceId === 25) {
+            playerSession.incorrectAnswers++;
+            return new TalkActionResult(
+                this,
+                [
+                    "Incorrect. Try again.",
+                    "Next question: When was the fire in the west wing of this castle?",
+                ],
+                [
+                    new TalkChoice(26, "Late 1700's."),
+                    new TalkChoice(27, "Early 1800's."),
+                    new TalkChoice(28, "Mid 1600's."),
+                ]
+            );
+        }
+        else if (choiceId === 26) {
+            return new TalkActionResult(
+                this,
+                [
                     "Correct!\nFinal question: Why is the ghost bound to the mansion?",
+                ],
+                [
+                    new TalkChoice(21, "Because of a love story."),
+                    new TalkChoice(20, "Because of a curse."),
+                    new TalkChoice(22, "Because of a treasure."),
+                ]
+            );
+        }
+        else if (choiceId === 27 || choiceId === 28) {
+            playerSession.incorrectAnswers++;
+            return new TalkActionResult(
+                this,
+                [
+                    "Incorrect. Try again.",
+                    "Final question: Why is the ghost bound to the mansion?",
                 ],
                 [
                     new TalkChoice(21, "Because of a love story."),
@@ -242,13 +296,13 @@ export class GuardCharacter extends Character {
         if (playerSession.incorrectAnswers > 2) {
             playerSession.quizFailed = true;
             return new TextActionResult([
-                `You have given ${playerSession.incorrectAnswers} incorrect answers out of 7.\n`,
+                `You have given ${playerSession.incorrectAnswers} incorrect answers out of 9.\n`,
                 "You have exceeded the maximum number of incorrect answers. You are now forever trapped in the castle.",
             ]);
         }
         playerSession.quizCompleted = true;
         return new TextActionResult([
-            `You have given ${playerSession.incorrectAnswers} incorrect answers out of 7.\n`,
+            `You have given ${playerSession.incorrectAnswers} incorrect answers out of 9.\n`,
             "Congratulations! You have completed the quiz. You may proceed.",
         ]);
     }
