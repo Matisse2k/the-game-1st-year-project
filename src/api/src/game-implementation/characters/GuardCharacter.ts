@@ -250,6 +250,34 @@ export class GuardCharacter extends Character {
             return new TalkActionResult(
                 this,
                 [
+                    "Correct!\nNext question: According to the butler, how old is this castle?",
+                ],
+                [
+                    new TalkChoice(29, "300 years."),
+                    new TalkChoice(30, "500 years."),
+                    new TalkChoice(31, "100 years."),
+                ]
+            );
+        }
+        else if (choiceId === 27 || choiceId === 28) {
+            playerSession.incorrectAnswers++;
+            return new TalkActionResult(
+                this,
+                [
+                    "Incorrect. Try again.",
+                    "Next question: According to the butler, how old is this castle?",
+                ],
+                [
+                    new TalkChoice(29, "300 years."),
+                    new TalkChoice(30, "500 years."),
+                    new TalkChoice(31, "100 years."),
+                ]
+            );
+        }
+        else if (choiceId === 30) {
+            return new TalkActionResult(
+                this,
+                [
                     "Correct!\nFinal question: Why is the ghost bound to the mansion?",
                 ],
                 [
@@ -259,7 +287,7 @@ export class GuardCharacter extends Character {
                 ]
             );
         }
-        else if (choiceId === 27 || choiceId === 28) {
+        else if (choiceId === 29 || choiceId === 31) {
             playerSession.incorrectAnswers++;
             return new TalkActionResult(
                 this,
@@ -296,13 +324,13 @@ export class GuardCharacter extends Character {
         if (playerSession.incorrectAnswers > 2) {
             playerSession.quizFailed = true;
             return new TextActionResult([
-                `You have given ${playerSession.incorrectAnswers} incorrect answers out of 9.\n`,
+                `You have given ${playerSession.incorrectAnswers} incorrect answers out of 10.\n`,
                 "You have exceeded the maximum number of incorrect answers. You are now forever trapped in the castle.",
             ]);
         }
         playerSession.quizCompleted = true;
         return new TextActionResult([
-            `You have given ${playerSession.incorrectAnswers} incorrect answers out of 9.\n`,
+            `You have given ${playerSession.incorrectAnswers} incorrect answers out of 10.\n`,
             "Congratulations! You have completed the quiz. You may proceed.",
         ]);
     }
