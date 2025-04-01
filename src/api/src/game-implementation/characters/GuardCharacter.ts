@@ -40,12 +40,12 @@ export class GuardCharacter extends Character {
             return new TalkActionResult(
                 this,
                 [
-                    "Welcome to the quiz! Answer these questions correctly to proceed.",
+                    "Welcome to the quiz! Answer these questions correctly to proceed.\n",
                     "First question: What was the first message the raven gave you when you entered the forest?",
                 ],
                 [
-                    new TalkChoice(2, "The castle is your only way out."),
                     new TalkChoice(3, "Be wary of the ghost."),
+                    new TalkChoice(2, "The castle is your only way out."),
                     new TalkChoice(4, "There is no hope in this castle."),
                 ]
             );
@@ -54,11 +54,11 @@ export class GuardCharacter extends Character {
             return new TalkActionResult(
                 this,
                 [
-                    "Correct! Next question: Where did you find the knife that you needed to give to the chef?",
+                    "Correct!\nNext question: Where did you find the knife that you needed to give to the chef?",
                 ],
                 [
-                    new TalkChoice(5, "In the basement."),
                     new TalkChoice(6, "In the attic."),
+                    new TalkChoice(5, "In the basement."),
                     new TalkChoice(7, "In the kitchen."),
                 ]
             );
@@ -72,8 +72,8 @@ export class GuardCharacter extends Character {
                     "Next question: Where did you find the knife that you needed to give to the chef?",
                 ],
                 [
-                    new TalkChoice(5, "In the basement."),
                     new TalkChoice(6, "In the attic."),
+                    new TalkChoice(5, "In the basement."),
                     new TalkChoice(7, "In the kitchen."),
                 ]
             );
@@ -82,12 +82,12 @@ export class GuardCharacter extends Character {
             return new TalkActionResult(
                 this,
                 [
-                    "Correct! Next question: What did the ghost in the basement ask you for in order to grant you access to the first floor?",
+                    "Correct!\nNext question: What did the ghost in the basement ask you for in order to grant you access to the first floor?",
                 ],
                 [
+                    new TalkChoice(10, "A key."),
                     new TalkChoice(8, "A toy."),
                     new TalkChoice(9, "A picture."),
-                    new TalkChoice(10, "A key."),
                 ]
             );
         }
@@ -100,9 +100,9 @@ export class GuardCharacter extends Character {
                     "Next question: What did the ghost in the basement ask you for in order to grant you access to the first floor?",
                 ],
                 [
+                    new TalkChoice(10, "A key."),
                     new TalkChoice(8, "A toy."),
                     new TalkChoice(9, "A picture."),
-                    new TalkChoice(10, "A key."),
                 ]
             );
         }
@@ -110,12 +110,12 @@ export class GuardCharacter extends Character {
             return new TalkActionResult(
                 this,
                 [
-                    "Correct! Next question: What was the last choice you had to make in order to leave the castle?",
+                    "Correct!\nNext question: What was the last choice you had to make in order to leave the castle?",
                 ],
                 [
-                    new TalkChoice(11, "Answer my questions correctly."),
-                    new TalkChoice(12, "Choose the right room on the first floor."),
                     new TalkChoice(13, "Talk to the ghost in the attic."),
+                    new TalkChoice(12, "Choose the right room on the first floor."),
+                    new TalkChoice(11, "Answer your questions correctly."),
                 ]
             );
         }
@@ -128,9 +128,9 @@ export class GuardCharacter extends Character {
                     "Next question: What was the last choice you had to make in order to leave the castle?",
                 ],
                 [
-                    new TalkChoice(11, "Answer my questions correctly."),
-                    new TalkChoice(12, "Choose the right room on the first floor."),
                     new TalkChoice(13, "Talk to the ghost in the attic."),
+                    new TalkChoice(12, "Choose the right room on the first floor."),
+                    new TalkChoice(11, "Answer my questions correctly."),
                 ]
             );
         }
@@ -138,12 +138,12 @@ export class GuardCharacter extends Character {
             return new TalkActionResult(
                 this,
                 [
-                    "Correct! Next question: Who gave you the map of the castle?",
+                    "Correct!\nNext question: Who gave you the map of the castle?",
                 ],
                 [
+                    new TalkChoice(16, "The ghost."),
                     new TalkChoice(14, "The butler."),
                     new TalkChoice(15, "The chef."),
-                    new TalkChoice(16, "The ghost."),
                 ]
             );
         }
@@ -156,9 +156,9 @@ export class GuardCharacter extends Character {
                     "Next question: Who gave you the map of the castle?",
                 ],
                 [
+                    new TalkChoice(16, "The ghost."),
                     new TalkChoice(14, "The butler."),
                     new TalkChoice(15, "The chef."),
-                    new TalkChoice(16, "The ghost."),
                 ]
             );
         }
@@ -166,11 +166,11 @@ export class GuardCharacter extends Character {
             return new TalkActionResult(
                 this,
                 [
-                    "Correct! Next question: Why did you need the knife for the chef?",
+                    "Correct!\nNext question: Why did you need the knife for the chef?",
                 ],
                 [
-                    new TalkChoice(17, "To access a secret room."),
                     new TalkChoice(18, "To trade for information about the toy."),
+                    new TalkChoice(17, "To access a secret room."),
                     new TalkChoice(19, "To obtain a new item."),
                 ]
             );
@@ -184,8 +184,8 @@ export class GuardCharacter extends Character {
                     "Next question: Why did you need the knife for the chef?",
                 ],
                 [
-                    new TalkChoice(17, "To access a secret room."),
                     new TalkChoice(18, "To trade for information about the toy."),
+                    new TalkChoice(17, "To access a secret room."),
                     new TalkChoice(19, "To obtain a new item."),
                 ]
             );
@@ -200,8 +200,8 @@ export class GuardCharacter extends Character {
                     "Next question: Final question: Why is the ghost bound to the mansion?",
                 ],
                 [
-                    new TalkChoice(20, "Because of a curse."),
                     new TalkChoice(21, "Because of a love story."),
+                    new TalkChoice(20, "Because of a curse."),
                     new TalkChoice(22, "Because of a treasure."),
                 ]
             );
@@ -211,11 +211,11 @@ export class GuardCharacter extends Character {
             return new TalkActionResult(
                 this,
                 [
-                    "Correct! Final question: Why is the ghost bound to the mansion?",
+                    "Correct!\nFinal question: Why is the ghost bound to the mansion?",
                 ],
                 [
-                    new TalkChoice(20, "Because of a curse."),
                     new TalkChoice(21, "Because of a love story."),
+                    new TalkChoice(20, "Because of a curse."),
                     new TalkChoice(22, "Because of a treasure."),
                 ]
             );
@@ -242,13 +242,13 @@ export class GuardCharacter extends Character {
         if (playerSession.incorrectAnswers > 2) {
             playerSession.quizFailed = true;
             return new TextActionResult([
-                `You have given ${playerSession.incorrectAnswers} incorrect answers out of 7.`,
+                `You have given ${playerSession.incorrectAnswers} incorrect answers out of 7.\n`,
                 "You have exceeded the maximum number of incorrect answers. You are now forever trapped in the castle.",
             ]);
         }
         playerSession.quizCompleted = true;
         return new TextActionResult([
-            `You have given ${playerSession.incorrectAnswers} incorrect answers out of 7.`,
+            `You have given ${playerSession.incorrectAnswers} incorrect answers out of 7.\n`,
             "Congratulations! You have completed the quiz. You may proceed.",
         ]);
     }

@@ -105,7 +105,8 @@ const styles: string = css`
     }
 
     .content.game-over-content {
-        margin-top: 40vh;
+        margin-top: 29vh;
+        font-size: 1.3em; /* Reduced from 1.5em in the previous definition */
         z-index: 10000; /* Zorgt ervoor dat de content onder eventuele overlappende elementen komt */
     }
 
@@ -476,7 +477,7 @@ export class CanvasComponent extends HTMLElement {
      */
     private renderInventory(): string {
         const roomName: string | undefined = this._currentGameState?.roomName;
-        if (roomName === "The shadows of the forgotten Castle" || roomName === "Game Over") {
+        if (roomName === "The shadows of the forgotten Castle" || roomName === "Game Over" || roomName === "home") {
             return "";
         }
 

@@ -88,12 +88,19 @@ export class CastleDoorEnteranceRoom extends Room implements Walk, Simple {
         if (PlayerSession.keyFound) {
             const room: Room = new CastleDoorEnteranceRoom();
             PlayerSession.currentRoom = room.alias;
-            return new TextActionResult(["You walked to the Castle Door Entrance.", "You stand before the grand entrance of the castle. The massive wooden doors are adorned with intricate carvings and iron reinforcements. The air is filled with a sense of history and mystery."]);
+            return new TextActionResult([
+                "You walked to the Castle Door Entrance.",
+                "You stand before the grand entrance of the castle. \n The massive wooden doors are adorned with intricate carvings and iron reinforcements. The air is filled with a sense of history and mystery.",
+            ]);
         }
         if (PlayerSession.lookedUnderStone3) {
-            return new TextActionResult(["You first need to pick up the key before going further."]);
+            return new TextActionResult([
+                "You first need to pick up the key before going further.",
+            ]);
         }
-        return new TextActionResult(["You first need to find the key to go further."]);
+        return new TextActionResult([
+            "You first need to find the key to go further.",
+        ]);
     }
 
     public simple(alias: string): ActionResult | undefined {
@@ -122,13 +129,13 @@ export class CastleDoorEnteranceRoom extends Room implements Walk, Simple {
         if (playerSession.CastleEnteranceDoorOpened) {
             return new TextActionResult([
                 "The castle door is open.",
-                "A beam of light spills out, piercing through the cold darkness. The warmth of the unknown beckons, casting long shadows on the stone path behind you.",
+                "A beam of light spills out, piercing through the cold darkness. \nThe warmth of the unknown beckons, casting long shadows \non the stone path behind you.",
                 "What secrets lie beyond this threshold?",
             ]);
         }
         else {
             return new TextActionResult([
-                "You stand before the grand entrance of the castle. The massive wooden doors are adorned with intricate carvings and iron reinforcements. The air is filled with a sense of history and mystery.",
+                "You stand before the grand entrance of the castle. \nThe massive wooden doors are adorned with intricate carvings \nand iron reinforcements. The air is filled with a sense of \nhistory and mystery.",
             ]);
         }
     }
