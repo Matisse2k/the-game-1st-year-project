@@ -122,7 +122,7 @@ export class GhostCharacter extends Character implements Examine {
                 "The ghost's form flickers slightly as he considers your question. His voice echoes softly:\n\n" +
                 "\"I'm sad to see you want to go away from the mansion... I've grown fond of your presence here.\n\n" +
                 "But you found my teddy bear, so I will honor my promise to help you.\n\n" +
-                "One question is about where you found my little bear.\n\n" +
+                "One question is about what did you need to give me in order to get acces to the upper floor?\n\n" +
                 "The other is about the butler. Something about how old the castle is.\n\n" +
                 "Be careful as you venture upward. Good luck.\"",
             ]);
