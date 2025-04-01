@@ -65,12 +65,12 @@ export class GuestRoomAttic extends Room implements Simple, Walk {
         ];
 
         // Voeg ServeerplaatItem alleen toe als het nog niet in de inventaris zit
-        if (!playerSession.inventory.includes("Serving platter")) {
+        if (!playerSession.seveerplaat) {
             objects.push(new ServeerplaatItem());
         }
 
         // Voeg MysteriousStickItem alleen toe als het nog niet in de inventaris zit
-        if (!playerSession.inventory.includes("MysteriousStick")) {
+        if (!playerSession.mysteriousStickPickedUp) {
             objects.push(new MysteriousStickItem());
         }
 

@@ -163,6 +163,26 @@ export class ButlerCharacter extends Character implements Examine {
             ]);
         }
 
+        else if (choiceId === 11) {
+            PlayerSession.inventory = PlayerSession.inventory.filter(item => item !== "Serving platter");
+            PlayerSession.butlerHint = true;
+            return new TextActionResult([
+                "Butler: Ah, the serving platter! I lost it. Thank you for returning it.\n\n",
+
+                "Now I can serve the guests properly again.\n\n",
+
+                "As a token of my gratitude, I will give you a small reward.\n\n",
+
+                "Some information about the quiz: One of the questions asks what the first sentence is that he says to you in the room.\n\n",
+            ]);
+        }
+
+        else if (choiceId === 12) {
+            return new TextActionResult([
+                "Butler: One of the questions he asks is what the first sentence is that he says to you in the room.\n\n",
+            ]);
+        }
+
         return new TalkActionResult(
             this,
             [
@@ -175,6 +195,8 @@ export class ButlerCharacter extends Character implements Examine {
                 new TalkChoice(2, "Where am I?"),
                 new TalkChoice(3, "Never mind"),
                 ...(!PlayerSession.butlerspermission && PlayerSession.GhostQuestCompleted && PlayerSession.ChefQuestCompleted ? [new TalkChoice(8, "Can i go upstairs now?")] : []),
+                ...(PlayerSession.inventory.includes("Serving platter") ? [new TalkChoice(11, "Is this Serving platter yours?")] : []),
+                ...(PlayerSession.butlerHint ? [new TalkChoice(12, "What was the hint again?")] : []),
             ]
         );
     }

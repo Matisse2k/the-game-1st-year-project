@@ -4,6 +4,7 @@ import { Examine } from "../../game-base/actions/ExamineAction";
 import { Item } from "../../game-base/gameObjects/Item";
 import { PickUp } from "../actions/PickUpActions";
 import { gameService } from "../../global";
+import { PlayerSession } from "../types";
 
 export class ServeerplaatItem extends Item implements Examine, PickUp {
     public static readonly Alias: string = "Serving platter";
@@ -21,11 +22,12 @@ export class ServeerplaatItem extends Item implements Examine, PickUp {
     }
 
     public pickUp(): string | undefined {
+        const PlayerSession: PlayerSession = gameService.getPlayerSession();
         // Retourneer de alias van het item
         if (gameService.getPlayerSession().inventory.includes("Serving platter")) {
             return undefined;
         }
-        console.log("zit in inventory");
+        PlayerSession.seveerplaat = true;
         return ServeerplaatItem.Alias;
     }
 

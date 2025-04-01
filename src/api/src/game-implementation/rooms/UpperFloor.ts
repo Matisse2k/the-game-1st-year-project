@@ -180,15 +180,15 @@ export class UpperFloorRoom extends Room implements Simple, Walk {
         }
 
         else if (PlayerSession.GhostQuestCompleted && !PlayerSession.ChefQuestCompleted) {
-            return new TextActionResult(["Butler: I can't let you go there yet you haven't spoken to everybody yet"]);
+            return new TextActionResult(["Butler: I can't let you go there yet you haven't helped everybody yet"]);
         }
 
         else if (!PlayerSession.GhostQuestCompleted && PlayerSession.ChefQuestCompleted) {
-            return new TextActionResult(["Butler: I can't let you go there yet you haven't spoken to everybody yet"]);
+            return new TextActionResult(["Butler: I can't let you go there yet you haven't helped everybody yet"]);
         }
 
         else if (PlayerSession.GhostQuestCompleted && PlayerSession.ChefQuestCompleted) {
-            return new TextActionResult(["Butler: Come speak to mee first."]);
+            return new TextActionResult(["Butler: Come speak to me first."]);
         }
 
         return new TextActionResult(["Butler: I can't let you go there yet"]);

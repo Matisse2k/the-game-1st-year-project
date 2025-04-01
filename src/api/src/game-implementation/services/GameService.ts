@@ -163,6 +163,9 @@ export class GameService extends BaseGameService<PlayerSession> {
             FirstTimeButler: false,
             TalkedToBird: false,
             butlerspermission: false,
+            butlerHint: false,
+            seveerplaat: false,
+            mysteriousStickPickedUp: false,
         };
     }
 
