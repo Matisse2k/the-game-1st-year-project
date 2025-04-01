@@ -54,12 +54,12 @@ export class GuardCharacter extends Character {
             return new TalkActionResult(
                 this,
                 [
-                    "Correct!\nNext question: Where did you find the knife that you needed to give to the chef?",
+                    "Correct!\nNext question: What is the chef's most important tool?",
                 ],
                 [
-                    new TalkChoice(6, "In the attic."),
-                    new TalkChoice(5, "In the basement."),
-                    new TalkChoice(7, "In the kitchen."),
+                    new TalkChoice(6, "A spoon."),
+                    new TalkChoice(5, "A kitchen knife."),
+                    new TalkChoice(7, "An axe."),
                 ]
             );
         }
@@ -69,12 +69,12 @@ export class GuardCharacter extends Character {
                 this,
                 [
                     "Incorrect. Try again.",
-                    "Next question: Where did you find the knife that you needed to give to the chef?",
+                    "Next question: What is the chef's most important tool?",
                 ],
                 [
-                    new TalkChoice(6, "In the attic."),
-                    new TalkChoice(5, "In the basement."),
-                    new TalkChoice(7, "In the kitchen."),
+                    new TalkChoice(6, "A spoon."),
+                    new TalkChoice(5, "A kitchen knife."),
+                    new TalkChoice(7, "An axe."),
                 ]
             );
         }
