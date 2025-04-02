@@ -2,9 +2,11 @@ import { ActionResult } from "../../game-base/actionResults/ActionResult";
 import { TextActionResult } from "../../game-base/actionResults/TextActionResult";
 import { Action } from "../../game-base/actions/Action";
 import { ExamineAction } from "../../game-base/actions/ExamineAction";
+import { Simple } from "../../game-base/actions/SimpleAction";
 import { GameObject } from "../../game-base/gameObjects/GameObject";
 import { Room } from "../../game-base/gameObjects/Room";
 import { gameService } from "../../global";
+import { SwitchPageActionResult } from "../actionResults/SwitchPageActionResult";
 import { PickUpAction } from "../actions/PickUpActions";
 import { SearchAction } from "../actions/SearchAction";
 import { Walk, WalkAction } from "../actions/WalkAction";
@@ -17,7 +19,7 @@ import { StonesItem } from "../items/StonesItem";
 import { PlayerSession } from "../types";
 import { CastleDoorEnteranceRoom } from "./CastleDoorEnteranceRoom";
 
-export class PathToTheCastleRoom extends Room implements Walk {
+export class PathToTheCastleRoom extends Room implements Walk, Simple {
     public static readonly Alias: string = "PathToTheCastle";
 
     /**
@@ -149,5 +151,20 @@ export class PathToTheCastleRoom extends Room implements Walk {
         PlayerSession.currentRoom = targetRoom.alias;
         // Call the examine method of the target room
         return targetRoom.examine() || new TextActionResult([`✅ You walked to the ${targetRoom.alias}!`]);
+    }
+
+    public simple(alias: string): ActionResult | undefined {
+        if (alias === "open-notebook") {
+            console.log("📔 Navigating to Notebook page..."); // Debugging log
+            try {
+                return new SwitchPageActionResult("notebook");
+            }
+            catch (error) {
+                console.error("🔥 Fout bij het wisselen naar notebook:", error);
+                return new TextActionResult(["❌ Er ging iets mis bij het openen van het notitieboek!"]);
+            }
+        }
+
+        return undefined;
     }
 }

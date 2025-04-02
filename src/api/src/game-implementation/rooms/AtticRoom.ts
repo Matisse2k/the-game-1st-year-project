@@ -9,8 +9,10 @@ import { Walk } from "../actions/WalkAction";
 import { gameService } from "../../global";
 import { PlayerSession } from "../types";
 import { GhostAtticCharacter } from "../characters/GhostAtticCharacter";
+import { Simple } from "../../game-base/actions/SimpleAction";
+import { SwitchPageActionResult } from "../actionResults/SwitchPageActionResult";
 
-export class AtticRoom extends Room implements Walk, Examine {
+export class AtticRoom extends Room implements Walk, Examine, Simple {
     public static readonly Alias: string = "Attic Room";
 
     public constructor() {
@@ -71,5 +73,20 @@ export class AtticRoom extends Room implements Walk, Examine {
             return new TextActionResult(["❌ Er ging iets mis bij het lopen!"]);
             // test
         }
+    }
+
+    public simple(alias: string): ActionResult | undefined {
+        if (alias === "open-notebook") {
+            console.log("📔 Navigating to Notebook page..."); // Debugging log
+            try {
+                return new SwitchPageActionResult("notebook");
+            }
+            catch (error) {
+                console.error("🔥 Fout bij het wisselen naar notebook:", error);
+                return new TextActionResult(["❌ Er ging iets mis bij het openen van het notitieboek!"]);
+            }
+        }
+
+        return undefined;
     }
 }

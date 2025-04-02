@@ -5,7 +5,6 @@ import { Simple, SimpleAction } from "../../game-base/actions/SimpleAction";
 import { Room } from "../../game-base/gameObjects/Room";
 import { gameService } from "../../global";
 import { WakeUpRoom } from "./WakeUpRoom";
-// import { WakeUpRoom } from "./WakeUpRoom";
 
 /**
  * Implemention of the startup room

@@ -56,6 +56,7 @@ import { InspectAction } from "../actions/InspectAction";
 import { GroundFloorMap } from "../items/GroundFloorMapItem";
 import { MysteriousHookItem } from "../items/MysteriousHookItem";
 import { GhostEndingRoom } from "../rooms/GhostEndingRoom";
+import { NotebookItem } from "../items/NotebookItem";
 /**
  * Implementation of the game service used to operate the game engine
  */
@@ -111,6 +112,7 @@ export class GameService extends BaseGameService<PlayerSession> {
         this.registerGameObject(MysteriousPaperItem);
         this.registerGameObject(GroundFloorMap);
         this.registerGameObject(MysteriousHookItem);
+        this.registerGameObject(NotebookItem);
 
         // Characters
         this.registerGameObject(GhostAtticCharacter);

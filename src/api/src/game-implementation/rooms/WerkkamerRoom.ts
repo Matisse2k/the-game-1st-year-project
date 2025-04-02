@@ -11,6 +11,7 @@ import { PickUpAction } from "../actions/PickUpActions";
 import { Walk, WalkAction } from "../actions/WalkAction";
 import { DoorHandleItem } from "../items/DoorhandleItem";
 import { GlueItem } from "../items/GlueItem";
+import { NotebookItem } from "../items/NotebookItem";
 import { PlayerSession } from "../types";
 import { UpperFloorRoom } from "./UpperFloor";
 
@@ -30,6 +31,17 @@ export class WerkkamerRoom extends Room implements Walk, Simple {
             catch (error) {
                 console.error("🔥 Fout bij het wisselen naar plattegrond:", error);
                 return new TextActionResult(["❌ Er ging iets mis bij het tonen van de kaart!"]);
+            }
+        }
+
+        if (alias === "open-notebook") {
+            console.log("📔 Navigating to Notebook page..."); // Debugging log
+            try {
+                return new SwitchPageActionResult("notebook");
+            }
+            catch (error) {
+                console.error("🔥 Fout bij het wisselen naar notebook:", error);
+                return new TextActionResult(["❌ Er ging iets mis bij het openen van het notitieboek!"]);
             }
         }
 
@@ -56,7 +68,10 @@ export class WerkkamerRoom extends Room implements Walk, Simple {
 
     public objects(): GameObject[] {
         const playerSession: PlayerSession = gameService.getPlayerSession();
-        const result: GameObject[] = [new UpperFloorRoom()];
+        const result: GameObject[] = [
+            new UpperFloorRoom(),
+
+        ];
 
         if (!playerSession.pickedupDoorhandle) {
             result.push(new DoorHandleItem());
@@ -65,7 +80,7 @@ export class WerkkamerRoom extends Room implements Walk, Simple {
         if (!playerSession.pickedupGlue) {
             result.push(new GlueItem());
         }
-
+        new NotebookItem();
         return result;
     }
 
@@ -74,6 +89,7 @@ export class WerkkamerRoom extends Room implements Walk, Simple {
             new ExamineAction(),
             new PickUpAction(),
             new WalkAction(),
+
         ];
     }
 

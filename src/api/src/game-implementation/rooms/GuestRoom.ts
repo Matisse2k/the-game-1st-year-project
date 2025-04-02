@@ -32,6 +32,17 @@ export class GuestRoom extends Room implements Walk, Simple {
             }
         }
 
+        if (alias === "open-notebook") {
+            console.log("📔 Navigating to Notebook page..."); // Debugging log
+            try {
+                return new SwitchPageActionResult("notebook");
+            }
+            catch (error) {
+                console.error("🔥 Fout bij het wisselen naar notebook:", error);
+                return new TextActionResult(["❌ Er ging iets mis bij het openen van het notitieboek!"]);
+            }
+        }
+
         return undefined;
     }
 

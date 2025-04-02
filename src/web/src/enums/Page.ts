@@ -6,4 +6,5 @@ export enum Page {
     Canvas = "canvas",
     Inventory = "inventory",
     Plattegrond = "plattegrond",
+    Notebook = "notebook",
 };

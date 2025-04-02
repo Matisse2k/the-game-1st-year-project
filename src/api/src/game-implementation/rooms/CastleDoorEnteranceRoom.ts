@@ -6,6 +6,7 @@ import { Simple, SimpleAction } from "../../game-base/actions/SimpleAction";
 import { GameObject } from "../../game-base/gameObjects/GameObject";
 import { Room } from "../../game-base/gameObjects/Room";
 import { gameService } from "../../global";
+import { SwitchPageActionResult } from "../actionResults/SwitchPageActionResult";
 import { UseItemAction } from "../actions/UseItemAction";
 import { Walk } from "../actions/WalkAction";
 import { CastleEnteranceDoorItem } from "../items/CastleEnteranceDoorItem";
@@ -114,7 +115,20 @@ export class CastleDoorEnteranceRoom extends Room implements Walk, Simple {
             return room.examine();
         }
 
+        if (alias === "open-notebook") {
+            console.log("📔 Navigating to Notebook page..."); // Debugging log
+            try {
+                return new SwitchPageActionResult("notebook");
+            }
+            catch (error) {
+                console.error("🔥 Fout bij het wisselen naar notebook:", error);
+                return new TextActionResult(["❌ Er ging iets mis bij het openen van het notitieboek!"]);
+            }
+        }
+
         return new TextActionResult(["The castle door is closed."]);
+
+        ;
     }
 
     /**

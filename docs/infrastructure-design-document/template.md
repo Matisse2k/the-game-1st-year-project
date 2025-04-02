@@ -438,14 +438,11 @@ In het begin hebben wij het eerst handmatig uitgerold naar de cloud via Filezill
 
 **Stap 8: Omschrijf welke maatregelen je implementeert**
 
-Hoewel HTTPS standaard is geactiveerd op de HBO-ICT.Cloud, zijn aanvullende beveiligingen nodig voor de backend en database, zoals:
-
--   CORS: Beperk toegang tot de API vanuit specifieke domeinen om ongeautoriseerde toegang te voorkomen.
-
--   Rate limiting: Voeg beperkingen toe aan het aantal verzoeken per tijdseenheid om misbruik te voorkomen.
-
--   Environment variables: Gebruik een .env-bestand om gevoelige gegevens zoals databasewachtwoorden en API-sleutels te beheren.
-
+Op de HBO-ICT.Cloud is HTTPS standaard actief, maar we nemen extra maatregelen om de backend en database te beveiligen. Het is de bedoeling om de volgende maatregelen te implementeren:
+    
+1. CORS (Cross-Origin Resource Sharing). Door gebruik te maken van CORS beperken we de toegang tot de API zodat alleen specifieke domeinen er gebruik van kunnnen maken. Configureer met behulp van ExpressJS om alleen verzoeken toe te staan van een lijst met betrouwbare domeinen.
+2. Environment Variabelen: Door gebruik te maken van environment variabelen kunnen gevoelige gegevens zoals databasewachtwoorden of API-keys veilig worden opgeslagen. Het is belangrijk om de .env-bestand niet up te loaden naar de remote repository. Er wordt ook ervoor gezorgd dat de cloud dit bestand correct inlaadt en dat deze variabelen ook daadwerkelijk voorkomen in de code.
+3. Monitoring: Het is belangrijk om de status van de applicatie bij te houden om enige verdachte activiteiten zo snel mogelijk te detecteren. Het bijhouden hiervan zal versimpeld worden door belangrijke gebeurtenissen te loggen (nieuwe sessies, game starts ...) en gebruik te maken van try-catch blocks om mogelijke corruptie te identificeren.
 ## Database-inrichting
 
 **Stap 9: Omschrijf welke gegevens je opslaat in de database en waarom, met aandacht voor "privacy by design":**
