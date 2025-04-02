@@ -40,4 +40,5 @@ export type PlayerSession = {
     butlerHint: boolean;
     seveerplaat: boolean;
     mysteriousStickPickedUp: boolean;
+    PickedUpHook: boolean;
 };
