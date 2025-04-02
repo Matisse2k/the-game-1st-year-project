@@ -62,23 +62,19 @@ export class KitchenRoom extends Room implements Walk, Simple {
     public images(): string[] {
         const playerSession: PlayerSession = gameService.getPlayerSession();
 
-        // Als hook opgepakt is en chef quest klaar → geen haak
-        if (playerSession.PickedUpHook && playerSession.ChefQuestCompleted) {
-            return ["layers/KitchenMetMes"];
-        }
-
-        // Als alleen hook is opgepakt → geen haak
-        if (playerSession.PickedUpHook) {
+        if (playerSession.inventory.includes("Mysterious Hook") && !playerSession.ChefQuestCompleted) {
             return ["KitchenGeenMes"];
         }
 
-        // Als alleen chef quest gedaan is → toon mes + haak
-        if (playerSession.ChefQuestCompleted) {
-            return ["layers/KitchenMetMes", "layers/HaakInPlace"];
+        if (playerSession.ChefQuestCompleted && !playerSession.inventory.includes("Mysterious Hook")) {
+            return ["layers/KitchenMetMes", "layers/HaakKitchenInPlace"];
         }
 
-        // Standaard beeld → geen mes, wel haak
-        return ["KitchenGeenMes", "layers/HaakInPlace"];
+        if (playerSession.ChefQuestCompleted && playerSession.inventory.includes("Mysterious Hook")) {
+            return ["layers/KitchenMetMes"];
+        }
+
+        return ["KitchenGeenMes", "layers/HaakKitchenInPlace"];
     }
 
     public examine(): ActionResult | undefined {
@@ -95,8 +91,12 @@ export class KitchenRoom extends Room implements Walk, Simple {
         const objects: GameObject[] = [
             new LobbyRoom(),
             new ChefCharacter(),
-            new MysteriousHookItem(),
         ];
+
+        if (!playerSession.inventory.includes("Mysterious Hook")) {
+            objects.push(new MysteriousHookItem());
+        }
+
         if (playerSession.inventory.includes("knife")) {
             objects.push(new KnifeItem());
         }
@@ -115,7 +115,6 @@ export class KitchenRoom extends Room implements Walk, Simple {
     public walk(_alias: string, gameObjects: GameObject[]): ActionResult {
         const PlayerSession: PlayerSession = gameService.getPlayerSession();
 
-        // hier kijkt hij wat de gameobject is van de kamer.
         const targetRoom: Room | undefined = gameObjects.find(obj => obj instanceof Room);
 
         // Als er geen kamer kan worden gevonden om naar toe te lopen is dit het resultaat
