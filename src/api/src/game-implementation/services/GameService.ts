@@ -54,6 +54,7 @@ import { GoodEndingRoom } from "../rooms/GoodEndingRoom";
 import { OpenAction } from "../actions/OpenAction";
 import { InspectAction } from "../actions/InspectAction";
 import { GroundFloorMap } from "../items/GroundFloorMapItem";
+import { MysteriousHookItem } from "../items/MysteriousHookItem";
 /**
  * Implementation of the game service used to operate the game engine
  */
@@ -107,6 +108,7 @@ export class GameService extends BaseGameService<PlayerSession> {
         this.registerGameObject(KnifeItem);
         this.registerGameObject(MysteriousPaperItem);
         this.registerGameObject(GroundFloorMap);
+        this.registerGameObject(MysteriousHookItem);
 
         // Characters
         this.registerGameObject(GhostAtticCharacter);
@@ -166,6 +168,7 @@ export class GameService extends BaseGameService<PlayerSession> {
             butlerHint: false,
             seveerplaat: false,
             mysteriousStickPickedUp: false,
+            PickedUpHook: false,
         };
     }
 

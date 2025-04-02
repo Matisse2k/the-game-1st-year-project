@@ -10,9 +10,11 @@ import { gameService } from "../../global";
 import { SwitchPageActionResult } from "../actionResults/SwitchPageActionResult";
 import { GiveAction } from "../actions/GiveAction";
 import { InspectAction } from "../actions/InspectAction";
+import { PickUpAction } from "../actions/PickUpActions";
 import { Walk, WalkAction } from "../actions/WalkAction";
 import { ChefCharacter } from "../characters/ChefCharacter";
 import { KnifeItem } from "../items/KnifeItem";
+import { MysteriousHookItem } from "../items/MysteriousHookItem";
 import { MysteriousPaperItem } from "../items/MysteriousPaperItem";
 import { PlayerSession } from "../types";
 import { LobbyRoom } from "./LobbyRoom";
@@ -49,6 +51,7 @@ export class KitchenRoom extends Room implements Walk, Simple {
             new TalkAction(),
             new WalkAction(),
             new InspectAction(),
+            new PickUpAction(),
         ];
         if (playerSession.ChefQuestStarted) {
             actions.push(new GiveAction());
@@ -58,10 +61,24 @@ export class KitchenRoom extends Room implements Walk, Simple {
 
     public images(): string[] {
         const playerSession: PlayerSession = gameService.getPlayerSession();
-        if (playerSession.ChefQuestCompleted) {
+
+        // Als hook opgepakt is en chef quest klaar → geen haak
+        if (playerSession.PickedUpHook && playerSession.ChefQuestCompleted) {
             return ["layers/KitchenMetMes"];
         }
-        return ["layers/KitchenMetMes", "KitchenGeenMes"];
+
+        // Als alleen hook is opgepakt → geen haak
+        if (playerSession.PickedUpHook) {
+            return ["KitchenGeenMes"];
+        }
+
+        // Als alleen chef quest gedaan is → toon mes + haak
+        if (playerSession.ChefQuestCompleted) {
+            return ["layers/KitchenMetMes", "layers/HaakInPlace"];
+        }
+
+        // Standaard beeld → geen mes, wel haak
+        return ["KitchenGeenMes", "layers/HaakInPlace"];
     }
 
     public examine(): ActionResult | undefined {
@@ -73,12 +90,12 @@ export class KitchenRoom extends Room implements Walk, Simple {
         return new TextActionResult (["working"]);
     }
 
-    // TODO: MysteriousPaperItem push when shef uest completed
     public objects(): GameObject[] {
         const playerSession: PlayerSession = gameService.getPlayerSession();
         const objects: GameObject[] = [
             new LobbyRoom(),
             new ChefCharacter(),
+            new MysteriousHookItem(),
         ];
         if (playerSession.inventory.includes("knife")) {
             objects.push(new KnifeItem());
