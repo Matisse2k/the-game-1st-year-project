@@ -5,10 +5,9 @@ import { Examine, ExamineAction } from "../../game-base/actions/ExamineAction";
 import { TalkAction } from "../../game-base/actions/TalkAction";
 import { GameObject } from "../../game-base/gameObjects/GameObject";
 import { Room } from "../../game-base/gameObjects/Room";
-import { Walk, WalkAction } from "../actions/WalkAction";
+import { Walk } from "../actions/WalkAction";
 import { gameService } from "../../global";
 import { PlayerSession } from "../types";
-import { GuestRoomAttic } from "./GuestRoomAttic";
 import { GhostAtticCharacter } from "../characters/GhostAtticCharacter";
 
 export class AtticRoom extends Room implements Walk, Examine {
@@ -30,14 +29,12 @@ export class AtticRoom extends Room implements Walk, Examine {
         return [
             new ExamineAction(),
             new TalkAction(),
-            new WalkAction(),
         ];
     }
 
     public objects(): GameObject[] {
         return [
             new GhostAtticCharacter(),
-            new GuestRoomAttic(),
         ];
     }
 

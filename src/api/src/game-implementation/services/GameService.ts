@@ -55,6 +55,7 @@ import { OpenAction } from "../actions/OpenAction";
 import { InspectAction } from "../actions/InspectAction";
 import { GroundFloorMap } from "../items/GroundFloorMapItem";
 import { MysteriousHookItem } from "../items/MysteriousHookItem";
+import { GhostEndingRoom } from "../rooms/GhostEndingRoom";
 /**
  * Implementation of the game service used to operate the game engine
  */
@@ -84,6 +85,7 @@ export class GameService extends BaseGameService<PlayerSession> {
         this.registerGameObject(GuardQuizRoom);
         this.registerGameObject(GameOverRoom);
         this.registerGameObject(GoodEndingRoom);
+        this.registerGameObject(GhostEndingRoom);
 
         // Items
         this.registerGameObject(HatchOpenerItem);
@@ -168,7 +170,6 @@ export class GameService extends BaseGameService<PlayerSession> {
             butlerHint: false,
             seveerplaat: false,
             mysteriousStickPickedUp: false,
-            PickedUpHook: false,
         };
     }
 

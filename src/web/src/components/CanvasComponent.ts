@@ -134,6 +134,14 @@ const styles: string = css`
     border-color: #ff5555;
     }
 
+    .quit-game-button.ghost-realm {
+        bottom: -50vh; /* Position the button 10% from the bottom of the viewport */
+        left: 50%; /* Keep it centered horizontally */
+        background-color: rgba(255, 0, 0, 0.9);
+        border-color: #ff3333;
+        transform: translateX(-50%);
+    }
+
     .content {
         flex-grow: 1;
         margin-top: 40px;
@@ -381,7 +389,7 @@ export class CanvasComponent extends HTMLElement {
             startGameButton.addEventListener("click", () => this.handleClickAction({ alias: "start-game-from-image", name: "Start Game", needsObject: false }));
         }
 
-        // Add event listener for the quit game button in the game over room
+        // Add event listener for the quit game button in the game over room and Ghost Realm
         const quitGameButton: Element | null = this.shadowRoot.querySelector(".quit-game-button");
         if (quitGameButton) {
             quitGameButton.addEventListener("click", () => this.handleClickAction({ alias: "quit-game", name: "Game Over", needsObject: false }));
@@ -433,23 +441,24 @@ export class CanvasComponent extends HTMLElement {
         if (roomImages && roomImages.length > 0) {
             const isStartupRoom: boolean = this._currentGameState?.roomName === "The shadows of the forgotten Castle";
             const isGameOverRoom: boolean = this._currentGameState?.roomName === "Game Over";
+            const isGhostRealm: boolean = this._currentGameState?.roomName === "Ghost Realm";
 
             return `
-                <div class="header ${isGameOverRoom ? "game-over-header" : ""}">
-                    ${roomImages.map(url => `<img class="${isStartupRoom ? "startup" : ""} ${isGameOverRoom ? "game-over-img" : ""}" src="/assets/img/rooms/${url}.png"
-                         onerror="this.onerror=null;this.src='/assets/img/rooms/${url}.gif';" />
-                        ${isStartupRoom
-                            ? `
-                                <div class="start-game-text">Press the button below to start your journey.</div>
-                                <button class="start-game-button">Start Game</button>
-                            `
-                            : ""}
-                        ${isGameOverRoom
-                            ? "<button class=\"quit-game-button\">Quit Game</button>"
-                            : ""}
-                    `).join("")}
-                </div>
-            `;
+            <div class="header ${isGameOverRoom ? "game-over-header" : ""}">
+                ${roomImages.map(url => `<img class="${isStartupRoom ? "startup" : ""} ${isGameOverRoom ? "game-over-img" : ""}" src="/assets/img/rooms/${url}.png"
+                     onerror="this.onerror=null;this.src='/assets/img/rooms/${url}.gif';" />
+                    ${isStartupRoom
+                        ? `
+                            <div class="start-game-text">Press the button below to start your journey.</div>
+                            <button class="start-game-button">Start Game</button>
+                        `
+                        : ""}
+                    ${isGameOverRoom || isGhostRealm
+                        ? `<button class="quit-game-button ${isGhostRealm ? "ghost-realm" : ""}">Quit Game</button>`
+                        : ""}
+                `).join("")}
+            </div>
+        `;
         }
 
         return "";
@@ -477,7 +486,7 @@ export class CanvasComponent extends HTMLElement {
      */
     private renderInventory(): string {
         const roomName: string | undefined = this._currentGameState?.roomName;
-        if (roomName === "The shadows of the forgotten Castle" || roomName === "Game Over" || roomName === "home") {
+        if (roomName === "The shadows of the forgotten Castle" || roomName === "Game Over" || roomName === "home" || roomName === "Ghost Realm") {
             return "";
         }
 
@@ -526,7 +535,7 @@ export class CanvasComponent extends HTMLElement {
      */
     private renderFooter(): HTMLElement {
         const roomName: string | undefined = this._currentGameState?.roomName;
-        if (roomName === "The shadows of the forgotten Castle" || roomName === "Game Over") {
+        if (roomName === "The shadows of the forgotten Castle" || roomName === "Game Over" || roomName === "Ghost Realm") {
             return html`<div>`; // Do not render footer for startup room or Game Over room
         }
 
@@ -659,7 +668,8 @@ export class CanvasComponent extends HTMLElement {
           roomName === "???" || // WakeUpRoom
           roomName === "Forrest" || // ForrestRoom
           roomName === "Path to the Castle" || // PathToTheCastleRoom
-          roomName === "home") { // GoodEndingRoom
+          roomName === "home" ||
+          roomName === "Ghost Realm") { // GoodEndingRoom
             return ""; // Don't show map button in these rooms
         }
 

@@ -20,6 +20,7 @@ import { KnifeItem } from "../items/KnifeItem";
 import { MysteriousPaperItem } from "../items/MysteriousPaperItem";
 import { ServeerplaatItem } from "../items/ServeerplaatItem";
 import { GroundFloorMap } from "../items/GroundFloorMapItem";
+import { MysteriousHookItem } from "../items/MysteriousHookItem";
 
 /**
  * Controller to handle all game related requests
@@ -247,6 +248,7 @@ export class GameController {
                 [MysteriousPaperItem.Alias]: MysteriousPaperItem,
                 [ServeerplaatItem.Alias]: ServeerplaatItem,
                 [GroundFloorMap.Alias]: GroundFloorMap,
+                [MysteriousHookItem.Alias]: MysteriousHookItem,
             // Add other items here as needed
             };
 

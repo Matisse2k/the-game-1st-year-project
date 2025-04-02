@@ -83,7 +83,7 @@ export class GuestRoomAttic extends Room implements Simple, Walk {
         if (gameService.getPlayerSession().inventory.includes("Serving platter")) {
             result.delete("layers/ServingPlatterFrame");
         }
-        if (gameService.getPlayerSession().inventory.includes("MysteriousStick")) {
+        if (gameService.getPlayerSession().inventory.includes("Mysterious stick")) {
             result.delete("layers/WoodenStickFrame");
         }
         return Array.from(result);
