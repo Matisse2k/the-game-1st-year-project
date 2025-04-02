@@ -294,6 +294,25 @@ const styles: string = css`
     .map-button:hover {
         background-color: rgba(50, 50, 50, 0.7);
     }
+
+    .notebook-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-family: "Onesize";
+    font-size: 1em;
+    z-index: 100;
+}
+
+.notebook-button:hover {
+    background-color: rgba(50, 50, 50, 0.7);
+}
 `;
 
 /**
@@ -371,6 +390,7 @@ export class CanvasComponent extends HTMLElement {
             ${this.renderTitle()}
             ${this.renderHeader()}
             ${this.renderMapButton()}
+             ${this.renderNotebookButton()}
             ${this.renderContent()}
             <div style="margin-bottom: 25px;"></div> <!-- Add a spacer div to ensure space between content and inventory -->
             ${this.renderInventory()}
@@ -399,6 +419,12 @@ export class CanvasComponent extends HTMLElement {
         const mapButton: Element | null = this.shadowRoot.querySelector(".map-button");
         if (mapButton) {
             mapButton.addEventListener("click", () => this.showMap());
+        }
+
+        // Add event listener for the notebook button
+        const notebookButton: Element | null = this.shadowRoot.querySelector(".notebook-button");
+        if (notebookButton) {
+            notebookButton.addEventListener("click", () => this.openNotebook());
         }
 
         // Apply typewriter effect to the content only if the text has changed
@@ -677,11 +703,44 @@ export class CanvasComponent extends HTMLElement {
     }
 
     /**
+ * Render the notebook button
+ *
+ * @returns String with raw HTML for the notebook button
+ */
+    private renderNotebookButton(): string {
+        const roomName: string | undefined = this._currentGameState?.roomName;
+        // Hide the notebook button only in startup and Game Over screens
+        if (roomName === "The shadows of the forgotten Castle" || // Startup room
+          roomName === "home" || // GoodEndingRoom
+          roomName === "???" || // WakeUpRoom
+          roomName === "The Quiz" || // QuizRoom
+          roomName === "Game Over") { // Game Over room
+            return ""; // Don't show notebook button in these rooms
+        }
+
+        return "<button class=\"notebook-button\">Notebook</button>";
+    }
+
+    /**
      * Show the map by requesting a switch to the map page through the API
      */
     private async showMap(): Promise<void> {
         // Use the API's action for showing the map
         const state: GameState | undefined = await this._gameRouteService.executeAction("show-map");
+
+        if (state === undefined) {
+            return;
+        }
+
+        this.updateGameState(state);
+    }
+
+    /**
+ * Open the notebook by requesting a switch to the notebook page through the API
+ */
+    private async openNotebook(): Promise<void> {
+    // Use the API's action for showing the notebook
+        const state: GameState | undefined = await this._gameRouteService.executeAction("open-notebook");
 
         if (state === undefined) {
             return;

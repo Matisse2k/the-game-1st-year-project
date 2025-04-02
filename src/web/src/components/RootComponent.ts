@@ -68,6 +68,8 @@ export class RootComponent extends HTMLElement {
                 return html`<game-plattegrond></game-plattegrond>`;
             default:
                 return html`<game-notfound page="${this._currentPage}"></game-notfound>`;
+            case Page.Notebook:
+                return html`<game-notebook></game-notebook>`;
         }
     }
 
