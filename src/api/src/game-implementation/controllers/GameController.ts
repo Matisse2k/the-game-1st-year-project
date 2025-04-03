@@ -21,6 +21,7 @@ import { MysteriousPaperItem } from "../items/MysteriousPaperItem";
 import { ServeerplaatItem } from "../items/ServeerplaatItem";
 import { GroundFloorMap } from "../items/GroundFloorMapItem";
 import { MysteriousHookItem } from "../items/MysteriousHookItem";
+import { HatchOpenerItem } from "../items/HatchOpenerItem";
 
 /**
  * Controller to handle all game related requests
@@ -249,6 +250,7 @@ export class GameController {
                 [ServeerplaatItem.Alias]: ServeerplaatItem,
                 [GroundFloorMap.Alias]: GroundFloorMap,
                 [MysteriousHookItem.Alias]: MysteriousHookItem,
+                [HatchOpenerItem.Alias]: HatchOpenerItem,
             // Add other items here as needed
             };
 

@@ -55,6 +55,8 @@ export class GuestRoomAttic extends Room implements Simple, Walk {
         if (gameService.getPlayerSession().HatchOpened === true) {
             return [
                 new AtticRoom(),
+                new BirdCharachter(),
+                new UpperFloorRoom(),
             ];
         }
         // Basisobjecten die altijd worden getoond

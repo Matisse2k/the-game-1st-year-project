@@ -4,6 +4,8 @@ import { Examine } from "../../game-base/actions/ExamineAction";
 import { Item } from "../../game-base/gameObjects/Item";
 import { gameService } from "../../global";
 import { PickUp } from "../actions/PickUpActions";
+import { PlayerSession } from "../types";
+import { HatchOpenerItem } from "./HatchOpenerItem";
 
 export class MysteriousHookItem extends Item implements Examine, PickUp {
     public static readonly Alias: string = "Mysterious Hook";
@@ -13,11 +15,18 @@ export class MysteriousHookItem extends Item implements Examine, PickUp {
     }
 
     public pickUp(): string | undefined {
+        const PlayerSession: PlayerSession = gameService.getPlayerSession();
         // Retourneer de alias van het item
         if (gameService.getPlayerSession().inventory.includes("Mysterious Hook")) {
             return undefined;
         }
-        console.log("zit in inventory");
+
+        else if (PlayerSession.inventory.includes("Mysterious stick") && PlayerSession.inventory.includes("glue")) {
+            PlayerSession.inventory = PlayerSession.inventory.filter(item => item !== "Mysterious stick");
+            PlayerSession.inventory = PlayerSession.inventory.filter(item => item !== "glue");
+            return HatchOpenerItem.Alias;
+        }
+
         return MysteriousHookItem.Alias;
     }
 

@@ -62,8 +62,8 @@ export class LobbyRoom extends Room implements Simple, Walk, Simple {
         objects.push(
             new KitchenRoom(),
             new UpperFloorRoom(),
-            new ButlerCharacter(),
             new BasementRoom(),
+            new ButlerCharacter(),
             new CouchItem(),
             new CabinetItem(),
             new TableItem(),
