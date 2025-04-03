@@ -1,4 +1,5 @@
 import { ActionResult } from "../../game-base/actionResults/ActionResult";
+import { SoundActionResult } from "../../game-base/actionResults/SoundActionResult";
 import { TextActionResult } from "../../game-base/actionResults/TextActionResult";
 import { Item } from "../../game-base/gameObjects/Item";
 import { gameService } from "../../global";
@@ -62,7 +63,12 @@ export class KeyItem extends Item implements PickUp, Use {
             console.error("Error playing door open sound:", error);
         }); */
 
-        return new TextActionResult(["You use the key to unlock the door. As the heavy castle door creaks open, a blinding beam of golden light spills out, piercing through the cold darkness. The warmth of the unknown beckons, casting long shadows on the stone path behind you. What secrets lie beyond this threshold?"]);
+        return [
+            new TextActionResult([
+                "You use the key to unlock the door. As the heavy castle door creaks open, a blinding beam of golden light spills out, piercing through the cold darkness. The warmth of the unknown beckons, casting long shadows on the stone path behind you. What secrets lie beyond this threshold?",
+            ]),
+            new SoundActionResult("/assets/audio/door_open.mp3"), // Path to the door opening sound
+        ];
     }
 
     /**
