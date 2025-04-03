@@ -39,6 +39,75 @@ export class ButlerCharacter extends Character implements Examine {
      */
     public talk(choiceId?: number): ActionResult | undefined {
         const PlayerSession: PlayerSession = gameService.getPlayerSession();
+
+        // First-time conversation flow
+        if (!PlayerSession.FirstTimeButler && !choiceId) {
+            return new TalkActionResult(
+                this,
+                [
+                    "Good day to you. I am the butler of this castle.",
+                    "Welcome to our humble abode. Though unexpected, your presence is not unwelcome.",
+                    "How may I be of service to you today?",
+                ],
+                [
+                    new TalkChoice(100, "Who are you?"),
+                ]
+            );
+        }
+
+        if (choiceId === 100) {
+            return new TalkActionResult(
+                this,
+                [
+                    "I am Edward Blackwood, the head butler of this estate.\n\n",
+                    "I have been serving here for generations, maintaining the castle's legacy and traditions.\n\n",
+                    "The Blackwood family has been loyal to this estate for at least six generations.\n\n",
+                    "I manage the staff, coordinate meals, and ensure the security of the grounds.",
+                ],
+                [
+                    new TalkChoice(101, "Where am I?"),
+                ]
+            );
+        }
+
+        if (choiceId === 101) {
+            PlayerSession.FirstTimeButler = true;
+            if (!PlayerSession.GotCastleMap) {
+                PlayerSession.GotCastleMap = true;
+                PlayerSession.inventory.push(GroundFloorMap.Alias);
+                return new TalkActionResult(
+                    this,
+                    [
+                        "You are in Raven's Keep, one of the oldest standing castles in the region.\n",
+                        "This fortress has stood for over five centuries, weathering wars, plagues, and numerous supernatural occurrences.\n\n",
+                        "Here, take this map. It might help you navigate the castle grounds.\n\n",
+                        "You received a castle map and it was added to your inventory.",
+                    ],
+                    [
+                        new TalkChoice(102, "Thank you for the information and the map."),
+                    ]
+                );
+            }
+            else {
+                return new TalkActionResult(
+                    this,
+                    [
+                        "You are in Raven's Keep, one of the oldest standing castles in the region.\n",
+                        "This fortress has stood for over five centuries, weathering wars, plagues, and numerous supernatural occurrences.\n\n",
+                        "I see you already have the map I provided earlier. I hope it's been useful.",
+                    ],
+                    [
+                        new TalkChoice(102, "Thank you for the information."),
+                    ]
+                );
+            }
+        }
+
+        if (choiceId === 102) {
+            return new TextActionResult(["You step back, concluding the conversation for now."]);
+        }
+
+        // Regular conversation options after first interaction
         if (choiceId === 1) {
             return new TalkActionResult(
                 this,
@@ -88,7 +157,6 @@ export class ButlerCharacter extends Character implements Examine {
             }
         }
         else if (choiceId === 4) {
-            PlayerSession.FirstTimeButler = true;
             return new TalkActionResult(
                 this,
                 [
@@ -98,7 +166,7 @@ export class ButlerCharacter extends Character implements Examine {
                     "The paintings' eyes seem to follow you, and sometimes I can hear strange whispers.",
                 ],
                 [
-                    new TalkChoice(3, "Let me ask you something else."),
+                    new TalkChoice(2, "Where am i"),
                     new TalkChoice(5, "That sounds eerie."),
                 ]
             );
@@ -114,7 +182,7 @@ export class ButlerCharacter extends Character implements Examine {
                     "If these walls could speak, they would tell tales spanning half a millennium.",
                 ],
                 [
-                    new TalkChoice(3, "Let me ask you something else."),
+                    new TalkChoice(1, "Who are you?"),
                     new TalkChoice(5, "Fascinating history."),
                 ]
             );
@@ -183,6 +251,7 @@ export class ButlerCharacter extends Character implements Examine {
             ]);
         }
 
+        // Return regular dialogue options if not the first conversation
         return new TalkActionResult(
             this,
             [
