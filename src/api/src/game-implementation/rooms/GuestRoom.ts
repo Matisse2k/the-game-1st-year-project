@@ -8,8 +8,10 @@ import { GameObject } from "../../game-base/gameObjects/GameObject";
 import { Room } from "../../game-base/gameObjects/Room";
 import { gameService } from "../../global";
 import { SwitchPageActionResult } from "../actionResults/SwitchPageActionResult";
+import { PickUpAction } from "../actions/PickUpActions";
 import { Walk, WalkAction } from "../actions/WalkAction";
 import { RavenCharacter } from "../characters/RavenCharacter";
+import { ServeerplaatItem } from "../items/ServeerplaatItem";
 import { PlayerSession } from "../types";
 import { UpperFloorRoom } from "./UpperFloor";
 
@@ -51,14 +53,19 @@ export class GuestRoom extends Room implements Walk, Simple {
     }
 
     public images(): string[] {
-        return ["GuestRoom", "layers/Raven"];
+        const baseLayers: string[] = ["GuestRoom", "layers/ServingPlateFrame2", "layers/Raven"];
+        const result: Set<string> = new Set(baseLayers);
+        if (gameService.getPlayerSession().inventory.includes("Serving platter")) {
+            result.delete("layers/ServingPlateFrame2");
+        }
+        return Array.from(result);
     }
 
     public objects(): GameObject[] {
         return [
             new UpperFloorRoom(),
             new RavenCharacter(),
-
+            new ServeerplaatItem(),
         ];
     }
 
@@ -67,7 +74,7 @@ export class GuestRoom extends Room implements Walk, Simple {
             new ExamineAction(),
             new TalkAction(),
             new WalkAction(),
-
+            new PickUpAction(),
         ];
     }
 
