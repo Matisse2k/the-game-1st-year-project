@@ -1,22 +1,17 @@
 import { Item } from "../../game-base/gameObjects/Item";
-import { gameService } from "../../global";
-import { PickUp } from "../actions/PickUpActions";
 
-export class HatchOpenerItem extends Item implements PickUp {
-    public static readonly Alias: string = "HatchOpener";
+export class HatchOpenerItem extends Item {
+    public static readonly Alias: string = "Mysterious object";
 
     public constructor() {
         super (HatchOpenerItem.Alias);
     }
 
     public name(): string {
-        return "Hatch Opener";
+        return "Mysterious object";
     }
 
-    public pickUp(): string | undefined {
-        if (gameService.getPlayerSession().inventory.includes("HatchOpener")) {
-            return undefined;
-        }
-        return HatchOpenerItem.Alias;
+    public getDescription(): string {
+        return "A mysterious object that seems to be able to open the hatch";
     }
 }

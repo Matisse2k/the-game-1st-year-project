@@ -5,6 +5,7 @@ import { Item } from "../../game-base/gameObjects/Item";
 import { gameService } from "../../global";
 import { PickUp } from "../actions/PickUpActions";
 import { PlayerSession } from "../types";
+import { HatchOpenerItem } from "./HatchOpenerItem";
 
 export class MysteriousStickItem extends Item implements Examine, PickUp {
     public static readonly Alias: string = "Mysterious stick";
@@ -25,8 +26,14 @@ export class MysteriousStickItem extends Item implements Examine, PickUp {
     }
 
     public pickUp(): string | undefined {
-        const playerSession: PlayerSession = gameService.getPlayerSession();
-        playerSession.mysteriousStickPickedUp = true;
+        const PlayerSession: PlayerSession = gameService.getPlayerSession();
+        PlayerSession.mysteriousStickPickedUp = true;
+
+        if (PlayerSession.inventory.includes("Mysterious Hook") && PlayerSession.inventory.includes("glue")) {
+            PlayerSession.inventory = PlayerSession.inventory.filter(item => item !== "Mysterious Hook");
+            PlayerSession.inventory = PlayerSession.inventory.filter(item => item !== "glue");
+            return HatchOpenerItem.Alias;
+        }
         return MysteriousStickItem.Alias;
     }
 
