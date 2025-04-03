@@ -8,4 +8,5 @@ export enum Page {
     Plattegrond = "plattegrond",
     Notebook = "notebook",
     AchievementMenu = "achievementmenu",
+    Sound = "sound",
 };

@@ -69,6 +69,8 @@ export class RootComponent extends HTMLElement {
             case Page.AchievementMenu:
                 console.log("wordt gereturnd");
                 return html`<menu-component></menu-component>`;
+            case Page.Sound:
+                return html`<game-sound></game-sound>`;
             default:
                 return html`<game-notfound page="${this._currentPage}"></game-notfound>`;
             case Page.Notebook:

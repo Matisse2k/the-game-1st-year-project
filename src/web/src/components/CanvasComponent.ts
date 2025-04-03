@@ -3,6 +3,7 @@ import { css, html, htmlArray } from "../helpers/webComponents";
 import { GameEventService } from "../services/GameEventService";
 import { GameRouteService } from "../services/GameRouteService";
 import { Page } from "../enums/Page";
+import "./SoundComponent";
 
 /** CSS affecting the {@link CanvasComponent} */
 const styles: string = css`
@@ -373,6 +374,8 @@ export class CanvasComponent extends HTMLElement {
 
     private _previousText: string = ""; // Stores the previous text to detect changes
 
+    private _backgroundAudio: HTMLAudioElement = new Audio();
+
     /**
      * The "constructor" of a Web Component
      */
@@ -410,8 +413,36 @@ export class CanvasComponent extends HTMLElement {
         this._selectedActionButton = undefined;
         this._selectedGameObjectButtons.clear();
 
+        // Play background sound for the current room
+        this.playBackgroundSound(state.roomName);
+
         // Refresh the web component
         this.render();
+    }
+
+    /**
+     * Play background sound for the current room
+     *
+     * @param roomName Name of the room
+     */
+    private playBackgroundSound(roomName?: string): void {
+        if (!roomName) {
+            this._backgroundAudio.pause();
+            this._backgroundAudio.src = "";
+            return;
+        }
+
+        // Use ForrestRoom.mp3 for both ForrestRoom and WakeUpRoom
+        const soundFile: string = roomName === "Forrest" || roomName === "???" ? "ForrestRoom.mp3" : `${roomName.toLowerCase().replace(/\s+/g, "_")}.mp3`;
+        const soundUrl: string = `/sounds/${soundFile}`;
+        this._backgroundAudio.src = soundUrl;
+        this._backgroundAudio.loop = true;
+
+        if (!this._backgroundAudio.muted) {
+            void this._backgroundAudio.play().catch((error: unknown) => {
+                console.error("Error playing background sound:", error);
+            });
+        }
     }
 
     /**
@@ -432,6 +463,7 @@ export class CanvasComponent extends HTMLElement {
             ${this.renderMapButton()}
              ${this.renderNotebookButton()}
             ${this.renderContent()}
+            <sound-component></sound-component> <!-- Add sound controls -->
             <div style="margin-bottom: 25px;"></div> <!-- Add a spacer div to ensure space between content and inventory -->
             ${this.renderInventory()}
             ${this.renderMenuButton()}
@@ -472,6 +504,15 @@ export class CanvasComponent extends HTMLElement {
 
         if (menuButton) {
             menuButton.addEventListener("click", () => this.openMenu ());
+        }
+
+        // Sync mute state with the SoundComponent
+        const soundComponent: (HTMLElement & { audioElement: HTMLAudioElement }) | null = this.shadowRoot.querySelector("sound-component");
+        if (soundComponent) {
+            this._backgroundAudio.muted = soundComponent.audioElement.muted;
+            soundComponent.audioElement.addEventListener("volumechange", () => {
+                this._backgroundAudio.muted = soundComponent.audioElement.muted;
+            });
         }
 
         // Apply typewriter effect to the content only if the text has changed
