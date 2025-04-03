@@ -45,6 +45,15 @@ export class GuestRoom extends Room implements Walk, Simple {
             }
         }
 
+        if (alias === "open-menu") {
+            try {
+                return new SwitchPageActionResult("achievementmenu");
+            }
+            catch (error) {
+                console.error("🔥 Fout bij het wisselen naar het achievement", error);
+            }
+        }
+
         return undefined;
     }
 

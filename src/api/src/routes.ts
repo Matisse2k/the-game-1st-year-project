@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { router as gameRouter } from "./game-implementation/routes";
 import { router as ChielRouter } from "./Chiel/routes";
+import { router as achievementrouter } from "./AchievementMenuRoutes/routes";
 // Create a router
 export const router: Router = Router();
 
@@ -11,5 +12,6 @@ router.get("/", (_, res) => {
 
 // Forward endpoints to other routers
 router.use("/game", gameRouter);
+router.use("/AchievementMenuRoutes", achievementrouter);
 
 router.use("/Chiel", ChielRouter);

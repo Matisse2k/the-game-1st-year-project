@@ -29,6 +29,7 @@ export class AtticRoom extends Room implements Walk, Examine, Simple {
 
     public actions(): Action[] {
         return [
+            new TalkAction(),
             new ExamineAction(),
             new TalkAction(),
         ];
@@ -84,6 +85,15 @@ export class AtticRoom extends Room implements Walk, Examine, Simple {
             catch (error) {
                 console.error("🔥 Fout bij het wisselen naar notebook:", error);
                 return new TextActionResult(["❌ Er ging iets mis bij het openen van het notitieboek!"]);
+            }
+        }
+
+        if (alias === "open-menu") {
+            try {
+                return new SwitchPageActionResult("achievementmenu");
+            }
+            catch (error) {
+                console.error("🔥 Fout bij het wisselen naar het achievement", error);
             }
         }
 
