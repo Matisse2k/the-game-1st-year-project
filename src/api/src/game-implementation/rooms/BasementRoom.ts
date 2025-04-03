@@ -105,6 +105,14 @@ export class BasementRoom extends Room implements Walk, Simple {
                 return new TextActionResult(["❌ Er ging iets mis bij het tonen van de kaart!"]);
             }
         }
+        if (alias === "open-menu") {
+            try {
+                return new SwitchPageActionResult("achievementmenu");
+            }
+            catch (error) {
+                console.error("🔥 Fout bij het wisselen naar het achievement", error);
+            }
+        }
 
         if (alias === "open-notebook") {
             console.log("📔 Navigating to Notebook page..."); // Debugging log

@@ -66,6 +66,9 @@ export class RootComponent extends HTMLElement {
                 return html`<game-inventory></game-inventory>`;
             case Page.Plattegrond:
                 return html`<game-plattegrond></game-plattegrond>`;
+            case Page.AchievementMenu:
+                console.log("wordt gereturnd");
+                return html`<menu-component></menu-component>`;
             default:
                 return html`<game-notfound page="${this._currentPage}"></game-notfound>`;
             case Page.Notebook:

@@ -222,6 +222,14 @@ const styles: string = css`
             font-size: 0.9em;
             padding: 4px 8px;
         }
+
+        .menu-button {
+            top: 10px;
+            right: 10px;
+            font-size: 0.9em;
+            padding: 4px 8px;
+        }
+
     }
 
     @media (min-width: 768px) {
@@ -274,6 +282,13 @@ const styles: string = css`
             font-size: 0.8em;
             padding: 3px 6px;
         }
+        
+        .menu-button {
+            top: 5px;
+            right: 5px;
+            font-size: 0.8em;
+            padding: 3px 6px;
+        }
     }
 
     .map-button {
@@ -290,6 +305,26 @@ const styles: string = css`
         font-size: 1em;
         z-index: 100;
     }
+
+    .menu-button {
+        position: absolute;
+        top: 70px;
+        right: 20px;
+        background-color: rgba(0, 0, 0, 0.7);
+        color: white;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 5px 10px;
+        cursor: pointer;
+        font-family: "Onesize";
+        font-size: 1em;
+        z-index: 100;
+        transition: background-color 0.3s ease;
+    }
+
+       menu-button.highlight {
+        background-color: #ffcc00; /* Highlight kleur */
+        }
 
     .map-button:hover {
         background-color: rgba(50, 50, 50, 0.7);
@@ -313,6 +348,11 @@ const styles: string = css`
 .notebook-button:hover {
     background-color: rgba(50, 50, 50, 0.7);
 }
+
+.menu-button:hover {
+        background-color: rgba(50, 50, 50, 0.7);
+    }
+
 `;
 
 /**
@@ -394,6 +434,7 @@ export class CanvasComponent extends HTMLElement {
             ${this.renderContent()}
             <div style="margin-bottom: 25px;"></div> <!-- Add a spacer div to ensure space between content and inventory -->
             ${this.renderInventory()}
+            ${this.renderMenuButton()}
             ${this.renderFooter()}
     `;
 
@@ -425,6 +466,12 @@ export class CanvasComponent extends HTMLElement {
         const notebookButton: Element | null = this.shadowRoot.querySelector(".notebook-button");
         if (notebookButton) {
             notebookButton.addEventListener("click", () => this.openNotebook());
+        }
+
+        const menuButton: Element | null = this.shadowRoot.querySelector(".menu-button");
+
+        if (menuButton) {
+            menuButton.addEventListener("click", () => this.openMenu ());
         }
 
         // Apply typewriter effect to the content only if the text has changed
@@ -721,6 +768,21 @@ export class CanvasComponent extends HTMLElement {
         return "<button class=\"notebook-button\">Notebook</button>";
     }
 
+    private renderMenuButton(): string {
+        const roomName: string | undefined = this._currentGameState?.roomName;
+        // Hide the map button in the following rooms:
+        if (roomName === "The shadows of the forgotten Castle" || roomName === "Game Over" || // Game Over room
+          roomName === "Castle Door" || // Castle Door
+          roomName === "???" || // WakeUpRoom
+          roomName === "Forrest" || // ForrestRoom
+          roomName === "Path to the Castle" || // PathToTheCastleRoom
+          roomName === "home") { // GoodEndingRoom) {
+            return ""; // Don't show map button in these rooms
+        }
+
+        return "<button class=\"menu-button\">Achievement Menu</button>";
+    }
+
     /**
      * Show the map by requesting a switch to the map page through the API
      */
@@ -746,6 +808,16 @@ export class CanvasComponent extends HTMLElement {
             return;
         }
 
+        this.updateGameState(state);
+    }
+
+    private async openMenu(): Promise<void> {
+        // Use the API's action for showing the map
+        const state: GameState | undefined = await this._gameRouteService.executeAction("open-menu");
+
+        if (state === undefined) {
+            return;
+        }
         this.updateGameState(state);
     }
 }
