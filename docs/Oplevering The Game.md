@@ -6,7 +6,7 @@
 - Dominik Krystul
 - Shivanio Cooman
 - Samale Fahiyeh
-- Naam 4
+- Matisse
 - Naam 5
 
 **URLs**:
@@ -163,9 +163,9 @@
 ### Reflectie
 *Ben je tevreden over je commit geschiedenis en je aandeel in het project? Wat is wel gelukt van de minimale eisen, wat niet? Waarom niet? Enzovoorts.*
  
-## Naam 4
+## Matisse
 ### Commit geschiedenis
-|Commit username|
+|Matisse Ben Addi|
 |-|
 |Naam 1|
 |Naam 2|
@@ -173,18 +173,18 @@
 
 |Naam branch|Aantal commits|
 |-|-|
-|Hoofdbranch|0|
-|Branch 1|0|
-|Branch 2|0|
+|Hoofdbranch|6|
+|Branch Wakker-worden-scene|12|
+|Branch Kitchen-Room | 8 |
 
 ### Aan welke onderdelen heb je het meest aandeel gehad?
 *Denk aan Game Objects, Web Components, Game Design Document, enzovoorts. Beschrijf per onderdeel kort (!) en hoogover wat je ongeveer hebt bijgedragen.*
 
 |Naam|Beschrijving|
 |-|-|
-|Onderdeel 1|Beschrijving onderdeel 1|
-|Onderdeel 2|Beschrijving onderdeel 2|
-|Onderdeel 3|Beschrijving onderdeel 3|
+|Onderdeel 1 Game Objects | Ik heb de HookItem (deze kan buiten mijn kamer gebruikt worden voor het easteregg item), het Mes, de chef, de raven in de forrestroom. ik heb de forrest room, wakeuproom, kitchenroom gemaakt. je kan met de chef en de raven praten.   |
+|Onderdeel 2 Game Design Document| Ik heb qua GDD de characters gedesigned |
+|Onderdeel 3 WebComponent| ik heb als web component de volume bediening gemaakt, ik heb onderzoek gedaan en tutorials gekeken en op basis hier van de geluidscomponent gemaakt |
 
 ### Relevante code, commits en andere deliverables
 *Geef URLs op met een korte (!) beschrijving waarom dit relevant is. URLs mogen naar stukken code, commits en/of andere deliverables gaan.*
@@ -210,7 +210,7 @@
   - [ ] Waarbij ook gecommuniceerd wordt met een eigen API Endpoint in de backend applicatie.
 
 ### Reflectie
-*Ben je tevreden over je commit geschiedenis en je aandeel in het project? Wat is wel gelukt van de minimale eisen, wat niet? Waarom niet? Enzovoorts.*
+ja ik ben tevreden want ik heb alle minimale eisen gehaald, ik had wel nogsteeds graag eerder willen beginnen zodat ik mijn code nog meer kon verbeteren aan het einde!
 
 ## Naam 5
 ### Commit geschiedenis
