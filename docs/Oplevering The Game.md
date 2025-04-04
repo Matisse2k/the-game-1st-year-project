@@ -4,7 +4,7 @@
 
 **Teamleden**:
 - Naam 1
-- Naam 2
+- Shivanio Cooman
 - Naam 3
 - Naam 4
 - Naam 5
