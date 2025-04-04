@@ -55,19 +55,12 @@ export class KeyItem extends Item implements PickUp, Use {
         // Set CastleEnteranceDoorOpened to true
         playerSession.CastleEnteranceDoorOpened = true;
 
-        // TODO: ask about audio implementation
-
-        /*
-        const doorOpenSound: HTMLAudioElement = document.getElementById("castleEntranceDoorOpenSound") as HTMLAudioElement;
-        doorOpenSound.play().catch((error: unknown) => {
-            console.error("Error playing door open sound:", error);
-        }); */
-
+        // Return both the text result and the sound result
         return [
             new TextActionResult([
                 "You use the key to unlock the door. As the heavy castle door creaks open, a blinding beam of golden light spills out, piercing through the cold darkness. The warmth of the unknown beckons, casting long shadows on the stone path behind you. What secrets lie beyond this threshold?",
             ]),
-            new SoundActionResult("/assets/audio/door_open.mp3"), // Path to the door opening sound
+            new SoundActionResult("sounds/SoundCheck.mp3"), // Path to the door opening sound
         ];
     }
 

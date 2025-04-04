@@ -294,8 +294,8 @@ const styles: string = css`
 
     .map-button {
         position: absolute;
-        top: 20px;
-        left: 20px;
+        top: 120px; /* Adjusted to move further below the audio settings */
+        left: 10px;
         background-color: rgba(0, 0, 0, 0.7);
         color: white;
         border: 1px solid #ccc;
@@ -432,11 +432,50 @@ export class CanvasComponent extends HTMLElement {
             return;
         }
 
-        // Use ForrestRoom.mp3 for both ForrestRoom and WakeUpRoom
-        const soundFile: string = roomName === "Forrest" || roomName === "???" ? "ForrestRoom.mp3" : `${roomName.toLowerCase().replace(/\s+/g, "_")}.mp3`;
+        let soundFile: string;
+        if (roomName === "Forrest" || roomName === "???") {
+            soundFile = "ForrestRoom.mp3";
+        }
+
+        else if (roomName === "The shadows of the forgotten Castle") {
+            soundFile = "StartupRoom.mp3";
+        }
+
+        else if (roomName === "Path to the Castle") {
+            soundFile = "PathToTheCastleRoom.mp3";
+        }
+        else if (roomName === "Basement") {
+            soundFile = "BasementRoom.mp3";
+        }
+        else if (roomName === "Game Over") {
+            soundFile = "GameOverRoom.mp3";
+        }
+
+        else {
+            soundFile = `${roomName.toLowerCase().replace(/\s+/g, "_")}.mp3`;
+        }
+
         const soundUrl: string = `/sounds/${soundFile}`;
+
+        // Avoid restarting the audio if the same sound is already playing
+        if (this._backgroundAudio.src.endsWith(soundFile)) {
+            return;
+        }
+
         this._backgroundAudio.src = soundUrl;
         this._backgroundAudio.loop = true;
+
+        // Load saved audio state
+        const savedMuted: string | null = localStorage.getItem("audio-muted");
+        const savedVolume: string | null = localStorage.getItem("audio-volume");
+
+        if (savedMuted !== null) {
+            this._backgroundAudio.muted = savedMuted === "true";
+        }
+
+        if (savedVolume !== null) {
+            this._backgroundAudio.volume = parseFloat(savedVolume);
+        }
 
         if (!this._backgroundAudio.muted) {
             void this._backgroundAudio.play().catch((error: unknown) => {
@@ -453,6 +492,8 @@ export class CanvasComponent extends HTMLElement {
             return;
         }
 
+        const isStartupRoom: boolean = this._currentGameState?.roomName === "The shadows of the forgotten Castle";
+
         const elements: HTMLElement[] = htmlArray`
             <style>
                 ${styles}
@@ -461,14 +502,14 @@ export class CanvasComponent extends HTMLElement {
             ${this.renderTitle()}
             ${this.renderHeader()}
             ${this.renderMapButton()}
-             ${this.renderNotebookButton()}
+            ${this.renderNotebookButton()}
             ${this.renderContent()}
-            <sound-component></sound-component> <!-- Add sound controls -->
+            ${!isStartupRoom ? "<sound-component></sound-component>" : ""} <!-- Hide sound settings on startup -->
             <div style="margin-bottom: 25px;"></div> <!-- Add a spacer div to ensure space between content and inventory -->
             ${this.renderInventory()}
             ${this.renderMenuButton()}
             ${this.renderFooter()}
-    `;
+        `;
 
         while (this.shadowRoot.firstChild) {
             this.shadowRoot.firstChild.remove();
@@ -510,8 +551,15 @@ export class CanvasComponent extends HTMLElement {
         const soundComponent: (HTMLElement & { audioElement: HTMLAudioElement }) | null = this.shadowRoot.querySelector("sound-component");
         if (soundComponent) {
             this._backgroundAudio.muted = soundComponent.audioElement.muted;
+            this._backgroundAudio.volume = soundComponent.audioElement.volume;
+
             soundComponent.audioElement.addEventListener("volumechange", () => {
                 this._backgroundAudio.muted = soundComponent.audioElement.muted;
+                this._backgroundAudio.volume = soundComponent.audioElement.volume;
+
+                // Save state to localStorage
+                localStorage.setItem("audio-muted", String(this._backgroundAudio.muted));
+                localStorage.setItem("audio-volume", String(this._backgroundAudio.volume));
             });
         }
 
