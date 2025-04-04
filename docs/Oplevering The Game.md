@@ -5,7 +5,7 @@
 **Teamleden**:
 - Naam 1
 - Shivanio Cooman
-- Naam 3
+- Samale Fahiyeh
 - Naam 4
 - Naam 5
 
