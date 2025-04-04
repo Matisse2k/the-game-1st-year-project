@@ -114,7 +114,7 @@
 ### Reflectie
 *Ben je tevreden over je commit geschiedenis en je aandeel in het project? Wat is wel gelukt van de minimale eisen, wat niet? Waarom niet? Enzovoorts.*
 
-## Samale Fahiyeh
+## Naam 3
 ### Commit geschiedenis
 |Commit username|
 |-|
