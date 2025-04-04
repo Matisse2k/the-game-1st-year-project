@@ -3,7 +3,7 @@
 > TODO Studenten: Vul de namen van teamleden in, vervang de URLs, vul de naam van de hoofdbranch in, hernoem elk hoofdstuk naar de naam van de betreffende student. Vul vervolgens de gevraagde informatie per student in. Controleer elkaar. Verwijder deze tekst.
 
 **Teamleden**:
-- Naam 1
+- Dominik Krystul
 - Shivanio Cooman
 - Samale Fahiyeh
 - Naam 4
@@ -16,7 +16,7 @@
 
 **Naam hoofdbranch**: Naam
 
-## Naam 1
+## Dominik Krystul
 ### Commit geschiedenis
 |Commit username|
 |-|
