@@ -138,54 +138,64 @@ Over het algemeen kijk ik met trots terug op mijn bijdrage aan dit project. Ik h
 ### Reflectie
 *Ik ben tevreden met mijn werk en commits, miscchien wel wat kleinere commits, en mijn toeving tot het team vond ik ook prima*
 
-## Naam 3
+## Samale Fahiyeh
 ### Commit geschiedenis
 |Commit username|
 |-|
-|Naam 1|
+|Naam 1| Samale fahiyeh
 |Naam 2|
 |Naam 3|
 
 |Naam branch|Aantal commits|
 |-|-|
-|Hoofdbranch|0|
-|Branch 1|0|
-|Branch 2|0|
+|Main|13| 
+|werkkamer|12|
+|feature/Guestroom|28|
+|feature/notebook-webcomponent|15|
+
+Ik heb elke dag gecomited maar  bij merge request is het gesquashed
+
+
 
 ### Aan welke onderdelen heb je het meest aandeel gehad?
 *Denk aan Game Objects, Web Components, Game Design Document, enzovoorts. Beschrijf per onderdeel kort (!) en hoogover wat je ongeveer hebt bijgedragen.*
 
 |Naam|Beschrijving|
 |-|-|
-|Onderdeel 1|Beschrijving onderdeel 1|
-|Onderdeel 2|Beschrijving onderdeel 2|
-|Onderdeel 3|Beschrijving onderdeel 3|
+|Game design document|We hebben het Game Design Document gezamenlijk ingevuld. Alle onderdelen zijn samen besproken en daarna verwerkt in het document.|
+|IDD (Infrastructuur)|Ik heb gewerkt aan stap 3 en 8 |
+|Webcomponent|ik heb de notebook-component gemaalt|
+|Rooms| ik heb de twee volgende rooms gemaakt, de werkkamer en de gastenkamer|
+|items| ik heb de deurhendel, serveerplaat en de lijmpotje als items gemaakt|
+|Characters| ik heb de Raven character volledig gemaakt|
 
 ### Relevante code, commits en andere deliverables
 *Geef URLs op met een korte (!) beschrijving waarom dit relevant is. URLs mogen naar stukken code, commits en/of andere deliverables gaan.*
 
 |URL|Beschrijving|
 |-|-|
-|URL 1|Beschrijving URL 1|
-|URL 2|Beschrijving URL 2|
-|URL 3|Beschrijving URL 3|
+|https://gitlab.fdmci.hva.nl/propedeuse-hbo-ict/onderwijs/student-projecten/2024-2025/out-d-gd-se/blok-3/qaaquubaavii72/-/tree/main/src/api/src/game-implementation/characters?ref_type=heads| Character en Guard Character, Hier kunt u de characters code inzien. Het bevat de implementatie van de Raven Character inclusief hun interacties|
+|https://gitlab.fdmci.hva.nl/propedeuse-hbo-ict/onderwijs/student-projecten/2024-2025/out-d-gd-se/blok-3/qaaquubaavii72/-/commit/b0c5c5916fec3681c47271f863551f9144bba70d|Hier kunt u de component code zien|
+|https://gitlab.fdmci.hva.nl/propedeuse-hbo-ict/onderwijs/student-projecten/2024-2025/out-d-gd-se/blok-3/qaaquubaavii72/-/tree/main/src/api/src/game-implementation/rooms|Hier kunt u de code van de rooms zien die ik heb gemaakt|
 
 ### Checklist minimale eisen
 *Vul onderstaande lijst **eerlijk** in.*
 
-- [ ] Minimaal 2 *Rooms* met ondersteuning voor minimaal *Actions*
-- [ ] Minimaal 2 *Items* met een interactie anders dan *Examine*
-  - [ ] Minimaal 1 *Item* **moet** ook buiten jouw eigen Rooms gebruikt worden
-- [ ] Minimaal 1 *Character* met een *Talk* interactie
-  - [ ] De interactie **moet** uit met meerdere keuzes bestaan
-  - [ ] Minimaal 1 keuze **moet** leiden tot een nieuwe set keuzes
-- [ ] Minimaal 1 nieuwe *Action* die **niet** standaard in de game engine zit en ook buiten jouw *Rooms* gebruikt **kan** worden.
-- [ ] Alle Rooms, Items en Characters moeten nuttig bijdragen aan het spel en verbonden zijn met elkaar middels een puzzelelement.
-- [ ] Minimaal 1 Web Component ter ondersteuning van het spel
+- [x] Minimaal 2 *Rooms* met ondersteuning voor minimaal *Actions*
+- [x] Minimaal 2 *Items* met een interactie anders dan *Examine*
+  - [x] Minimaal 1 *Item* **moet** ook buiten jouw eigen Rooms gebruikt worden
+- [x] Minimaal 1 *Character* met een *Talk* interactie
+  - [x] De interactie **moet** uit met meerdere keuzes bestaan
+  - [x] Minimaal 1 keuze **moet** leiden tot een nieuwe set keuzes
+- [x] Minimaal 1 nieuwe *Action* die **niet** standaard in de game engine zit en ook buiten jouw *Rooms* gebruikt **kan** worden.
+- [x] Alle Rooms, Items en Characters moeten nuttig bijdragen aan het spel en verbonden zijn met elkaar middels een puzzelelement.
+- [x] Minimaal 1 Web Component ter ondersteuning van het spel
   - [ ] Waarbij ook gecommuniceerd wordt met een eigen API Endpoint in de backend applicatie.
 
 ### Reflectie
-*Ben je tevreden over je commit geschiedenis en je aandeel in het project? Wat is wel gelukt van de minimale eisen, wat niet? Waarom niet? Enzovoorts.*
+Ik ben erg tevreden met wat we als team hebben neergezet, maar ook met mijn eigen bijdrage. De manier waarop we met elkaar communiceerden, vooral over de comitts, zorgde voor een fijne samenwerking zonder misverstanden. Ik ben blij dat ik de minimale eisen heb gehaald. Wat ik de volgende keer beter wil doen, is vaker feedback vragen om nog gerichter te verbeteren.
+
+Al met al kijk ik positief terug op dit project en neem ik waardevolle lessen mee naar de volgende
  
 ## Matisse
 ### Commit geschiedenis
