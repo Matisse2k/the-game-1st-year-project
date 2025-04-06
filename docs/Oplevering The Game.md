@@ -114,20 +114,20 @@
 ### Reflectie
 *Ben je tevreden over je commit geschiedenis en je aandeel in het project? Wat is wel gelukt van de minimale eisen, wat niet? Waarom niet? Enzovoorts.*
 
-## Samale Fahiyeh
+## Naam 3
 ### Commit geschiedenis
 |Commit username|
 |-|
-|Naam 1| Samale Fahiyeh
+|Naam 1|
 |Naam 2|
 |Naam 3|
 
 |Naam branch|Aantal commits|
 |-|-|
-|Hoofdbranch|0|  Main
-|Branch 1|0| feature/notebookcomponent
-|Branch 2|0| feature/Guestroom
-|Branch 3|0| Werkkamer
+|Hoofdbranch|0|
+|Branch 1|0|
+|Branch 2|0|
+
 
 ### Aan welke onderdelen heb je het meest aandeel gehad?
 *Denk aan Game Objects, Web Components, Game Design Document, enzovoorts. Beschrijf per onderdeel kort (!) en hoogover wat je ongeveer hebt bijgedragen.*
