@@ -34,7 +34,7 @@ export default defineConfig(config => {
             rollupOptions: {
                 input: input,
             },
-            outDir: resolve(__dirname, "../../dist/web"),
+            outDir: "dist",
             emptyOutDir: true,
         },
         esbuild: {
