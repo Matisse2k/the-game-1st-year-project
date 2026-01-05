@@ -24,7 +24,7 @@ const styles: string = css`
         content: '';
         position: absolute;
         inset: 0;
-        background: url('/path/to/dark-theme-texture.jpg') center/cover no-repeat;
+        background: none;
         opacity: 0.1;
         z-index: -1;
     }
