@@ -3,19 +3,15 @@ import { resolve } from "path";
 import { globSync } from "glob";
 
 export default defineConfig(config => {
-    // Gather all entry points
     const input: Record<string, string> = {};
-
     const htmlFiles: string[] = globSync("wwwroot/**/*.html");
 
     htmlFiles.forEach((e: string, i: number) => {
         input[`app_${i}`] = resolve(e);
     });
 
-    // Gather all environment variables
     const defines: Record<string, string> = loadEnv(config.mode, process.cwd(), "VITE");
 
-    // BUGFIX: Vite assumes al defines are objects by default
     for (const define of Object.entries(defines)) {
         defines[define[0]] = JSON.stringify(define[1]);
     }
@@ -34,7 +30,7 @@ export default defineConfig(config => {
             rollupOptions: {
                 input: input,
             },
-            outDir: resolve(__dirname, "dist"),
+            outDir: resolve(__dirname, "../../dist/web"),
             emptyOutDir: true,
         },
         esbuild: {
