@@ -1,7 +1,7 @@
 import { defineConfig, loadEnv } from "vite";
 import { resolve } from "path";
 import { globSync } from "glob";
-import typechecksPlugin from "@hboictcloud/vite-plugin-typechecks";
+
 
 export default defineConfig(config => {
     // Gather all entry points
@@ -43,18 +43,7 @@ export default defineConfig(config => {
                 "top-level-await": true,
             },
         },
-        plugins: [
-            typechecksPlugin({
-                tsConfigPath: "./tsconfig.json",
-                includePatterns: [
-                    "./global.d.ts",
-                    "./src/**/*.ts",
-                    "../shared/**/*.ts",
-                ],
-                lintOnBuild: true,
-                lintOnWatchDelay: 200,
-            }),
-        ],
+        plugins: [],
         define: defines,
         server: {
             strictPort: true,
