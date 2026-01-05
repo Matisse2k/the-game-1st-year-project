@@ -1,5 +1,0 @@
-{
-    "buildCommand": "npm install && npm run build --workspace=@adventure-game/web",
-    "outputDirectory": "dist/web",
-    "framework": null
-}
