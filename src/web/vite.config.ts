@@ -44,16 +44,16 @@ export default defineConfig(config => {
             },
         },
         plugins: [
-            typechecksPlugin({
-                tsConfigPath: "./tsconfig.json",
-                includePatterns: [
-                    "./global.d.ts",
-                    "./src/**/*.ts",
-                    "../shared/**/*.ts",
-                ],
-                lintOnBuild: false,
-                lintOnWatchDelay: 200,
-            }),
+            // typechecksPlugin({
+            //     tsConfigPath: "./tsconfig.json",
+            //     includePatterns: [
+            //         "./global.d.ts",
+            //         "./src/**/*.ts",
+            //         "../shared/**/*.ts",
+            //     ],
+            //     lintOnBuild: false,
+            //     lintOnWatchDelay: 200,
+            // }),
         ],
         define: defines,
         server: {
